@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+    <!-- End Google Tag Manager -->
+    <title>知見 | LOU-Ark Portfolio</title>
+    <meta name="description" content="データ駆動型QOL最適化と意思決定の科学。ライフログ分析、AI倫理、生産性向上に関する深い洞察と実践的な知見を共有するハブページです。">
+    <meta name="keywords" content="データサイエンス, AI, ライフログ, 意思決定科学, QOL, AI倫理, データプライバシー">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#06b6d4', // cyan-500
+                        'brand-secondary': '#6366f1', // indigo-500
+                        'base-bg': '#0f172a', // slate-900
+                        'content-bg': '#1e293b', // slate-800
+                        'text-primary': '#e2e8f0', // slate-200
+                        'text-secondary': '#94a3b8', // slate-400
+                        'border-color': '#334155', // slate-700
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-base-bg text-text-primary antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header x-data="{ open: false }" class="bg-content-bg/80 backdrop-blur-lg sticky top-0 z-50 border-b border-border-color">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex-shrink-0">
+                        <a href="../index.html" class="text-2xl font-bold text-white transition-colors duration-300 hover:text-brand-primary">LOU-Ark Portfolio</a>
+                    </div>
+                    <div class="hidden md:block">
+                        <nav class="ml-10 flex items-baseline space-x-4">
+                            <a href="../index.html" class="text-text-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium">ホーム</a>
+                            <a href="../about/index.html" class="text-text-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium">私について</a>
+                            <a href="../philosophy/index.html" class="text-text-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium">哲学</a>
+                            <a href="index.html" class="bg-slate-700 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">知見</a>
+                            <a href="../projects/index.html" class="text-text-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium">実績</a>
+                            <a href="../contact/index.html" class="text-text-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium">お問い合わせ</a>
+                        </nav>
+                    </div>
+                    <div class="-mr-2 flex md:hidden">
+                        <button @click="open = !open" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg :class="{'hidden': open, 'block': !open }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <svg :class="{'block': open, 'hidden': !open }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="open" x-transition class="md:hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="../index.html" class="text-text-secondary hover:text-white hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium">ホーム</a>
+                    <a href="../about/index.html" class="text-text-secondary hover:text-white hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium">私について</a>
+                    <a href="../philosophy/index.html" class="text-text-secondary hover:text-white hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium">哲学</a>
+                    <a href="index.html" class="bg-slate-700 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">知見</a>
+                    <a href="../projects/index.html" class="text-text-secondary hover:text-white hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium">実績</a>
+                    <a href="../contact/index.html" class="text-text-secondary hover:text-white hover:bg-slate-700 block px-3 py-2 rounded-md text-base font-medium">お問い合わせ</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+                
+                <!-- Page Header -->
+                <header class="text-center mb-16">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary">知見</span> (Insights)
+                    </h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-text-secondary">
+                        「データ駆動型QOL最適化」と「意思決定の科学」という二つの軸を基に、日々の探求から得られた知見を体系的にまとめています。ここでは、ライフログ分析、AI倫理、生産性向上、そしてキャリア戦略に至るまで、データとAIを活用して個人の可能性を最大化するための具体的なアプローチと考察を共有します。
+                    </p>
+                     <div class="mt-6 text-sm text-slate-500">
+                        <span>公開日: 2025年11月15日</span>
+                    </div>
+                </header>
+                
+                <!-- Articles List -->
+                <div class="grid gap-8 lg:grid-cols-2">
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="overcoming-sora-2-rejection-to-visualize-society-5-0-35.html" class="hover:text-brand-primary transition-colors duration-300">AIは「暴力」を描けない。Sora 2の制約を乗り越え、人類史（Society 1.0-5.0）を動画化するプロンプト設計術</a>
+                            </h2>
+                            <p class="text-text-secondary text-sm">話題のAI『Sora 2』で人類の社会進化を動画化。本記事では、AIのポリシーによる表現規制（リジェクト）を回避し、壮大なテーマを映像化するための具体的なプロンプト設計術を解説します。</p>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="lifelog-data-driven-qol-optimization-ai-ethics-1.html" class="hover:text-brand-primary transition-colors duration-300">ライフログ分析によるQOL最大化戦略：データ駆動型意思決定を実践するためのAI活用法と倫理的課題</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="explainable-ai-xai-ethical-decision-making-future-2.html" class="hover:text-brand-primary transition-colors duration-300">AI倫理の最前線：説明可能なAI（XAI）が拓く、透明性の高いデータ駆動型意思決定の未来</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="decision-science-overcoming-cognitive-bias-with-data-3.html" class="hover:text-brand-primary transition-colors duration-300">意思決定の科学：データ分析はいかに人間の認知バイアスを克服し、最適な選択を導くか</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="scientific-optimization-of-decision-making-with-lifelog-analysis-10.html" class="hover:text-brand-primary transition-colors duration-300">ライフログ分析による意思決定の科学的最適化：データで乗り越える認知バイアスとQOL向上の実践ガイド</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="ethical-ai-design-federated-learning-differential-privacy-11.html" class="hover:text-brand-primary transition-colors duration-300">パーソナルAI時代の倫理設計：QOLを最大化する連合学習と差分プライバシー技術</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="quantifying-qol-causal-inference-reinforcement-learning-12.html" class="hover:text-brand-primary transition-colors duration-300">主観的ウェルビーイングの定量化：データサイエンスで解き明かすQOL向上の因果関係と強化学習モデルの応用</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="lifelog-data-analysis-for-decision-making-sleep-optimization-framework-18.html" class="hover:text-brand-primary transition-colors duration-300">ライフログ分析による意思決定の科学：睡眠データから導く生産性最大化のフレームワーク</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="ethical-considerations-in-personal-ai-data-privacy-and-algorithmic-transparency-19.html" class="hover:text-brand-primary transition-colors duration-300">パーソナルAI時代の倫理：QOL最適化におけるデータプライバシーとアルゴリズムの透明性</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="data-driven-career-strategy-visualizing-market-value-with-bayesian-inference-20.html" class="hover:text-brand-primary transition-colors duration-300">データサイエンスを応用したキャリア戦略：ベイズ推定による自己の市場価値と最適パスの可視化</a>
+                            </h2>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="scientific-approach-qol-improvement-lifelog-data-analysis-30.html" class="hover:text-brand-primary transition-colors duration-300">ライフログデータで解き明かすQOL向上の科学的アプローチ：睡眠、活動、生産性の相関分析</a>
+                            </h2>
+                            <p class="text-text-secondary text-sm">ウェアラブルデバイスから収集される睡眠、身体活動、作業時間などのライフログデータを多変量解析し、個人のQOL（生活の質）を最大化するパターンを特定する科学的手法を解説。データに基づき、最適な生活習慣を設計するための実践的知見を提供します。</p>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="ai-decision-making-overcoming-cognitive-bias-ethical-issues-31.html" class="hover:text-brand-primary transition-colors duration-300">AIは最良の意思決定パートナーか？認知的バイアスを克服するAI活用法と倫理的課題</a>
+                            </h2>
+                            <p class="text-text-secondary text-sm">人間の意思決定に潜む認知的バイアスを、AIがどのように検出し、補正できるのかを意思決定科学の観点から論じます。AIの判断における透明性と説明責任の重要性に触れ、AIを倫理的に活用するためのフレームワークを提案します。</p>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="personalization-privacy-dilemma-differential-privacy-strategy-32.html" class="hover:text-brand-primary transition-colors duration-300">パーソナライゼーションとプライバシーのジレンマ：差分プライバシーで実現する倫理的なデータ活用戦略</a>
+                            </h2>
+                            <p class="text-text-secondary text-sm">ユーザー体験を向上させるパーソナライゼーションと、個人のプライバシー保護という二律背反の課題を解決する技術的アプローチを解説。特に「差分プライバシー」の仕組みと実装例を挙げ、データを匿名化しつつ統計的価値を維持する最先端の手法を紹介します。</p>
+                        </div>
+                    </article>
+
+                    <article class="bg-content-bg rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-2">
+                                <a href="debugging-gemini-api-429-error-exp-model-trap-34.html" class="hover:text-brand-primary transition-colors duration-300">【Gemini API】429 QuotaエラーはAPIキーが原因じゃなかった話 - "exp"モデルの罠とデバッグの教訓</a>
+                            </h2>
+                            <p class="text-text-secondary text-sm">Gemini APIの429クオータエラーがAPIキーではなく、"exp"付き実験的モデルが原因だった顛末。エラーメッセージを精読し、思い込みを捨てるデバッグの重要性を具体的な教訓として解説します。</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-content-bg border-t border-border-color">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p class="text-sm text-text-secondary">&copy; 2025 LOU-Ark Portfolio</p>
+                    <nav class="flex space-x-4">
+                        <a href="../index.html" class="text-sm text-text-secondary hover:text-white">ホーム</a>
+                        <a href="../about/index.html" class="text-sm text-text-secondary hover:text-white">私について</a>
+                        <a href="../philosophy/index.html" class="text-sm text-text-secondary hover:text-white">哲学</a>
+                        <a href="index.html" class="text-sm text-text-secondary hover:text-white">知見</a>
+                        <a href="../projects/index.html" class="text-sm text-text-secondary hover:text-white">実績</a>
+                        <a href="../legal/index.html" class="text-sm text-text-secondary hover:text-white">法務情報</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

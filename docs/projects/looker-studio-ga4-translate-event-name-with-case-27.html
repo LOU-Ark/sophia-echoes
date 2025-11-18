@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>【Looker Studio】GA4のイベント名をCASE文で日本語に変換！分かりやすいレポートを作るテクニック</title>
+<meta content="Looker StudioのGA4レポートで英語イベント名が分かりにくい問題を解決！計算フィールドとCASE文を使い、分かりやすい日本語名に変換する具体的な手順を解説。レポートの可読性を向上させます。" name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #2dd4bf, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .prose-invert code {
+            color: #f3f4f6;
+            background-color: #374151;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 6px;
+        }
+        .prose-invert pre {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+        }
+        .prose-invert pre code {
+            background-color: transparent;
+            padding: 0;
+            font-size: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300 antialiased"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<!-- Header -->
+<header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<a class="text-2xl font-bold text-white" href="../index.html">LOU-Ark</a>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-gray-300 hover:text-teal-400 transition-colors" href="../index.html">ホーム</a>
+<a class="text-gray-300 hover:text-teal-400 transition-colors" href="../about/index.html">私について</a>
+<a class="text-teal-400 font-semibold" href="index.html">実績</a>
+<a class="text-gray-300 hover:text-teal-400 transition-colors" href="../insights/index.html">知見</a>
+<a class="text-gray-300 hover:text-teal-400 transition-colors" href="../philosophy/index.html">哲学</a>
+<a class="text-gray-300 hover:text-teal-400 transition-colors" href="../contact/index.html">お問い合わせ</a>
+</div>
+<!-- Mobile Menu Button -->
+<div class="md:hidden">
+<button class="text-white focus:outline-none" id="mobile-menu-button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="hidden md:hidden mt-4" id="mobile-menu">
+<a class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded" href="../index.html">ホーム</a>
+<a class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded" href="../about/index.html">私について</a>
+<a class="block py-2 px-4 text-sm text-teal-400 bg-gray-800 rounded" href="index.html">実績</a>
+<a class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded" href="../insights/index.html">知見</a>
+<a class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded" href="../philosophy/index.html">哲学</a>
+<a class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded" href="../contact/index.html">お問い合わせ</a>
+</div>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="container mx-auto px-6 py-12">
+<article class="max-w-4xl mx-auto">
+<!-- Breadcrumbs -->
+<div class="text-sm text-gray-400 mb-4">
+<a class="hover:text-teal-400" href="../index.html">ホーム</a> &gt; 
+                <a class="hover:text-teal-400" href="index.html">実績</a> &gt; 
+                <span class="text-gray-500">GA4イベント名を日本語に変換</span>
+</div>
+<!-- Article Header -->
+<header class="mb-12">
+<div class="flex flex-wrap items-center gap-2 mb-4">
+<span class="bg-teal-900/50 text-teal-300 text-xs font-medium px-2.5 py-1 rounded-full">Looker Studio</span>
+<span class="bg-blue-900/50 text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">GA4</span>
+<span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full">データ可視化</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+                    【Looker Studio】GA4のイベント名をCASE文で日本語に変換！分かりやすいレポートを作るテクニック
+                </h1>
+<p class="text-lg text-gray-400 mb-6">
+                    Looker StudioのGA4レポートで英語イベント名が分かりにくい問題を解決！計算フィールドとCASE文を使い、分かりやすい日本語名に変換する具体的な手順を解説し、レポートの可読性を劇的に向上させます。
+                </p>
+<div class="text-sm text-gray-500">
+<span>公開日: 2025年11月12日</span>
+</div>
+</header>
+<!-- Article Body -->
+<div class="prose prose-lg prose-invert max-w-none text-gray-300">
+<!-- 課題提起 -->
+<section class="mb-12">
+<h2 class="text-3xl font-bold text-white border-l-4 border-teal-400 pl-4">はじめに：こんな課題ありませんか？</h2>
+<p>Looker StudioでGA4のデータを可視化し、関係者と共有するレポートを作成したとします。しかし、グラフやテーブルに並ぶのは <code>generate_lead</code>, <code>Product_search_refinement_click</code>, <code>sign_up</code> といった英語のイベント名ばかり。</p>
+<blockquote class="border-l-4 border-gray-600 pl-4 italic text-gray-400">
+                        「この 'generate_lead' って、結局どのコンバージョンなの？」<br/>
+                        「グラフの項目が英語で、直感的に内容が理解できない...」
+                    </blockquote>
+<p>このようなフィードバックを受け、レポートの説明に毎回時間を費やしてはいないでしょうか？GA4のイベント名は、データ管理の観点からは英語（やスネークケース）で統一するのがベストプラクティスですが、ビジネスサイドのユーザーにとっては分かりにくいのが実情です。</p>
+<p>この記事では、その課題をスマートに解決する方法、つまりLooker Studioの機能を使って、<strong>データソースを汚さずに</strong>レポート上の表示だけを分かりやすい日本語に変換するテクニックをステップ・バイ・ステップで解説します。</p>
+</section>
+<!-- 解決策の概要 -->
+<section class="mb-12">
+<h2 class="text-3xl font-bold text-white border-l-4 border-teal-400 pl-4">解決策の概要：計算フィールドとCASE文</h2>
+<p>結論から言うと、この課題はLooker Studioの<strong>「計算フィールド」</strong>機能と、SQLライクな条件分岐を実現する<strong>「CASE文」</strong>を組み合わせることで解決できます。この方法を使えば、元のGA4の「イベント名」ディメンションはそのままに、表示用の新しいディメンション（例：「イベント名（日本語）」）を作成できます。</p>
+<p>これにより、データの一貫性を保ちつつ、レポートの利用者にとっては非常に理解しやすいアウトプットを提供することが可能になります。</p>
+</section>
+<!-- 具体的な手順 -->
+<section class="mb-12">
+<h2 class="text-3xl font-bold text-white border-l-4 border-teal-400 pl-4">具体的な手順（ステップ・バイ・ステップ）</h2>
+<p>それでは、実際に設定する手順を見ていきましょう。</p>
+<h3 class="text-2xl font-bold text-white mt-8">Step 1: 対応表を準備する</h3>
+<p>まず、どのイベント名をどの日本語に変換したいのか、対応関係を整理します。GoogleスプレッドシートやExcelなどを使って、以下のようなシンプルな対応表を作成することをおすすめします。これが後のCASE文の設計図になります。</p>
+<div class="overflow-x-auto my-6">
+<table class="min-w-full bg-gray-800 border border-gray-700">
+<thead>
+<tr class="bg-gray-700">
+<th class="py-2 px-4 border-b border-gray-600 text-left text-white">GA4イベント名 (Event name)</th>
+<th class="py-2 px-4 border-b border-gray-600 text-left text-white">レポート表示名（日本語）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="py-2 px-4 border-b border-gray-600 font-mono">generate_lead</td>
+<td class="py-2 px-4 border-b border-gray-600">お問い合わせ完了</td>
+</tr>
+<tr>
+<td class="py-2 px-4 border-b border-gray-600 font-mono">sign_up</td>
+<td class="py-2 px-4 border-b border-gray-600">会員登録完了</td>
+</tr>
+<tr>
+<td class="py-2 px-4 border-b border-gray-600 font-mono">purchase</td>
+<td class="py-2 px-4 border-b border-gray-600">商品購入完了</td>
+</tr>
+<tr>
+<td class="py-2 px-4 border-b border-gray-600 font-mono">add_to_cart</td>
+<td class="py-2 px-4 border-b border-gray-600">カート追加</td>
+</tr>
+<tr>
+<td class="py-2 px-4 font-mono">view_item</td>
+<td class="py-2 px-4">商品詳細閲覧</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この表を事前に作成しておくことで、抜け漏れなくCASE文を記述でき、後のメンテナンスも容易になります。</p>
+<h3 class="text-2xl font-bold text-white mt-8">Step 2: 計算フィールドを作成する</h3>
+<p>次に、Looker Studioのレポート編集画面で、GA4データソースに計算フィールドを追加します。</p>
+<ol class="list-decimal pl-5 space-y-2">
+<li>Looker Studioのメニューから「リソース」→「追加済みのデータソースの管理」を選択します。</li>
+<li>対象のGA4データソースの行にある「編集」をクリックします。</li>
+<li>データソースのフィールド一覧画面の右上にある青いボタン「フィールドを追加」をクリックします。</li>
+</ol>
+<p>これで、新しい計算フィールドを作成する画面が表示されます。</p>
+<h3 class="text-2xl font-bold text-white mt-8">Step 3: CASE文を記述する</h3>
+<p>計算フィールドの編集画面で、以下の要領でCASE文を記述します。</p>
+<ol class="list-decimal pl-5 space-y-2">
+<li><strong>フィールド名:</strong> 分かりやすい名前を付けます（例: <code>キーイベント名（日本語）</code>）。</li>
+<li><strong>計算式:</strong> Step 1で作成した対応表を元に、以下のようなCASE文を入力します。</li>
+</ol>
+<div class="my-6 bg-gray-800 rounded-lg overflow-hidden">
+<div class="bg-gray-700 px-4 py-2 text-sm text-gray-300 font-mono">
+                            Looker Studio 計算式
+                        </div>
+<pre class="p-4 text-base"><code class="language-sql">CASE
+  WHEN イベント名 = 'generate_lead' THEN 'お問い合わせ完了'
+  WHEN イベント名 = 'sign_up' THEN '会員登録完了'
+  WHEN イベント名 = 'purchase' THEN '商品購入完了'
+  WHEN イベント名 = 'add_to_cart' THEN 'カート追加'
+  WHEN イベント名 = 'view_item' THEN '商品詳細閲覧'
+  ELSE イベント名
+END</code></pre>
+</div>
+<p><strong>【重要ポイント】</strong><br/>最後に <code>ELSE イベント名</code> を必ず記述してください。これは、「上記のいずれの条件にも一致しなかった場合は、元のイベント名をそのまま表示する」という意味です。これを忘れると、対応表にないイベント（<code>page_view</code>や<code>scroll</code>など）がすべて<code>null</code>（空欄）になってしまい、データが欠落したように見えてしまいます。</p>
+<p>入力が完了したら、右下の「保存」をクリックします。</p>
+<h3 class="text-2xl font-bold text-white mt-8">Step 4: レポートに適用する</h3>
+<p>データソースに新しいフィールドが追加されたら、あとはレポートのグラフや表に適用するだけです。</p>
+<ol class="list-decimal pl-5 space-y-2">
+<li>日本語化したいグラフや表を選択します。</li>
+<li>右側の設定パネルの「ディメンション」に設定されている「イベント名」を、先ほど作成した「キーイベント名（日本語）」にドラッグ＆ドロップで置き換えます。</li>
+</ol>
+<p>これだけで、レポート上の表示が分かりやすい日本語に切り替わります。</p>
+</section>
+<!-- Before/After -->
+<section class="mb-12">
+<h2 class="text-3xl font-bold text-white border-l-4 border-teal-400 pl-4">Before / After</h2>
+<p>このテクニックを適用することで、レポートの分かりやすさは劇的に向上します。</p>
+<div class="grid md:grid-cols-2 gap-8 my-6">
+<div class="border border-gray-700 rounded-lg p-4">
+<h4 class="text-xl font-bold text-white mb-2 text-center">Before</h4>
+<p class="text-center text-gray-400 mb-4">英語のイベント名で直感的でない</p>
+<ul class="space-y-2 text-sm">
+<li class="flex justify-between bg-gray-800 p-2 rounded"><span>generate_lead</span> <span class="font-mono">15</span></li>
+<li class="flex justify-between bg-gray-800 p-2 rounded"><span>sign_up</span> <span class="font-mono">32</span></li>
+<li class="flex justify-between bg-gray-800 p-2 rounded"><span>purchase</span> <span class="font-mono">8</span></li>
+<li class="flex justify-between bg-gray-800 p-2 rounded"><span>add_to_cart</span> <span class="font-mono">120</span></li>
+</ul>
+</div>
+<div class="border border-teal-400/50 rounded-lg p-4 bg-teal-900/20">
+<h4 class="text-xl font-bold text-white mb-2 text-center">After</h4>
+<p class="text-center text-teal-300 mb-4">一目で意味がわかる日本語表示</p>
+<ul class="space-y-2 text-sm">
+<li class="flex justify-between bg-gray-700 p-2 rounded"><span>お問い合わせ完了</span> <span class="font-mono">15</span></li>
+<li class="flex justify-between bg-gray-700 p-2 rounded"><span>会員登録完了</span> <span class="font-mono">32</span></li>
+<li class="flex justify-between bg-gray-700 p-2 rounded"><span>商品購入完了</span> <span class="font-mono">8</span></li>
+<li class="flex justify-between bg-gray-700 p-2 rounded"><span>カート追加</span> <span class="font-mono">120</span></li>
+</ul>
+</div>
+</div>
+<p>このように、誰が見ても主要なコンバージョンやユーザー行動が何であるかを即座に理解できるレポートに生まれ変わります。</p>
+</section>
+<!-- まとめと応用 -->
+<section>
+<h2 class="text-3xl font-bold text-white border-l-4 border-teal-400 pl-4">まとめと応用</h2>
+<p>今回は、Looker Studioの計算フィールドとCASE文を使ってGA4のイベント名を日本語に変換する方法を紹介しました。このテクニックのメリットは以下の通りです。</p>
+<ul class="list-disc pl-5 space-y-2">
+<li><strong>レポートの可読性向上:</strong> 専門知識がない関係者でも、データの内容を直感的に理解できるようになります。</li>
+<li><strong>コミュニケーションの円滑化:</strong> 「この項目は何？」という質問が減り、本質的な議論に時間を割けるようになります。</li>
+<li><strong>データソースの整合性維持:</strong> 元のデータは変更しないため、他の分析で元のイベント名を使いたい場合にも影響がありません。</li>
+</ul>
+<p>また、このCASE文を用いたディメンションの変換は、イベント名以外にも応用範囲が広いです。例えば、</p>
+<ul class="list-disc pl-5 space-y-2">
+<li><code>参照元/メディア</code> を独自のチャネルグループ（例: 「ブランド指名検索」「一般キーワード検索」「SNS広告」など）に分類する。</li>
+<li>URLのパスを、分かりやすいページ名（例: <code>/product/123/</code> → <code>商品A詳細ページ</code>）に変換する。</li>
+</ul>
+<p>など、さまざまな場面で活用できます。ぜひこのテクニックをマスターして、より分かりやすく、価値のあるデータレポートを作成してみてください。</p>
+</section>
+</div>
+</article>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-900 border-t border-gray-800">
+<div class="container mx-auto px-6 py-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<h3 class="text-xl font-bold text-white mb-4">LOU-Ark</h3>
+<p class="text-gray-400">データ駆動型QOL最適化と意思決定の科学</p>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white mb-4">サイトマップ</h3>
+<ul class="space-y-2">
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../index.html">ホーム</a></li>
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../about/index.html">私について</a></li>
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="index.html">実績</a></li>
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../insights/index.html">知見</a></li>
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../philosophy/index.html">哲学</a></li>
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../contact/index.html">お問い合わせ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white mb-4">リーガル</h3>
+<ul class="space-y-2">
+<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../legal/index.html">法務情報</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
+<p>© 2025 LOU-Ark Portfolio. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

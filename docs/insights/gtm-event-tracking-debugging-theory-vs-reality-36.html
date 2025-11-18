@@ -221,13 +221,13 @@
                 <div class="grid md:grid-cols-2 gap-8 my-6">
                     <div class="bg-secondary p-6 rounded-lg border border-slate-600">
                         <h4 class="text-xl font-bold text-accent mb-2">理論（プレビューモードでの観測結果）</h4>
-                        <p><code>form_submit</code> イベント発生時、データレイヤー変数 <code>eventModel.form_destination</code> の値は、ダウンロード処理のURLである <code>.../bulkdl/download</code> を指していました。</p>
-                        <pre class="mt-4"><code>eventModel.form_destination = ".../bulkdl/download"</code></pre>
+                        <p><code>form_submit</code> イベント発生時、データレイヤー変数 <code>eventModel.form_destination</code> の値は、ダウンロード処理のURLである <code>.../xxxx/download</code> を指していました。</p>
+                        <pre class="mt-4"><code>eventModel.form_destination = ".../xxxx/download"</code></pre>
                     </div>
                     <div class="bg-secondary p-6 rounded-lg border border-slate-600">
                         <h4 class="text-xl font-bold text-accent mb-2">現実（GA4でデータが取れている設定）</h4>
-                        <p>しかし、実際にGA4でデータ計測に成功している既存のトリガー設定は、変数が同意画面のURLである <code>.../bulkdl/agreement</code> と等しいことを条件としていました。</p>
-                        <pre class="mt-4"><code>eventModel.form_destination equals ".../bulkdl/agreement"</code></pre>
+                        <p>しかし、実際にGA4でデータ計測に成功している既存のトリガー設定は、変数が同意画面のURLである <code>.../xxxx/agreement</code> と等しいことを条件としていました。</p>
+                        <pre class="mt-4"><code>eventModel.form_destination equals ".../xxxx/agreement"</code></pre>
                     </div>
                 </div>
 
@@ -273,7 +273,7 @@
                                     <li><strong>トリガータイプ:</strong> カスタムイベント</li>
                                     <li><strong>イベント名:</strong> <code>form_submit</code></li>
                                     <li><strong>このトリガーの発生場所:</strong> 一部のカスタムイベント</li>
-                                    <li><strong>配信条件:</strong> (作成したデータレイヤー変数) が <code>https://products.negurosu.co.jp/bulkdl/agreement</code> と等しい</li>
+                                    <li><strong>配信条件:</strong> (作成したデータレイヤー変数) が <code>https://pxxxxxx.co.jp/xxxx/agreement</code> と等しい</li>
                                 </ul>
                             </dd>
                         </div>

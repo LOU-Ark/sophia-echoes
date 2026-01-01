@@ -1,359 +1,392 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIと人間が共創する書籍制作の全体フロー | LOU-Ark</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
-    .text-brand { color: #4f8cff; }
-    .bg-brand { background-color: #4f8cff; }
-    .border-brand { border-color: #4f8cff; }
-    .glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-    .gradient-bg { background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); }
-    .workflow-dot::before {
-      content: ''; position: absolute; left: -20px; top: 50%; transform: translateY(-50%);
-      width: 10px; height: 10px; border-radius: 50%; background-color: #4f8cff;
-    }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AIと人間が共創する書籍制作の全体フロー | LOU-Ark</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Montserrat:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-bg': '#0a101f',
+                        'brand-surface': '#17213a',
+                        'brand-primary': '#4f8cff',
+                        'brand-secondary': '#8bb4ff',
+                        'brand-text': '#e0e6f0',
+                        'brand-text-muted': '#a0aec0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-divider {
+            border-bottom: 1px solid rgba(79, 140, 255, 0.1);
+        }
+        .glass-effect {
+            background: rgba(23, 33, 58, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-white text-slate-900 leading-relaxed">
+<body class="bg-brand-bg text-brand-text font-sans antialiased">
 
-<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center gap-4">
-    <a href="../index.html" class="flex items-center gap-2 sm:gap-3 group shrink-0">
-      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center text-white font-black shadow-lg" style="background-color: #4f8cff">
-        L
-      </div>
-      <span class="text-lg sm:text-xl font-black text-slate-800 tracking-tight group-hover:text-indigo-600 transition-colors">
-        LOU-Ark
-      </span>
-    </a>
-    
-    <nav class="hidden md:flex items-center gap-6 overflow-x-auto no-scrollbar">
-      <a href="../about/index.html" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors whitespace-nowrap">私について</a>
-      <a href="../contact/index.html" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors whitespace-nowrap">お問い合わせ</a>
-      <a href="../insights/index.html" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors whitespace-nowrap">知見</a>
-      <a href="../legal/index.html" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors whitespace-nowrap">法務情報</a>
-      <a href="../philosophy/index.html" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors whitespace-nowrap">哲学</a>
-      <a href="../projects/index.html" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors whitespace-nowrap text-brand">実績</a>
+<!-- ===== Header ===== -->
+<header class="bg-brand-bg/80 backdrop-blur-lg sticky top-0 z-50 border-b border-brand-primary/10">
+    <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <a class="text-2xl font-display font-bold text-white transition-colors hover:text-brand-primary flex items-center gap-3" href="../index.html">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary flex items-center justify-center text-white font-black shadow-lg shadow-brand-primary/20">L</div>
+                LOU-Ark
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-brand-text-muted transition-colors hover:text-brand-primary text-sm font-bold" href="../about/index.html">私について</a>
+                <a class="text-brand-text-muted transition-colors hover:text-brand-primary text-sm font-bold" href="../insights/index.html">知見</a>
+                <a class="text-brand-text-muted transition-colors hover:text-brand-primary text-sm font-bold" href="../legal/index.html">法務情報</a>
+                <a class="text-brand-text-muted transition-colors hover:text-brand-primary text-sm font-bold" href="../philosophy/index.html">哲学</a>
+                <a class="text-brand-primary text-sm font-bold border-b-2 border-brand-primary pb-1" href="../projects/index.html">実績</a>
+                <a class="bg-brand-primary text-white px-5 py-2 rounded-full font-bold text-xs transition-transform hover:scale-105" href="../contact/index.html">お問い合わせ</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none" id="mobile-menu-button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden mt-4 space-y-2 animate-fadeIn" id="mobile-menu">
+            <a class="block text-brand-text-muted hover:text-brand-primary py-2 font-bold" href="../about/index.html">私について</a>
+            <a class="block text-brand-text-muted hover:text-brand-primary py-2 font-bold" href="../insights/index.html">知見</a>
+            <a class="block text-brand-text-muted hover:text-brand-primary py-2 font-bold" href="../legal/index.html">法務情報</a>
+            <a class="block text-brand-text-muted hover:text-brand-primary py-2 font-bold" href="../philosophy/index.html">哲学</a>
+            <a class="block text-brand-primary py-2 font-bold" href="../projects/index.html">実績</a>
+            <a class="block bg-brand-primary text-white text-center mt-2 px-4 py-3 rounded-xl font-bold" href="../contact/index.html">お問い合わせ</a>
+        </div>
     </nav>
-
-    <div class="flex items-center gap-3">
-      <a href="#" class="hidden sm:block px-5 py-2.5 bg-slate-900 text-white text-xs font-black rounded-full hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200 whitespace-nowrap">
-        お問い合わせ
-      </a>
-      <button class="md:hidden p-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-        <i class="fa-solid fa-bars-staggered text-xl"></i>
-      </button>
-    </div>
-  </div>
-  
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-6 space-y-4 animate-fadeIn">
-    <div class="flex flex-col gap-4">
-      <a href="../about/index.html" class="text-sm font-bold text-slate-600">私について</a>
-      <a href="../contact/index.html" class="text-sm font-bold text-slate-600">お問い合わせ</a>
-      <a href="../insights/index.html" class="text-sm font-bold text-slate-600">知見</a>
-      <a href="../legal/index.html" class="text-sm font-bold text-slate-600">法務情報</a>
-      <a href="../philosophy/index.html" class="text-sm font-bold text-slate-600">哲学</a>
-      <a href="../projects/index.html" class="text-sm font-bold text-brand">実績</a>
-      <a href="#" class="block w-full text-center px-5 py-3 bg-slate-900 text-white text-xs font-black rounded-xl">お問い合わせ</a>
-    </div>
-  </div>
 </header>
 
-<main class="pt-20">
-  <!-- Hero Section -->
-  <section class="relative py-20 sm:py-32 overflow-hidden gradient-bg">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4f8cff 1px, transparent 1px); background-size: 40px 40px;"></div>
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="max-w-3xl">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-black tracking-widest uppercase mb-6">Editorial Innovation</span>
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mb-8 leading-[1.1]">
-          AIと人間が共創する<br/><span class="text-brand">書籍制作の全体フロー</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-600 font-medium leading-relaxed mb-10">
-          AIの効率性と人間の感性を融合させた実践的ワークフロー。品質を担保するための「厳格な編集マニュアル」を公開します。
-        </p>
-      </div>
-    </div>
-  </section>
+<main>
+    <!-- ===== Hero Section ===== -->
+    <section class="relative py-20 md:py-32 overflow-hidden section-divider">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4f8cff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center md:text-left">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-black tracking-widest uppercase mb-6 border border-brand-primary/20">Editorial Innovation</span>
+            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-7xl leading-tight mb-8">
+                AIと人間が共創する<br/>
+                <span class="text-brand-primary">書籍制作の全体フロー</span>
+            </h1>
+            <p class="text-lg md:text-xl text-brand-text-muted font-medium leading-relaxed max-w-3xl mb-10">
+                AIの効率性と人間の感性を融合させた実践的ワークフロー。品質を担保するための「厳格な編集マニュアル」を公開します。
+            </p>
+        </div>
+    </section>
 
-  <!-- Project Summary (Context & Challenge) -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <!-- Background -->
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-900">
-              <i class="fa-solid fa-history text-xl"></i>
-            </div>
-            <h2 class="text-2xl font-black tracking-tight">背景：AI時代の出版の在り方</h2>
-          </div>
-          <p class="text-slate-600 font-medium leading-relaxed">
-            AI（生成AI）による執筆は圧倒的なスピードを可能にしましたが、一方で「魂のない文章」や「事実誤認」といった品質の低下が懸念されています。LOU-Arkでは、単なるAIによる自動生成ではなく、**「編集者が全工程を指揮し、AIを最高の筆記具として扱う」**新しい制作モデルを構築しました。
-          </p>
-        </div>
-        <!-- Challenge -->
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-brand/10 flex items-center justify-center text-brand">
-              <i class="fa-solid fa-bullseye text-xl"></i>
-            </div>
-            <h2 class="text-2xl font-black tracking-tight">課題：効率と品質のジレンマ</h2>
-          </div>
-          <ul class="space-y-4">
-            <li class="flex gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <i class="fa-solid fa-circle-exclamation text-brand mt-1"></i>
-              <span class="text-sm font-bold text-slate-700">AIが生成した文章の平坦化・具体性の欠如</span>
-            </li>
-            <li class="flex gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <i class="fa-solid fa-circle-exclamation text-brand mt-1"></i>
-              <span class="text-sm font-bold text-slate-700">文体やターゲット層への不一致</span>
-            </li>
-            <li class="flex gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <i class="fa-solid fa-circle-exclamation text-brand mt-1"></i>
-              <span class="text-sm font-bold text-slate-700">人間による監修プロセスの曖昧さ</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Roles Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-black mb-4">プロジェクトチームと役割</h2>
-        <p class="text-slate-500 font-bold">「人間が監督し、AIが具現化する」三位一体の体制</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
-          <div class="w-14 h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center mb-6">
-            <i class="fa-solid fa-user-tie text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-black mb-3">あなた（編集長・総監督）</h3>
-          <p class="text-sm text-slate-500 font-bold leading-relaxed">企画立案、赤入れ、品質の最終責任。AIへの修正指示を出し、感性の部分を担保します。</p>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 border-brand/30">
-          <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand/30">
-            <i class="fa-solid fa-robot text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-black mb-3">Gemini（ライター）</h3>
-          <p class="text-sm text-slate-500 font-bold leading-relaxed">編集長の指示に従い、構成案作成から執筆までを担当。指示内容の理解と柔軟な書き直しが武器。</p>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
-          <div class="w-14 h-14 bg-indigo-500 text-white rounded-2xl flex items-center justify-center mb-6">
-            <i class="fa-solid fa-microchip text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-black mb-3">ChatGPT（シミュレーター）</h3>
-          <p class="text-sm text-slate-500 font-bold leading-relaxed">Geminiが作成したプロンプトの検証用。リアルな回答例や具体素材を生成し、原稿の厚みを増強。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Workflow Steps -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-3xl font-black text-center mb-20">解決策：4フェーズの制作フロー</h2>
-      
-      <div class="space-y-16">
-        <!-- Phase 1 -->
-        <div class="relative pl-12 sm:pl-20">
-          <div class="absolute left-0 top-0 w-10 h-10 sm:w-14 sm:h-14 bg-slate-100 rounded-2xl flex items-center justify-center font-black text-slate-400 text-xl sm:text-2xl">01</div>
-          <h3 class="text-2xl font-black mb-6">フェーズ1：企画・設計（本の骨組みを作る）</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-              <span class="block text-xs font-black text-brand mb-2">STEP 01</span>
-              <h4 class="font-bold mb-2">ターゲット設定</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">「誰の」「どんな悩み」を解決するかを定義。</p>
-            </div>
-            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-              <span class="block text-xs font-black text-brand mb-2">STEP 02</span>
-              <h4 class="font-bold mb-2">目次構成の作成</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">悩みを解決する最適な順序でロジックを組む。</p>
-            </div>
-            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-              <span class="block text-xs font-black text-brand mb-2">STEP 03</span>
-              <h4 class="font-bold mb-2">文体ルールの定義</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">「優しく」「中学生にもわかる」などルールを設定。</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 2 (Highlight) -->
-        <div class="relative pl-12 sm:pl-20 border-l-4 border-brand/10">
-          <div class="absolute -left-[3px] top-0 w-[4px] h-full bg-brand"></div>
-          <div class="absolute left-[-22px] sm:left-[-28px] top-0 w-10 h-10 sm:w-14 sm:h-14 bg-brand text-white rounded-2xl flex items-center justify-center font-black text-xl sm:text-2xl shadow-lg shadow-brand/30">02</div>
-          <h3 class="text-2xl font-black mb-4">フェーズ2：執筆と編集のループ</h3>
-          <p class="text-slate-500 font-bold mb-8 italic">ここがメイン！1テーマごとに5つのサイクルを高速で回します。</p>
-          
-          <div class="bg-brand/5 p-8 rounded-3xl border border-brand/10">
-            <div class="flex flex-col gap-6">
-              <div class="flex items-start gap-4">
-                <div class="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center shrink-0 font-bold">1</div>
+    <!-- ===== Project Summary Section ===== -->
+    <section class="py-20 md:py-28 section-divider">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Background -->
                 <div>
-                  <h4 class="font-bold">指示出し（編集長→Writer）</h4>
-                  <p class="text-sm text-slate-600">章のテーマと解決策のメモをGeminiに伝達。</p>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-surface border border-brand-primary/20 flex items-center justify-center text-brand-primary">
+                            <i class="fa-solid fa-history text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-display font-bold">背景：AI時代の出版の在り方</h2>
+                    </div>
+                    <p class="text-brand-text-muted leading-relaxed text-lg">
+                        AI（生成AI）による執筆は圧倒的なスピードを可能にしましたが、一方で「魂のない文章」や「事実誤認」といった品質の低下が懸念されています。LOU-Arkでは、単なるAIによる自動生成ではなく、<strong class="text-brand-secondary">「編集者が全工程を指揮し、AIを最高の筆記具として扱う」</strong>新しい制作モデルを構築しました。
+                    </p>
                 </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center shrink-0 font-bold">2</div>
+                <!-- Challenge -->
                 <div>
-                  <h4 class="font-bold">執筆（Writer ↔ Simulator）</h4>
-                  <p class="text-sm text-slate-600">Geminiが書き、ChatGPTが具体例を提供し補強。</p>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-surface border border-brand-primary/20 flex items-center justify-center text-brand-secondary">
+                            <i class="fa-solid fa-bullseye text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-display font-bold">課題：効率と品質のジレンマ</h2>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4 p-5 rounded-xl bg-brand-surface border border-brand-primary/10">
+                            <i class="fa-solid fa-circle-exclamation text-brand-primary mt-1"></i>
+                            <span class="text-md font-bold text-brand-text">AIが生成した文章の平坦化・具体性の欠如</span>
+                        </li>
+                        <li class="flex gap-4 p-5 rounded-xl bg-brand-surface border border-brand-primary/10">
+                            <i class="fa-solid fa-circle-exclamation text-brand-primary mt-1"></i>
+                            <span class="text-md font-bold text-brand-text">文体やターゲット層への不一致</span>
+                        </li>
+                        <li class="flex gap-4 p-5 rounded-xl bg-brand-surface border border-brand-primary/10">
+                            <i class="fa-solid fa-circle-exclamation text-brand-primary mt-1"></i>
+                            <span class="text-md font-bold text-brand-text">人間による監修プロセスの曖昧さ</span>
+                        </li>
+                    </ul>
                 </div>
-              </div>
-              <div class="flex items-start gap-4 p-4 bg-white rounded-xl border-2 border-brand shadow-md">
-                <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 font-bold">3</div>
-                <div>
-                  <h4 class="font-bold text-slate-900">編集者チェック（人間による厳格な目）</h4>
-                  <p class="text-sm text-slate-600 font-bold">難易度、現実味、「置いてけぼり感」を人間がジャッジ。</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center shrink-0 font-bold">4</div>
-                <div>
-                  <h4 class="font-bold">リライト（Writer）</h4>
-                  <p class="text-sm text-slate-600">人間の修正指示（赤入れ）に従ってGeminiが磨き上げる。</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center shrink-0 font-bold">5</div>
-                <div>
-                  <h4 class="font-bold">校了（編集長）</h4>
-                  <p class="text-sm text-slate-600">品質を承認し、一章を完成。これを繰り返します。</p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
+    </section>
 
-        <!-- Phases 3 & 4 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pl-12 sm:pl-20 relative">
-          <div>
-            <div class="absolute left-0 top-0 w-10 h-10 sm:w-14 sm:h-14 bg-slate-100 rounded-2xl flex items-center justify-center font-black text-slate-400 text-xl sm:text-2xl">03</div>
-            <h3 class="text-xl font-black mb-4">フェーズ3：全体調整</h3>
-            <ul class="space-y-3 text-sm text-slate-600 font-medium">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand"></i> 全原稿の結合と順序確認</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand"></i> 章と章の「つなぎ」を調整</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand"></i> まえがき・あとがきの執筆</li>
-            </ul>
-          </div>
-          <div class="relative pt-16 md:pt-0">
-             <div class="absolute left-[-48px] md:left-[-60px] top-0 w-10 h-10 sm:w-14 sm:h-14 bg-slate-100 rounded-2xl flex items-center justify-center font-black text-slate-400 text-xl sm:text-2xl">04</div>
-            <h3 class="text-xl font-black mb-4">フェーズ4：最終推敲</h3>
-            <ul class="space-y-3 text-sm text-slate-600 font-medium">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand"></i> 人間の目による「素読み」</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand"></i> タイトル・サブタイトルの決定</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand"></i> 各種フォーマットへの変換</li>
-            </ul>
-          </div>
+    <!-- ===== Roles Section ===== -->
+    <section class="py-20 md:py-28 section-divider bg-brand-surface/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">プロジェクトチームと役割</h2>
+                <p class="text-brand-text-muted font-bold">「人間が監督し、AIが具現化する」三位一体の体制</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-brand-surface p-8 rounded-3xl border border-brand-primary/10 transition-transform hover:scale-105">
+                    <div class="w-14 h-14 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-user-tie text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">あなた（編集長・総監督）</h3>
+                    <p class="text-brand-text-muted font-medium leading-relaxed">企画立案、赤入れ、品質の最終責任。AIへの修正指示を出し、感性の部分を担保します。</p>
+                </div>
+                <div class="bg-brand-surface p-8 rounded-3xl border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 relative transition-transform hover:scale-105">
+                    <div class="absolute -top-4 right-8 bg-brand-primary text-white text-[10px] px-3 py-1 rounded-full font-black uppercase tracking-tighter">Main Writer</div>
+                    <div class="w-14 h-14 bg-brand-primary text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-primary/30">
+                        <i class="fa-solid fa-robot text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Gemini（ライター）</h3>
+                    <p class="text-brand-text-muted font-medium leading-relaxed">編集長の指示に従い、構成案作成から執筆までを担当。指示内容の理解と柔軟な書き直しが武器。</p>
+                </div>
+                <div class="bg-brand-surface p-8 rounded-3xl border border-brand-primary/10 transition-transform hover:scale-105">
+                    <div class="w-14 h-14 bg-brand-secondary/20 text-brand-secondary rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-microchip text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">ChatGPT（シミュレーター）</h3>
+                    <p class="text-brand-text-muted font-medium leading-relaxed">Geminiが作成したプロンプトの検証用。リアルな回答例や具体素材を生成し、原稿の厚みを増強。</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Progress Table Section -->
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center justify-between mb-12">
-        <h2 class="text-2xl sm:text-3xl font-black italic">成果：見える化された進捗管理</h2>
-        <div class="px-4 py-2 bg-white/10 rounded-lg text-xs font-bold border border-white/20">Project Management View</div>
-      </div>
-      <div class="overflow-x-auto rounded-3xl border border-white/10">
-        <table class="w-full text-left">
-          <thead>
-            <tr class="bg-white/5 border-b border-white/10">
-              <th class="p-6 text-xs font-black uppercase tracking-wider">進行状況</th>
-              <th class="p-6 text-xs font-black uppercase tracking-wider">章</th>
-              <th class="p-6 text-xs font-black uppercase tracking-wider">テーマ</th>
-              <th class="p-6 text-xs font-black uppercase tracking-wider text-center">執筆(AI)</th>
-              <th class="p-6 text-xs font-black uppercase tracking-wider text-center">シミュレート</th>
-              <th class="p-6 text-xs font-black uppercase tracking-wider text-brand">編集チェック</th>
-              <th class="p-6 text-xs font-black uppercase tracking-wider text-center">完了</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-white/5 font-medium text-sm">
-            <tr>
-              <td class="p-6"><span class="text-emerald-400">✅ 完了</span></td>
-              <td class="p-6">第1章</td>
-              <td class="p-6">マインドセット</td>
-              <td class="p-6 text-center text-slate-400">済</td>
-              <td class="p-6 text-center text-slate-400">済</td>
-              <td class="p-6 text-brand font-black">済</td>
-              <td class="p-6 text-center text-emerald-400"><i class="fa-solid fa-circle-check"></i></td>
-            </tr>
-            <tr>
-              <td class="p-6"><span class="text-amber-400">▶️ 進行中</span></td>
-              <td class="p-6">第2章</td>
-              <td class="p-6">スケジュール管理</td>
-              <td class="p-6 text-center"><span class="px-3 py-1 bg-brand/20 text-brand rounded-full text-[10px]">作業中</span></td>
-              <td class="p-6 text-center text-slate-400">済</td>
-              <td class="p-6 text-rose-400 font-black italic">未チェック</td>
-              <td class="p-6 text-center text-slate-600">-</td>
-            </tr>
-            <tr>
-              <td class="p-6"><span class="text-slate-500">⬜ 未着手</span></td>
-              <td class="p-6">第3章</td>
-              <td class="p-6">メールの書き方</td>
-              <td class="p-6 text-center text-slate-600">未</td>
-              <td class="p-6 text-center text-slate-600">未</td>
-              <td class="p-6 text-slate-600">-</td>
-              <td class="p-6 text-center text-slate-600">-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+    <!-- ===== Workflow Steps ===== -->
+    <section class="py-24 section-divider">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-20">解決策：4フェーズの制作フロー</h2>
+            
+            <div class="space-y-20 max-w-5xl mx-auto">
+                <!-- Phase 1 -->
+                <div class="relative pl-12 md:pl-24">
+                    <div class="absolute left-0 top-0 w-10 h-10 md:w-16 md:h-16 bg-brand-surface rounded-2xl border border-brand-primary/20 flex items-center justify-center font-display font-extrabold text-brand-primary text-xl md:text-3xl">01</div>
+                    <h3 class="text-2xl md:text-3xl font-display font-bold mb-8">フェーズ1：企画・設計（本の骨組みを作る）</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-6 bg-brand-surface rounded-2xl border border-brand-primary/10">
+                            <span class="block text-xs font-black text-brand-primary mb-2 tracking-widest">STEP 01</span>
+                            <h4 class="font-bold mb-2">ターゲット設定</h4>
+                            <p class="text-sm text-brand-text-muted leading-relaxed">「誰の」「どんな悩み」を解決するかを定義。</p>
+                        </div>
+                        <div class="p-6 bg-brand-surface rounded-2xl border border-brand-primary/10">
+                            <span class="block text-xs font-black text-brand-primary mb-2 tracking-widest">STEP 02</span>
+                            <h4 class="font-bold mb-2">目次構成の作成</h4>
+                            <p class="text-sm text-brand-text-muted leading-relaxed">悩みを解決する最適な順序でロジックを組む。</p>
+                        </div>
+                        <div class="p-6 bg-brand-surface rounded-2xl border border-brand-primary/10">
+                            <span class="block text-xs font-black text-brand-primary mb-2 tracking-widest">STEP 03</span>
+                            <h4 class="font-bold mb-2">文体ルールの定義</h4>
+                            <p class="text-sm text-brand-text-muted leading-relaxed">「優しく」「中学生にもわかる」などルールを設定。</p>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Links -->
-  <section class="max-w-7xl mx-auto px-6 mb-20">
-    <div class="mt-20 pt-10 border-t border-slate-100">
-      <h3 class="text-xl font-black mb-8 text-slate-800 flex items-center gap-3">
-        <i class="fa-solid fa-compass text-indigo-500"></i> Browse Content
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-        <a href="../index.html" class="flex items-center justify-between p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-indigo-400 hover:bg-white hover:shadow-xl transition-all group">
-          <span class="font-bold text-slate-700 group-hover:text-indigo-600 text-sm sm:text-base">ホームに戻る</span>
-          <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-indigo-500 transition-transform group-hover:translate-x-1"></i>
-        </a>
-        <a href="index.html" class="flex items-center justify-between p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-indigo-400 hover:bg-white hover:shadow-xl transition-all group">
-          <span class="font-bold text-slate-700 group-hover:text-indigo-600 text-sm sm:text-base">実績 に戻る</span>
-          <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-indigo-500 transition-transform group-hover:translate-x-1"></i>
-        </a>
-      </div>
-    </div>
-  </section>
+                <!-- Phase 2 (Highlight) -->
+                <div class="relative pl-12 md:pl-24">
+                    <div class="absolute left-[20px] md:left-[31px] top-0 w-[2px] h-full bg-brand-primary/20"></div>
+                    <div class="absolute left-0 top-0 w-10 h-10 md:w-16 md:h-16 bg-brand-primary text-white rounded-2xl flex items-center justify-center font-display font-extrabold text-xl md:text-3xl shadow-xl shadow-brand-primary/30 z-10">02</div>
+                    <h3 class="text-2xl md:text-3xl font-display font-bold mb-4">フェーズ2：執筆と編集のループ</h3>
+                    <p class="text-brand-secondary font-bold mb-8 italic">ここがメイン！1テーマごとに5つのサイクルを高速で回します。</p>
+                    
+                    <div class="bg-brand-surface p-8 md:p-10 rounded-3xl border-l-4 border-brand-primary shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-5">
+                            <i class="fa-solid fa-rotate text-9xl"></i>
+                        </div>
+                        <div class="flex flex-col gap-8 relative z-10">
+                            <div class="flex items-start gap-5">
+                                <div class="w-8 h-8 rounded-full bg-brand-primary text-white flex items-center justify-center shrink-0 font-bold text-sm">1</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">指示出し（編集長→Writer）</h4>
+                                    <p class="text-brand-text-muted">章のテーマと解決策のメモをGeminiに伝達。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div class="w-8 h-8 rounded-full bg-brand-primary text-white flex items-center justify-center shrink-0 font-bold text-sm">2</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">執筆（Writer ↔ Simulator）</h4>
+                                    <p class="text-brand-text-muted">Geminiが書き、ChatGPTが具体例を提供し補強。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5 p-6 bg-brand-bg/50 rounded-2xl border border-brand-primary/40 shadow-inner">
+                                <div class="w-8 h-8 rounded-full bg-white text-brand-bg flex items-center justify-center shrink-0 font-bold text-sm">3</div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-brand-primary">編集者チェック（人間による厳格な目）</h4>
+                                    <p class="text-brand-text font-bold">難易度、現実味、「置いてけぼり感」を人間がジャッジ。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div class="w-8 h-8 rounded-full bg-brand-primary text-white flex items-center justify-center shrink-0 font-bold text-sm">4</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">リライト（Writer）</h4>
+                                    <p class="text-brand-text-muted">人間の修正指示（赤入れ）に従ってGeminiが磨き上げる。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div class="w-8 h-8 rounded-full bg-brand-secondary text-brand-bg flex items-center justify-center shrink-0 font-bold text-sm">5</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">校了（編集長）</h4>
+                                    <p class="text-brand-text-muted">品質を承認し、一章を完成。これを繰り返します。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phases 3 & 4 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pl-12 md:pl-24 relative">
+                    <div class="relative">
+                        <div class="absolute -left-12 md:-left-24 top-0 w-10 h-10 md:w-16 md:h-16 bg-brand-surface rounded-2xl border border-brand-primary/20 flex items-center justify-center font-display font-extrabold text-brand-text-muted text-xl md:text-3xl">03</div>
+                        <h3 class="text-xl md:text-2xl font-display font-bold mb-4">フェーズ3：全体調整</h3>
+                        <ul class="space-y-3 text-brand-text-muted font-medium">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-primary"></i> 全原稿の結合と順序確認</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-primary"></i> 章と章の「つなぎ」を調整</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-primary"></i> まえがき・あとがきの執筆</li>
+                        </ul>
+                    </div>
+                    <div class="relative mt-12 md:mt-0">
+                        <div class="absolute -left-12 md:-left-24 top-0 w-10 h-10 md:w-16 md:h-16 bg-brand-surface rounded-2xl border border-brand-primary/20 flex items-center justify-center font-display font-extrabold text-brand-text-muted text-xl md:text-3xl">04</div>
+                        <h3 class="text-xl md:text-2xl font-display font-bold mb-4">フェーズ4：最終推敲</h3>
+                        <ul class="space-y-3 text-brand-text-muted font-medium">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-primary"></i> 人間の目による「素読み」</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-primary"></i> タイトル・サブタイトルの決定</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-primary"></i> 各種フォーマットへの変換</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Progress Table Section ===== -->
+    <section class="py-20 md:py-28 section-divider">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+                <h2 class="text-3xl font-display font-bold italic tracking-tight">成果：見える化された進捗管理</h2>
+                <div class="px-4 py-2 bg-brand-surface rounded-lg text-xs font-bold border border-brand-primary/20 text-brand-secondary uppercase tracking-widest">Project Management View</div>
+            </div>
+            <div class="overflow-x-auto rounded-3xl border border-brand-primary/20 bg-brand-surface shadow-2xl">
+                <table class="w-full text-left min-w-[800px]">
+                    <thead>
+                        <tr class="bg-brand-primary/5 border-b border-brand-primary/20">
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-secondary">進行状況</th>
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-secondary">章</th>
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-secondary">テーマ</th>
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-secondary text-center">執筆(AI)</th>
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-secondary text-center">シミュレート</th>
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-primary">編集チェック</th>
+                            <th class="p-6 text-xs font-black uppercase tracking-widest text-brand-secondary text-center">完了</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-primary/10 font-medium text-sm">
+                        <tr class="hover:bg-brand-primary/5 transition-colors">
+                            <td class="p-6"><span class="text-emerald-400 flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> 完了</span></td>
+                            <td class="p-6 font-bold">第1章</td>
+                            <td class="p-6">マインドセット</td>
+                            <td class="p-6 text-center text-brand-text-muted">済</td>
+                            <td class="p-6 text-center text-brand-text-muted">済</td>
+                            <td class="p-6 text-brand-primary font-black">済</td>
+                            <td class="p-6 text-center text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></td>
+                        </tr>
+                        <tr class="hover:bg-brand-primary/5 transition-colors">
+                            <td class="p-6"><span class="text-amber-400 flex items-center gap-2"><i class="fa-solid fa-spinner animate-spin"></i> 進行中</span></td>
+                            <td class="p-6 font-bold">第2章</td>
+                            <td class="p-6">スケジュール管理</td>
+                            <td class="p-6 text-center"><span class="px-3 py-1 bg-brand-primary/20 text-brand-primary rounded-full text-[10px] font-bold">作業中</span></td>
+                            <td class="p-6 text-center text-brand-text-muted">済</td>
+                            <td class="p-6 text-rose-400 font-black italic">未チェック</td>
+                            <td class="p-6 text-center text-brand-text-muted">-</td>
+                        </tr>
+                        <tr class="hover:bg-brand-primary/5 transition-colors">
+                            <td class="p-6"><span class="text-brand-text-muted flex items-center gap-2">⬜ 未着手</span></td>
+                            <td class="p-6 font-bold text-brand-text-muted">第3章</td>
+                            <td class="p-6 text-brand-text-muted">メールの書き方</td>
+                            <td class="p-6 text-center text-brand-text-muted">未</td>
+                            <td class="p-6 text-center text-brand-text-muted">未</td>
+                            <td class="p-6 text-brand-text-muted">-</td>
+                            <td class="p-6 text-center text-brand-text-muted">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Navigation Links ===== -->
+    <section class="container mx-auto px-6 mb-20">
+        <div class="mt-20 pt-10 border-t border-brand-primary/10">
+            <h3 class="text-xl font-display font-bold mb-8 text-white flex items-center gap-3">
+                <i class="fa-solid fa-compass text-brand-primary"></i> Browse Content
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <a href="../index.html" class="flex items-center justify-between p-8 bg-brand-surface rounded-2xl border border-transparent hover:border-brand-primary hover:shadow-xl hover:shadow-brand-primary/10 transition-all group">
+                    <span class="font-bold text-brand-text-muted group-hover:text-white transition-colors">ホームに戻る</span>
+                    <i class="fa-solid fa-chevron-right text-brand-primary transition-transform group-hover:translate-x-2"></i>
+                </a>
+                <a href="index.html" class="flex items-center justify-between p-8 bg-brand-surface rounded-2xl border border-transparent hover:border-brand-primary hover:shadow-xl hover:shadow-brand-primary/10 transition-all group">
+                    <span class="font-bold text-brand-text-muted group-hover:text-white transition-colors">実績に戻る</span>
+                    <i class="fa-solid fa-chevron-right text-brand-primary transition-transform group-hover:translate-x-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 </main>
 
-<footer class="bg-slate-900 text-white py-16 sm:py-20 px-6 mt-20">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-white/10 pb-12 mb-12">
-    <div>
-      <h4 class="text-2xl font-black mb-6">LOU-Ark</h4>
-      <p class="text-slate-400 leading-relaxed max-w-md font-medium text-sm sm:text-base">倫理と透明性を基盤に、データとAIで個人のQuality of Life and可能性を最大化し、人間中心のAIでより豊かな未来をデザインする。</p>
+<!-- ===== Footer ===== -->
+<footer class="bg-brand-surface py-20 px-6">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-brand-primary/10 pb-12 mb-12">
+            <div>
+                <h4 class="text-3xl font-display font-bold mb-6 text-white">LOU-Ark</h4>
+                <p class="text-brand-text-muted leading-relaxed max-w-md font-medium">
+                    倫理と透明性を基盤に、データとAIで個人のQuality of Lifeと可能性を最大化し、人間中心のAIでより豊かな未来をデザインする。
+                </p>
+            </div>
+            <div class="flex flex-col md:items-end justify-center">
+                <div class="flex gap-4 mb-8">
+                    <a href="#" class="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all text-xl"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <p class="text-brand-text-muted text-xs sm:text-sm font-bold text-center md:text-right">
+                    © 2024 LOU-Ark.<br class="sm:hidden"/> Generated by MySiteGen-Agent.
+                </p>
+            </div>
+        </div>
+        <div class="text-center text-brand-text-muted text-[10px] uppercase tracking-[0.2em]">
+            Science of Decision Making & QOL Optimization
+        </div>
     </div>
-    <div class="flex flex-col md:items-end justify-center">
-       <div class="flex gap-4 mb-6">
-         <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"><i class="fa-brands fa-twitter"></i></a>
-         <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"><i class="fa-brands fa-linkedin"></i></a>
-       </div>
-       <p class="text-slate-500 text-xs sm:text-sm font-bold text-center md:text-right">© 2024 LOU-Ark.<br class="sm:hidden"/> Generated by MySiteGen-Agent.</p>
-    </div>
-  </div>
 </footer>
 
 </body>

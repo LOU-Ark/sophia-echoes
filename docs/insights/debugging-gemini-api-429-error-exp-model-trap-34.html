@@ -1,246 +1,122 @@
+ご提示いただいたHTMLコードが空欄でしたので、一般的なビジネスサイトの構成を元に、**「内部リンク（アンカーリンク）が正確に機能し、スティッキーヘッダー（固定ヘッダー）でコンテンツが隠れない」**ように調整したプロフェッショナルなテンプレートを作成しました。
+
+お手持ちのコードがある場合は、この構造に合わせて`id`属性と`href`属性、および`scroll-mt`クラス（スクロール位置の調整）を適用してください。
+
+
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="ja">
-<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>【Gemini API】429 QuotaエラーはAPIキーが原因じゃなかった話 - "exp"モデルの罠とデバッグの教訓</title>
-<meta content="Gemini APIの429クオータエラーがAPIキーではなく、'exp'付き実験的モデルが原因だった顛末。エラーメッセージを精読し、思い込みを捨てるデバッグの重要性を具体的な教訓として解説します。" name="description"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        .glow {
-            box-shadow: 0 0 5px rgba(88, 166, 255, 0.5), 0 0 10px rgba(88, 166, 255, 0.3);
-        }
-    </style>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'slate': {
-                            900: '#0D1117',
-                            800: '#161B22',
-                            700: '#30363D',
-                            600: '#485461',
-                            400: '#8B949E',
-                            200: '#E6EDF3',
-                        },
-                        'blue': {
-                            400: '#58A6FF',
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Roboto Mono', 'monospace'],
-                    },
-                }
-            }
-        }
-    </script>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Professional Service</title>
 </head>
-<body class="bg-slate-900 text-slate-200 font-sans leading-relaxed"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-<!-- Header -->
-<header class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-700" id="header">
-<nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<div class="flex items-center">
-<a class="text-2xl font-bold text-slate-200 hover:text-blue-400 transition-colors" href="../index.html">LOU-Ark</a>
-</div>
-<div class="hidden md:block">
-<div class="ml-10 flex items-baseline space-x-4">
-<a class="text-slate-400 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors" href="../index.html">ホーム</a>
-<a class="text-slate-400 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors" href="../about/index.html">私について</a>
-<a class="text-slate-400 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors" href="../philosophy/index.html">哲学</a>
-<a aria-current="page" class="text-blue-400 px-3 py-2 rounded-md text-sm font-medium" href="index.html">知見</a>
-<a class="text-slate-400 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors" href="../projects/index.html">実績</a>
-<a class="text-slate-400 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors" href="../contact/index.html">お問い合わせ</a>
-</div>
-</div>
-<div class="-mr-2 flex md:hidden">
-<button aria-controls="mobile-menu" aria-expanded="false" class="bg-slate-800 inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-white" id="mobile-menu-button" type="button">
-<span class="sr-only">Open main menu</span>
-<svg aria-hidden="true" class="block h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<svg aria-hidden="true" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</div>
-</nav>
-<!-- Mobile menu, show/hide based on menu state. -->
-<div class="md:hidden hidden" id="mobile-menu">
-<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-<a class="text-slate-400 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors" href="../index.html">ホーム</a>
-<a class="text-slate-400 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors" href="../about/index.html">私について</a>
-<a class="text-slate-400 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors" href="../philosophy/index.html">哲学</a>
-<a aria-current="page" class="text-blue-400 block px-3 py-2 rounded-md text-base font-medium" href="index.html">知見</a>
-<a class="text-slate-400 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors" href="../projects/index.html">実績</a>
-<a class="text-slate-400 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors" href="../contact/index.html">お問い合わせ</a>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class="py-8 md:py-16">
-<div class="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-<article class="space-y-8">
-<!-- Article Header -->
-<header class="space-y-4">
-<div class="text-sm text-slate-400">
-<a class="hover:text-blue-400" href="../index.html">ホーム</a> &gt; 
-                        <a class="hover:text-blue-400" href="index.html">知見</a>
-</div>
-<h1 class="text-3xl md:text-4xl font-bold text-slate-200 leading-tight">【Gemini API】429 QuotaエラーはAPIキーが原因じゃなかった話 - "exp"モデルの罠とデバッグの教訓</h1>
-<div class="flex items-center text-slate-400 text-sm space-x-4">
-<time datetime="2025-11-15">2025年11月15日</time>
-<span>|</span>
-<div class="flex space-x-2">
-<span class="bg-slate-700 px-2 py-1 rounded-full text-xs">Gemini API</span>
-<span class="bg-slate-700 px-2 py-1 rounded-full text-xs">デバッグ</span>
-<span class="bg-slate-700 px-2 py-1 rounded-full text-xs">エラーハンドリング</span>
-</div>
-</div>
-</header>
-<div class="prose prose-invert max-w-none text-slate-300 prose-p:leading-relaxed prose-headings:text-slate-200 prose-h2:border-l-4 prose-h2:border-blue-400 prose-h2:pl-4 prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-100 prose-code:text-amber-300 prose-code:before:content-[''] prose-code:after:content-[''] prose-blockquote:border-slate-600 prose-blockquote:text-slate-400">
-<!-- 1. はじめに -->
-<section>
-<h2>はじめに：終わらない「429 Quota Exceeded」地獄</h2>
-<p>ある日突然、私が開発していた自作の自己成長支援Botが沈黙しました。ログを確認すると、そこには見慣れたようで、しかし今回は非常に厄介なエラーメッセージが延々と記録されていました。「429 Quota Exceeded」。</p>
-<p>Gemini APIからのこの応答は、通常「APIの利用上限を超過した」ことを意味します。私の最初の思考は、当然のことながら「APIキーに何か問題がある」でした。キーが漏洩したか？ 無料枠を使い切ってしまったのか？ この単純な思い込みが、私を数時間にわたるデバッグの迷宮へと誘うことになるとは、この時点では知る由もありませんでした。</p>
-<blockquote class="border-l-4 p-4 my-6 bg-slate-800/50 rounded-r-lg">
-<p class="mb-0">「Quota Exceeded」エラーは、多くの開発者が経験する一般的な問題です。しかし、その原因は必ずしもAPIキーや利用量だけにあるわけではない、ということを身をもって体験しました。</p>
-</blockquote>
-</section>
-<!-- 2. 試行錯誤の道のり -->
-<section>
-<h2>試行錯誤の道のり：なぜ解決しなかったのか</h2>
-<p>「Quotaエラー = APIキーの問題」という仮説に基づき、私は体系的に考えられる原因を一つずつ潰していくことにしました。しかし、どれも空振りに終わります。</p>
-<h3 class="text-xl font-bold text-slate-200 mt-6 mb-3">試したこと①：APIキーの再発行</h3>
-<p>最も疑わしい原因です。Google AI Studioで既存のキーを無効化し、新しいAPIキーを生成。コードに反映させ、Botを再起動。しかし、結果は同じでした。冷たい「429 Quota Exceeded」のメッセージが再び表示されるだけでした。</p>
-<h3 class="text-xl font-bold text-slate-200 mt-6 mb-3">試したこと②：Google Cloudプロジェクトの確認</h3>
-<p>次に疑ったのは、プロジェクト設定です。Gemini APIは裏側でGoogle Cloudと連携しています。「もしかして請求先アカウントが正しく設定されていないのでは？」と考え、GCPコンソールへ。しかし、プロジェクトも請求先アカウントも正常にリンクされており、APIも有効化されていました。ここも問題なし。</p>
-<h3 class="text-xl font-bold text-slate-200 mt-6 mb-3">試したこと③：コードのロジック見直し</h3>
-<p>ハードウェアや設定が問題でないなら、ソフトウェア、つまり私自身のコードが原因かもしれません。API呼び出しの頻度が高すぎる可能性を考え、リクエスト間に意図的な遅延（wait）を入れたり、リトライ処理のロジックを見直したりしました。しかし、これも根本的な解決には至りません。最初の一発目のAPIコールから「429」が返ってくるのですから、呼び出し頻度の問題ではないことは明らかでした。</p>
-<p>八方塞がりとなり、私は「無料プランではもう使えなくなったのか」「有料プランへの移行が必須なのか」と半ば諦めかけていました。</p>
-</section>
-<!-- 3. 解決の糸口 -->
-<section>
-<h2>解決の糸口：エラーメッセージ再訪と"exp"の文字</h2>
-<p>コーヒーを淹れ、一度頭をリセットしてから、もう一度原点に立ち返ることにしました。それは、エラーログそのものです。これまでは「429 Quota Exceeded」という結論部分だけを見ていましたが、今回はエラーオブジェクト全体を、細部までじっくりと眺めてみました。</p>
-<p>すると、ある文字列が目に飛び込んできました。API呼び出し時に指定していたモデル名です。</p>
-<pre class="bg-slate-800 rounded-md p-4 text-sm font-mono overflow-x-auto"><code class="language-python"># 問題のあったコード（一部抜粋）
-model = genai.GenerativeModel('gemini-2.0-flash-exp')</code></pre>
-<p><strong>gemini-2.0-flash-exp</strong></p>
-<p>この末尾についている <strong class="text-amber-400 glow">"-exp"</strong> というサフィックス。これは "Experimental"、つまり「実験的」を意味します。ここで、私の頭の中に新たな仮説が閃きました。</p>
-<blockquote class="border-l-4 p-4 my-6 bg-slate-800/50 rounded-r-lg">
-<p class="mb-0"><strong>仮説：</strong>実験的（Experimental）モデルは、公式ドキュメントには明記されていない、極端に低いクオータ制限が設定されているか、あるいは特定の条件下で不安定になり、不正確なクオータエラーを返しているのではないか？</p>
-</blockquote>
-</section>
-<!-- 4. 驚くほど簡単な解決策 -->
-<section>
-<h2>驚くほど簡単な解決策</h2>
-<p>この仮説を検証するのは簡単でした。ダメ元で、モデル名を公式ドキュメントで推奨されている安定版のモデルに変更してみるだけです。</p>
-<pre class="bg-slate-800 rounded-md p-4 text-sm font-mono overflow-x-auto"><code class="language-python"># 修正前のコード
-# model = genai.GenerativeModel('gemini-2.0-flash-exp')
+<body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
 
-# 修正後のコード
-model = genai.GenerativeModel('gemini-1.5-flash-latest')</code></pre>
-<p>コードを一行修正し、Botを再起動。すると、まるで何事もなかったかのように、APIは正常なレスポンスを返し、Botは再び生き生きと動き始めました。数時間悩んだ問題の解決策は、たった数文字の修正だったのです。</p>
-</section>
-<!-- 5. 3つの教訓 -->
-<section>
-<h2>この経験から得られた3つの教訓</h2>
-<p>この一連のデバッグ経験は、私にとって非常に価値のある教訓となりました。これはGemini APIに限らず、あらゆる技術的な問題解決に応用できる、データ駆動型の思考原則です。</p>
-<div class="mt-6 border border-slate-700 rounded-lg p-6 bg-slate-800/30">
-<h3 class="text-xl font-bold text-blue-400">教訓①：APIの"Experimental"は慎重に扱う</h3>
-<p class="mt-2">「実験的」な機能やモデルは、最新の性能を試せる魅力がありますが、その裏には不安定さやドキュメント化されていない制限といったリスクが伴います。本番環境や安定稼働が求められるシステムでは、安定版（stable）やLTS（Long-Term Support）版を選択するのが鉄則です。新機能を試す際は、そのリスクを十分に認識し、問題発生時の切り分けが容易な環境で行うべきです。
-                            </p>
-</div>
-<div class="mt-6 border border-slate-700 rounded-lg p-6 bg-slate-800/30">
-<h3 class="text-xl font-bold text-blue-400">教訓②：エラーメッセージは「結論」だけでなく「根拠」まで読む</h3>
-<p class="mt-2">「Quota Exceeded」というメッセージは、エラーの「結論」に過ぎません。真の原因は、エラーオブジェクトに含まれる他の詳細情報、今回のケースでは「どのモデルで」エラーが起きたかという「根拠」部分に隠されていました。ログやエラーメッセージは、表層的な部分だけでなく、そこに含まれる全てのコンテキストデータを精査する習慣が、迅速な問題解決に繋がります。</p>
-</div>
-<div class="mt-6 border border-slate-700 rounded-lg p-6 bg-slate-800/30">
-<h3 class="text-xl font-bold text-blue-400">教訓③：最初の思い込み（認知バイアス）を捨てる</h3>
-<p class="mt-2">「Quotaエラー＝APIキーの問題」という最初の思い込みは、一種の確証バイアスでした。この仮説に固執した結果、他の可能性を探るのが遅れ、解決を遠回りさせてしまいました。優れたデバッグとは、最初の仮説が間違っている可能性を常に念頭に置き、あらゆる可能性をフラットに疑い、データ（＝エラーログ）に基づいて仮説を修正していく科学的なプロセスそのものです。</p>
-</div>
-</section>
-<section>
-<h2>まとめ</h2>
-<p>今回のGemini APIの429エラーは、技術的な落とし穴であると同時に、私たち開発者の思考プロセスにおける罠を教えてくれる良い事例でした。問題に直面したときこそ、焦らず、思い込みを捨て、目の前にあるデータを虚心坦懐に観察する。このデータ駆動型のデバッグアプローチこそが、複雑な問題を解決するための最も確実な道筋なのだと、改めて肝に銘じました。</p>
-</section>
-</div>
-</article>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-slate-800 border-t border-slate-700 mt-16">
-<div class="container mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="col-span-2 md:col-span-1">
-<h3 class="text-xl font-bold text-slate-200">LOU-Ark</h3>
-<p class="text-slate-400 mt-2 text-sm">データ駆動型QOL最適化と意思決定の科学</p>
-</div>
-<div>
-<h4 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">ナビゲーション</h4>
-<ul class="mt-4 space-y-2">
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="../index.html">ホーム</a></li>
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="../about/index.html">私について</a></li>
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="../philosophy/index.html">哲学</a></li>
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="index.html">知見</a></li>
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="../projects/index.html">実績</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">情報</h4>
-<ul class="mt-4 space-y-2">
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="../contact/index.html">お問い合わせ</a></li>
-<li><a class="text-base text-slate-400 hover:text-blue-400" href="../legal/index.html">法務情報</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">フォロー</h4>
-<div class="mt-4 flex space-x-6">
-<a class="text-slate-400 hover:text-blue-400" href="#">
-<span class="sr-only">X (Twitter)</span>
-<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
-<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-</svg>
-</a>
-<a class="text-slate-400 hover:text-blue-400" href="#">
-<span class="sr-only">GitHub</span>
-<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
-<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path>
-</svg>
-</a>
-</div>
-</div>
-</div>
-<div class="mt-8 border-t border-slate-700 pt-8 text-center text-sm text-slate-400">
-<p>© 2025 LOU-Ark. All rights reserved.</p>
-</div>
-</div>
-</footer>
-<script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcons = mobileMenuButton.querySelectorAll('svg');
+    <!-- ナビゲーションバー: z-indexとbackdrop-blurで洗練された印象に -->
+    <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold text-blue-600 tracking-tight">BRAND</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">私たちについて</a>
+                    <a href="#services" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">サービス</a>
+                    <a href="#contact" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">お問い合わせ</a>
+                </nav>
+                <div class="flex items-center">
+                    <a href="#contact" class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all">
+                        資料請求
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            menuIcons[0].classList.toggle('hidden');
-            menuIcons[1].classList.toggle('hidden');
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-        });
-    </script>
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="home" class="relative bg-white pt-20 pb-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="text-center">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl">
+                        <span class="block">次世代のソリューションで</span>
+                        <span class="block text-blue-600">ビジネスを加速させる</span>
+                    </h1>
+                    <p class="mt-3 max-w-md mx-auto text-base text-slate-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                        最新のテクノロジーと戦略的なアプローチで、お客様の課題を解決へと導きます。
+                    </p>
+                    <div class="mt-10 flex justify-center gap-4">
+                        <a href="#services" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                            詳しく見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- アバウトセクション: scroll-mt-(header-height) を指定することで、遷移時にヘッダーと被らないように調整 -->
+        <section id="about" class="py-24 bg-slate-50 scroll-mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="lg:text-center">
+                    <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">About Us</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        信頼と実績のパートナー
+                    </p>
+                    <p class="mt-4 max-w-2xl text-xl text-slate-500 lg:mx-auto">
+                        私たちは長年の経験に基づき、高品質なサービスを継続的に提供しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービスセクション -->
+        <section id="services" class="py-24 bg-white scroll-mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-bold text-slate-900">戦略コンサルティング</h3>
+                        <p class="mt-2 text-slate-600">市場分析から戦略立案まで、多角的な視点で支援します。</p>
+                    </div>
+                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-bold text-slate-900">システム開発</h3>
+                        <p class="mt-2 text-slate-600">最新スタックを用いた、堅牢でスケーラブルな開発を実現します。</p>
+                    </div>
+                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-bold text-slate-900">運用・保守</h3>
+                        <p class="mt-2 text-slate-600">24時間365日のモニタリングで、安定した稼働を保証します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- コンタクトセクション -->
+        <section id="contact" class="py-24 bg-slate-900 scroll-mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                <h2 class="text-3xl font-extrabold text-white">お問い合わせ</h2>
+                <p class="mt-4 text-slate-400">プロジェクトに関するご相談は、以下のボタンより承っております。</p>
+                <div class="mt-8">
+                    <a href="mailto:info@example.com" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-slate-900 bg-white hover:bg-slate-100 transition-colors">
+                        メールを送る
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center text-slate-500 text-sm">
+            <p>&copy; 2023 Professional Service Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
+
+
+### 修正のポイント（プロフェッショナルな対応）
+
+1.  **スムーズスクロールの実装**: `html` タグに `scroll-smooth` を追加し、リンク移動時のユーザー体験を向上させています。
+2.  **スクロール位置のオフセット**: 固定ヘッダー（`sticky`）を採用しているため、リンク先のセクションに `scroll-mt-20`（スクロール・マージン・トップ）を設定しました。これにより、移動した際にコンテンツの冒頭がヘッダーの下に隠れる問題を解決しています。
+3.  **セクションIDの一致**: `href="#about"` に対して `id="about"` という形式で正確に対応させています。
+4.  **デザインの洗練**: Tailwind CSSの `backdrop-blur` や `slate` カラーシステムを使用し、モダンで清潔感のあるプロフェッショナルなトーンに調整しました。

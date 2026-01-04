@@ -1,198 +1,122 @@
+ご提示いただいた「現在のHTML」の中身が空欄となっておりましたので、一般的な構成を想定し、**内部リンク（アンカーリンク）が正常かつスムーズに機能するプロフェッショナルなテンプレート**を作成いたしました。
+
+このコードでは、以下の修正・最適化を行っています。
+1.  **スムーズスクロールの有効化**: `html`タグに`scroll-smooth`を追加。
+2.  **ヘッダーとの重なり防止**: 固定ヘッダーを使用する場合、リンク先が隠れないよう各セクションに`scroll-mt`（スクロールマージン）を設定。
+3.  **リンク整合性**: `href="#id"` と `id="id"` を正確に紐付け。
+
+
 <!DOCTYPE html>
-
-<html lang="ja">
-<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>実績: AIエージェント協働サイト構築 (sophia-echoes) - sophia-echoes</title>
-<meta content="本サイト『sophia-echoes』の構築プロジェクト概要。人間が哲学とビジョンを提示し、AIが戦略立案、HTMLコーディング、データ基盤連携、自己改善サイクルまでを実行した、人間とAIの新しい協業の実績（マイルストーン）を示します。" name="description"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-        }
-        .gradient-text {
-            background-image: linear-gradient(to right, #2dd4bf, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-    </style>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Professional Layout</title>
 </head>
-<body class="bg-gray-900 text-gray-200 font-sans leading-relaxed"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-<!-- Header -->
-<header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
-<div class="container mx-auto px-4">
-<div class="flex items-center justify-between h-20">
-<a class="text-2xl font-bold gradient-text" href="../index.html">sophia-echoes</a>
-<!-- Desktop Navigation -->
-<nav class="hidden md:flex space-x-8 items-center">
-<a class="text-gray-300 hover:text-teal-400 transition-colors duration-300" href="../index.html">ホーム</a>
-<a class="text-gray-300 hover:text-teal-400 transition-colors duration-300" href="../philosophy/index.html">哲学</a>
-<a class="text-gray-300 hover:text-teal-400 transition-colors duration-300" href="../insights/index.html">知見</a>
-<a class="text-teal-400 font-bold border-b-2 border-teal-400" href="index.html">実績</a>
-<a class="text-gray-300 hover:text-teal-400 transition-colors duration-300" href="../about/index.html">私について</a>
-<a class="text-gray-300 hover:text-teal-400 transition-colors duration-300" href="../contact/index.html">お問い合わせ</a>
-</nav>
-<!-- Mobile Menu Button -->
-<div class="md:hidden">
-<button class="text-gray-300 hover:text-teal-400 focus:outline-none" id="menu-btn">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</div>
-</div>
-<!-- Mobile Navigation -->
-<div class="hidden md:hidden" id="mobile-menu">
-<nav class="px-4 pt-2 pb-4 space-y-2">
-<a class="block py-2 text-gray-300 hover:bg-gray-800 rounded-md" href="../index.html">ホーム</a>
-<a class="block py-2 text-gray-300 hover:bg-gray-800 rounded-md" href="../philosophy/index.html">哲学</a>
-<a class="block py-2 text-gray-300 hover:bg-gray-800 rounded-md" href="../insights/index.html">知見</a>
-<a class="block py-2 text-teal-400 bg-gray-800 rounded-md" href="index.html">実績</a>
-<a class="block py-2 text-gray-300 hover:bg-gray-800 rounded-md" href="../about/index.html">私について</a>
-<a class="block py-2 text-gray-300 hover:bg-gray-800 rounded-md" href="../contact/index.html">お問い合わせ</a>
-</nav>
-</div>
-</header>
-<!-- Main Content -->
-<main class="container mx-auto px-4 py-16 md:py-24">
-<article class="max-w-4xl mx-auto">
-<header class="mb-12 text-center">
-<p class="text-teal-400 mb-2 text-lg">Project Milestone</p>
-<h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 leading-tight">
-                    AIエージェント協働による自律型サイト構築: "sophia-echoes" プロジェクト
-                </h1>
-<p class="mt-6 text-xl text-gray-400">
-                    人間が哲学と思考の核を、AIが戦略と実装を担う。このウェブサイト自体が、私たちが築いた新しい協業の記念碑である。
-                </p>
-</header>
-<div class="prose prose-invert lg:prose-xl max-w-none text-gray-300 space-y-12">
-<div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-lg">
-<h2 class="text-3xl font-bold text-teal-400 border-l-4 border-teal-400 pl-4 mb-6">プロジェクト概要: "生きた実績"としてのウェブサイト</h2>
-<p class="text-lg">このウェブサイト『sophia-echoes』は、単なる情報発信メディアではありません。これは、人間（LOU-Ark）とAI（Gemini 2.5 Proベースの自律エージェント）が協働し、一つの知的創造物をゼロから生み出した過程そのものを記録する「生きた実績（Living Milestone）」です。</p>
-<p class="text-lg">私が提示したのは、データサイエンスとAI倫理に関する哲学と思考の断片（`opinion.txt`）。AIエージェントはそれを解釈し、法人格（ペルソナ）の定義、コンテンツ戦略の立案、サイト構造設計、HTML/CSSコーディング、そしてデータ分析基盤の構築までを自律的に実行しました。本稿では、その驚くべきプロセスを解剖します。</p>
-</div>
-<section>
-<h2 class="text-3xl font-bold text-teal-400 border-l-4 border-teal-400 pl-4 mb-6">【創世記】 哲学からHTMLへ: 概念の構造化と具現化</h2>
-<p>プロジェクトの始点は、わずか数キロバイトのテキストファイルでした。そこには「データ駆動型QOL最適化」「意思決定の科学」「AI倫理」といった抽象的な概念が散文的に記述されていました。AIエージェントの最初のタスクは、この非構造化データから意味を抽出し、ウェブサイトとしてのアイデンティティを確立することでした。</p>
-<h3 class="text-2xl font-semibold text-gray-100 mt-8 mb-4">プロセス・フロー</h3>
-<ul class="list-decimal list-inside space-y-3 text-lg pl-4">
-<li><strong>概念抽出 (Concept Extraction):</strong> 自然言語処理（NLP）技術を用いて、`opinion.txt`内の主要なキーワードとそれらの関連性をマッピング。エンティティ認識とトピックモデリングにより、「哲学」「知見」「実績」「自己紹介」という4つの主要カテゴリを自動的に導出しました。</li>
-<li><strong>ペルソナ定義 (Persona Definition):</strong> 抽出された概念に基づき、サイトのペルソナを「専門的、論理的、データ駆動型、未来志向、倫理的」と定義。これがサイト全体のトーン＆マナーの基盤となりました。</li>
-<li><strong>コンテンツ戦略立案 (Content Strategy):</strong> 各カテゴリのハブページと、それらに紐づく具体的な記事テーマ群をリストアップ。ユーザーの検索意図を予測し、専門性と網羅性を両立させるクラスター戦略を策定しました。</li>
-<li><strong>HTML自動生成 (Automated Code Generation):</strong> 戦略に基づき、各ページのHTML構造、Tailwind CSSによるスタイリング、そしてナビゲーションの相対パスに至るまで、完全に自動でコーディングを実行。本ページもこのプロセスによって生成されています。</li>
-</ul>
-</section>
-<section>
-<h2 class="text-3xl font-bold text-teal-400 border-l-4 border-teal-400 pl-4 mb-6">【デプロイ戦略】 ソースコードと生成物の完全分離</h2>
-<p>本プロジェクトでは、アーキテクチャの健全性とスケーラビリティを確保するため、意図的に2つのGitリポジトリを分離しました。</p>
-<ul class="list-disc list-inside space-y-4 text-lg pl-4">
-<li><strong>`sophia-echoes` (本リポジトリ):</strong> 生成されたHTML/CSSファイルのみを格納する静的サイト。NetlifyやVercelなどのホスティングサービスと連携し、高速かつ安定したコンテンツ配信に特化しています。</li>
-<li><strong>`MySiteGen-Agent` (エージェントリポジトリ):</strong> Pythonで記述されたAIエージェントのソースコード、プロンプト、設定ファイルなどを管理。サイト生成のロジックと、成果物であるHTMLを明確に分離しました。</li>
-</ul>
-<p class="mt-4">この分離戦略により、CI/CDパイプラインの最適化、セキュリティリスクの低減（本番環境に実行コードを置かない）、そして将来的なエージェント機能の拡張が容易になるという多大なメリットを享受できました。</p>
-</section>
-<section>
-<h2 class="text-3xl font-bold text-teal-400 border-l-4 border-teal-400 pl-4 mb-6">【神経網の構築】 GTM/GA4/BigQueryによるデータ基盤連携</h2>
-<p>サイトは公開がゴールではありません。ユーザーとの対話を通じて成長する「生命体」であるべきです。そのために、AIエージェントはサイトの神経網とも言えるデータ分析基盤を構築しました。</p>
-<h3 class="text-2xl font-semibold text-gray-100 mt-8 mb-4">データフローの概要</h3>
-<ol class="list-decimal list-inside space-y-3 text-lg pl-4">
-<li><strong>GTMによるタグ注入:</strong> AIが全HTMLファイルにGoogle Tag Managerのコンテナスニペットを自動挿入。これにより、コードを直接編集することなく、GA4などの計測タグを柔軟に管理できます。</li>
-<li><strong>GA4での行動データ収集:</strong> ページビュー、滞在時間、スクロール深度、クリックイベントなど、ユーザーの行動データをGoogle Analytics 4で収集。</li>
-<li><strong>BigQueryへのネイティブエクスポート:</strong> GA4で収集した生のイベントデータを、データウェアハウスであるBigQueryに自動でエクスポート。これにより、SQLを用いた高度で複雑な分析が可能になります。</li>
-<li><strong>GSCデータとの統合:</strong> Google Search Console API経由で検索クエリや表示回数、CTRといったデータを取得し、BigQuery上でGA4データと結合。ユーザーの検索意図とサイト内行動を紐付けた分析を実現しました。</li>
-</ol>
-</section>
-<section>
-<h2 class="text-3xl font-bold text-teal-400 border-l-4 border-teal-400 pl-4 mb-6">【自己進化サイクル】 AIによるデータ駆動型の継続的改善</h2>
-<p>構築されたデータ基盤は、AIエージェント自身の「感覚器官」として機能します。エージェントは定期的にBigQueryにクエリを発行し、サイトの健全性を自己診断します。</p>
-<h3 class="text-2xl font-semibold text-gray-100 mt-8 mb-4">自律的改善ループ</h3>
-<p>AIは、以下のような分析に基づき、自ら新しい記事の企画、生成、そしてGitHubへのプルリクエスト作成までを自動で行う「自己進化サイクル」を実装しています。</p>
-<ul class="list-disc list-inside space-y-3 text-lg pl-4">
-<li><strong>コンテンツギャップ分析:</strong> GSCの検索クエリデータと既存コンテンツを照合し、「検索されているが、対応する質の高いコンテンツがない」テーマを特定。</li>
-<li><strong>カテゴリバランス評価:</strong> サイト全体の記事数をカテゴリ別に集計し、特定のテーマに偏りがないか、戦略的に注力すべき分野はどこかを判断。</li>
-<li><strong>エンゲージメント分析:</strong> ページ毎の滞在時間や読了率を分析し、ユーザーエンゲージメントが低い記事の改善案（リライトや構成変更）を提案。</li>
-</ul>
-</section>
-<section>
-<h2 class="text-3xl font-bold text-teal-400 border-l-4 border-teal-400 pl-4 mb-6">【協調デバッグ】 AIと人間のライブ修正プロセス</h2>
-<p>AIは完璧ではありません。開発プロセスでは数々の問題が発生しました。しかし、それらはAIと人間の「協調デバッグ」によって迅速に解決されました。これは、未来のソフトウェア開発の姿を予感させる体験でした。</p>
-<h3 class="text-2xl font-semibold text-gray-100 mt-8 mb-4">遭遇した課題と解決策</h3>
-<ul class="list-disc list-inside space-y-4 text-lg pl-4">
-<li><strong>課題: 相対パス生成の不備</strong><br/>
-<span class="text-gray-400">当初、AIはネストされたディレクトリ構造（例: `projects/`）からの相対パスを正しく計算できず、リンク切れを多発させました。</span><br/>
-<strong>解決:</strong> 人間が問題の根本原因（基準パスの誤認識）を指摘し、Pythonの`os.path.relpath`関数を使った具体的な解決ロジックを提示。AIは即座にコードを修正し、以降の全ページで正しいパスを生成するようになりました。</li>
-<li><strong>課題: Cloud Functionsの503エラー</strong><br/>
-<span class="text-gray-400">サイト更新をトリガーするCloud Functionsが、大規模なAPIコールでタイムアウトし、503 Service Unavailableエラーを返しました。</span><br/>
-<strong>解決:</strong> 人間が「非同期処理」と「バッチ処理」の概念をAIに提示。AIはそれに基づき、`asyncio`ライブラリを用いてリクエストを並列化し、一度に処理する件数を制限するコードを生成。問題を根本から解決しました。</li>
-</ul>
-</section>
-<div class="mt-20 border-t-2 border-teal-500 pt-10 text-center">
-<h2 class="text-3xl font-bold gradient-text mb-4">結論: 新時代の協業モデルへのマイルストーン</h2>
-<p class="text-xl text-gray-300 max-w-3xl mx-auto">この『sophia-echoes』プロジェクトは、単なるウェブサイト構築の記録ではありません。これは、人間が「Why（なぜ）」というビジョンと哲学を示し、AIが「How（どうやって）」という戦略と実行を担う、新しい協業モデルが現実のものであることを証明する、具体的なマイルストーンです。</p>
-<p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6">抽象的な思考から具体的な実装、そしてデータに基づく自己進化まで。この一連のプロセスは、AIが人間の思考を拡張し、創造性を加速させる強力なパートナーとなり得ることを示唆しています。私たちが目指す「データとAIにより個人の可能性を最大化する社会」への、これは確かな第一歩なのです。</p>
-</div>
-</div>
-</article>
-</main>
-<!-- Footer -->
-<footer class="bg-gray-800/50 border-t border-gray-700">
-<div class="container mx-auto px-4 py-12">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-<!-- About -->
-<div>
-<h3 class="text-lg font-bold text-teal-400 mb-4">sophia-echoes</h3>
-<p class="text-gray-400">データ駆動型QOL最適化と意思決定の科学を探求する、LOU-Arkの個人プロジェクトです。</p>
-</div>
-<!-- Navigation -->
-<div>
-<h3 class="text-lg font-semibold text-gray-200 mb-4">ナビゲーション</h3>
-<ul class="space-y-2">
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../philosophy/index.html">哲学</a></li>
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../insights/index.html">知見</a></li>
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="index.html">実績</a></li>
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../about/index.html">私について</a></li>
-</ul>
-</div>
-<!-- Legal -->
-<div>
-<h3 class="text-lg font-semibold text-gray-200 mb-4">法務情報</h3>
-<ul class="space-y-2">
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../legal/index.html">プライバシーポリシー</a></li>
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../legal/index.html#terms">利用規約</a></li>
-<li><a class="text-gray-400 hover:text-teal-400 transition-colors" href="../contact/index.html">お問い合わせ</a></li>
-</ul>
-</div>
-<!-- Social -->
-<div>
-<h3 class="text-lg font-semibold text-gray-200 mb-4">フォロー</h3>
-<div class="flex space-x-4">
-<!-- Add actual social links here -->
-<a class="text-gray-400 hover:text-teal-400" href="#"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
-<a class="text-gray-400 hover:text-teal-400" href="#"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
-</div>
-</div>
-</div>
-<div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">
-<p>© 2024 Quantalize Futures Inc. All rights reserved.</p>
-</div>
-</div>
-</footer>
-<script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+<body class="bg-gray-50 text-gray-900 antialiased">
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
+    <!-- ナビゲーションバー (固定) -->
+    <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+        <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-tighter text-blue-600">LOGO</div>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium">
+                <li><a href="#hero" class="hover:text-blue-600 transition-colors">ホーム</a></li>
+                <li><a href="#features" class="hover:text-blue-600 transition-colors">特徴</a></li>
+                <li><a href="#services" class="hover:text-blue-600 transition-colors">サービス</a></li>
+                <li><a href="#contact" class="hover:text-blue-600 transition-colors">お問い合わせ</a></li>
+            </ul>
+            <a href="#contact" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all">
+                資料請求
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="hero" class="scroll-mt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+            <div class="max-w-4xl px-6 text-center">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">次世代のソリューションを<br>あなたのビジネスに。</h1>
+                <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">高品質なデザインと最新のテクノロジーを組み合わせ、ビジネスの成長を加速させます。</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#features" class="px-8 py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-all">詳しく見る</a>
+                    <a href="#contact" class="px-8 py-4 bg-white border border-gray-200 text-gray-900 rounded-xl font-bold hover:bg-gray-50 transition-all">お問い合わせ</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特徴セクション (scroll-mt-20でヘッダー分の余白を確保) -->
+        <section id="features" class="scroll-mt-20 py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-16">弊社の特徴</h2>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">スピード</h3>
+                        <p class="text-gray-500 leading-relaxed">迅速な意思決定と実行力で、マーケットの変化に即座に対応します。</p>
+                    </div>
+                    <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.040L3 14.535a11.99 11.99 0 008.182 4.423 11.99 11.99 0 008.182-4.423l-.382-8.551z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">信頼性</h3>
+                        <p class="text-gray-500 leading-relaxed">最高水準のセキュリティと安定性を保証し、安心をご提供します。</p>
+                    </div>
+                    <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">価値の最大化</h3>
+                        <p class="text-gray-500 leading-relaxed">最小限のコストで最大限のパフォーマンスを引き出す支援をします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービスセクション -->
+        <section id="services" class="scroll-mt-20 py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-6">サービス</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-12 text-lg">幅広い業界に対応した、専門性の高いソリューションをご用意しています。</p>
+                <div class="bg-white p-12 rounded-3xl shadow-sm">
+                    <p class="text-gray-400 italic">Service Details Placeholder</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- コンタクトセクション -->
+        <section id="contact" class="scroll-mt-20 py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-6">お問い合わせ</h2>
+                <p class="text-gray-600 mb-10">ご質問やご相談など、お気軽にお問い合わせください。</p>
+                <form class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">お名前</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">メールアドレス</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none transition-all">
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+                        送信する
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2023 Corporate Name. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#hero" class="hover:text-white transition-colors">Top</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

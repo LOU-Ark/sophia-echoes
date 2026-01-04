@@ -1,287 +1,131 @@
+ご提示いただいた「現在のHTML」の内容が空欄となっておりましたので、一般的なプロフェッショナルなランディングページを想定し、**内部リンクが正確に機能し、かつ固定ヘッダーなどでリンク先が隠れないように調整した**HTMLコードを作成いたしました。
+
+お手持ちのコードがある場合は、そちらをペーストしていただければ、その内容に沿って具体的に修正することも可能です。
+
+### 修正のポイント
+1.  **アンカーリンクの整合性**: 各ナビゲーションの`href="#id"`と、セクションの`id="id"`を一致させています。
+2.  **スクロールオフセット**: 固定ヘッダー（`fixed`）がある場合、リンク先に飛んだ際にコンテンツがヘッダーに重なってしまいます。これを防ぐため、各セクションに`scroll-mt-(ヘッダーの高さ)`を設定しています。
+3.  **スムーズスクロール**: `html`タグに`scroll-smooth`クラスを適用し、滑らかな移動を実現しています。
+
+
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="ja">
-<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>パーソナルAI時代の倫理：QOL最適化におけるデータプライバシーとアルゴリズムの透明性 | データ駆動型QOL最適化の科学</title>
-<meta content="個人のQOL最適化を目的としたAI活用が加速する中で避けて通れないのが倫理的課題です。本記事では、パーソナルデータの所有権、アルゴリズムによるバイアスのリスク、そして「説明可能なAI（XAI）」の重要性について深掘りし、利用者が安心してテクノロジーの恩恵を受けるための指針を提示します。" name="description"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0c111f; /* A darker, slightly blueish gray */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-        }
-        .font-mono {
-            font-family: 'Roboto Mono', monospace;
-        }
-        .prose-invert a {
-            color: #22d3ee; /* cyan-400 */
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-        }
-        .prose-invert a:hover {
-            color: #67e8f9; /* cyan-300 */
-        }
-        .prose-invert code {
-            color: #f0fdfa; /* cyan-50 */
-            background-color: rgba(34, 211, 238, 0.1);
-            padding: 0.2em 0.4em;
-            margin: 0;
-            font-size: 85%;
-            border-radius: 6px;
-        }
-        .prose-invert pre {
-            background-color: #1e293b; /* slate-800 */
-            border: 1px solid #334155; /* slate-700 */
-        }
-        .prose-invert blockquote {
-            border-left-color: #0891b2; /* cyan-600 */
-        }
-        .gradient-text {
-            background: linear-gradient(to right, #22d3ee, #a5f3fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Corporate Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-gray-300 font-sans leading-relaxed"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-<!-- Header -->
-<header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-<nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<div class="flex items-center">
-<a class="text-xl font-bold gradient-text" href="../index.html">
-                        データ駆動型QOL最適化の科学
-                    </a>
-</div>
-<div class="hidden md:block">
-<div class="ml-10 flex items-baseline space-x-4">
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../index.html">ホーム</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../about/index.html">私について</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../philosophy/index.html">哲学</a>
-<a aria-current="page" class="bg-gray-800 text-cyan-400 px-3 py-2 rounded-md text-sm font-medium" href="index.html">知見</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../projects/index.html">実績</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../contact/index.html">お問い合わせ</a>
-</div>
-</div>
-<div class="-mr-2 flex md:hidden">
-<button aria-controls="mobile-menu" aria-expanded="false" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="mobile-menu-button" type="button">
-<span class="sr-only">Open main menu</span>
-<svg aria-hidden="true" class="block h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<svg aria-hidden="true" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</div>
-</nav>
-<div class="md:hidden hidden" id="mobile-menu">
-<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../index.html">ホーム</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../about/index.html">私について</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../philosophy/index.html">哲学</a>
-<a aria-current="page" class="bg-gray-800 text-cyan-400 block px-3 py-2 rounded-md text-base font-medium" href="index.html">知見</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../projects/index.html">実績</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../contact/index.html">お問い合わせ</a>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-12">
-<div class="space-y-12">
-<!-- Breadcrumbs -->
-<nav aria-label="Breadcrumb" class="flex">
-<ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-<li class="inline-flex items-center">
-<a class="inline-flex items-center text-sm font-medium text-gray-400 hover:text-cyan-400" href="../index.html">
-<svg aria-hidden="true" class="w-3 h-3 me-2.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-<path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"></path>
-</svg>
-                            ホーム
-                        </a>
-</li>
-<li>
-<div class="flex items-center">
-<svg aria-hidden="true" class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" fill="none" viewbox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
-<path d="m1 9 4-4-4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<a class="ms-1 text-sm font-medium text-gray-400 hover:text-cyan-400 md:ms-2" href="index.html">知見</a>
-</div>
-</li>
-<li aria-current="page">
-<div class="flex items-center">
-<svg aria-hidden="true" class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" fill="none" viewbox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
-<path d="m1 9 4-4-4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">パーソナルAI時代の倫理</span>
-</div>
-</li>
-</ol>
-</nav>
-<article class="prose prose-lg prose-invert max-w-none">
-<header>
-<div class="mb-4">
-<span class="text-cyan-400 font-semibold text-base">AI倫理とデータサイエンス</span>
-</div>
-<h1 class="gradient-text !text-4xl sm:!text-5xl !leading-tight !mb-4">パーソナルAI時代の倫理：QOL最適化におけるデータプライバシーとアルゴリズムの透明性</h1>
-<p class="text-gray-400 text-lg">
-                        公開日: <time datetime="2024-07-21">2024年7月21日</time>
-</p>
-</header>
-<p>
-                    パーソナルAIが健康管理、キャリア形成、学習支援といった多岐にわたる領域で私たちのQOL（Quality of Life）を最適化する時代が到来しました。しかし、その恩恵の裏側で、私たちの最も個人的なデータを扱うテクノロジーは、避けて通れない倫理的課題を突きつけます。本記事では、データ駆動型QOL最適化を安全かつ公正に進めるために不可欠な「データプライバシー」「アルゴリズムの透明性」、そして「説明可能性」という3つの柱について、データサイエンスの観点から深く掘り下げます。
-                </p>
-<h2 id="data-ownership">第1章: データは誰のものか？ - 所有権とプライバシー保護技術</h2>
-<p>
-                    パーソナルAIの根幹をなすのは、ライフログ、健康データ、行動履歴といった極めて機微な個人データです。この「新しい石油」とも呼ばれるデータを巡り、「所有権は誰にあるのか？」という根本的な問いが浮上しています。利用者が自身のデータを主体的にコントロールする「自己主権型」のデータガバナンスへの移行は、倫理的なAI活用の第一歩です。
-                </p>
-<p>
-                    技術的には、プライバシーを保護しながらデータの価値を最大限に引き出すためのアプローチが進化しています。
-                </p>
-<h3 id="differential-privacy">差分プライバシー (Differential Privacy)</h3>
-<p>
-                    差分プライバシーは、「データセットに特定の個人のデータが含まれていてもいなくても、統計的な解析結果がほとんど変わらない」状態を作り出すことで、個人のプライバシーを数学的に保証する強力なフレームワークです。
-                </p>
-<p>
-                    具体的には、データベースへのクエリ結果に、計算されたノイズを付加します。例えば、ラプラスメカニズムでは以下のように表現されます。
-                </p>
-<pre><code class="language-plaintext">M(D) = f(D) + Lap(Δf / ε)</code></pre>
-<p>
-                    ここで <code>M(D)</code> はプライバシー保護された出力、<code>f(D)</code> は真のクエリ結果、<code>Lap(...)</code> はラプラス分布から生成されるノイズです。<code>ε</code>（イプシロン）は「プライバシー予算」と呼ばれ、この値が小さいほどプライバシー保護は強固になりますが、データの有用性は低下するというトレードオフが存在します。このバランスをどう取るかが、倫理的な設計の鍵となります。
-                </p>
-<h3 id="federated-learning">連合学習 (Federated Learning)</h3>
-<p>
-                    従来の機械学習では、ユーザーデータを中央サーバーに集約してモデルを学習させていました。連合学習は、このパラダイムを根本から覆します。
-                </p>
-<ol>
-<li>中央サーバーがグローバルなAIモデルを各ユーザーのデバイス（スマートフォンなど）に配布します。</li>
-<li>各デバイスは、ローカルに保存されている自身のデータを使ってモデルを学習させます（データはデバイスから出ません）。</li>
-<li>学習によって更新されたモデルの差分（パラメータの変更点など）のみが暗号化されて中央サーバーに送られます。</li>
-<li>中央サーバーは、多数のユーザーから集まった差分を集約し、グローバルモデルを更新します。</li>
-</ol>
-<p>
-                    この手法により、生データを共有することなく、集合知としてのAIモデルを構築でき、プライバシーを大幅に向上させることができます。
-                </p>
-<h2 id="algorithmic-bias">第2章: アルゴリズムバイアスの不可視なリスク</h2>
-<p>
-                    AIは、学習データに潜む社会的な偏見や歴史的な不平等を無批判に学習し、増幅させてしまう危険性があります。「Garbage In, Garbage Out（ゴミを入れれば、ゴミしか出てこない）」の原則通り、偏ったデータから作られたAIは、偏った意思決定を下します。
-                </p>
-<p>
-                    例えば、過去の採用データに性別による偏見が含まれていた場合、それをもとに作られた採用推薦AIは、特定の性別を不当に低く評価する可能性があります。QOL最適化AIが、特定の属性を持つユーザーグループに対して体系的に不利益な推薦（例：健康アドバイス、金融商品）を行えば、それはデジタル格差を深刻化させるでしょう。
-                </p>
-<blockquote>
-                    データサイエンティストの責務は、単に予測精度の高いモデルを構築することだけではありません。そのモデルが社会的に公正であり、意図せざる差別を生み出さないかを検証し、緩和する技術的・倫理的責任を負っています。
-                </blockquote>
-<h3 id="bias-mitigation">バイアス緩和技術</h3>
-<p>
-                    公平性を意識した機械学習（Fairness-aware Machine Learning）の研究では、バイアスを緩和するための様々なアプローチが提案されています。
-                </p>
-<ul>
-<li><strong>前処理 (Pre-processing):</strong> 学習データセット自体のバイアスを是正します。例えば、マイノリティグループのデータをオーバーサンプリングしたり、データ内のバイアス表現を修正したりします。</li>
-<li><strong>インプロセッシング (In-processing):</strong> モデルの学習プロセスにおいて、精度と公平性の両方を最適化するような制約を目的関数に加えます。</li>
-<li><strong>後処理 (Post-processing):</strong> 学習済みモデルの出力を補正し、グループ間の公平性を担保するように調整します。</li>
-</ul>
-<p>
-                    これらの技術を適切に選択・適用し、透明性をもってその効果を報告することが、信頼されるAIシステムには不可欠です。
-                </p>
-<h2 id="xai">第3章: ブラックボックス問題と説明可能なAI（XAI）の重要性</h2>
-<p>
-                    高性能なAIモデル、特にディープラーニングは、その内部構造が複雑すぎるため、なぜ特定の結論に至ったのかを人間が理解することが困難な「ブラックボックス」となりがちです。あなたのQOLに関する重要な提案（例：「このキャリアパスを選択すべき」「この治療法が最適です」）が、理由のわからないAIによってなされたとしたら、あなたはそれを信頼できるでしょうか？
-                </p>
-<p>
-                    この問題を解決するのが、説明可能なAI（XAI: Explainable AI）です。XAIは、モデルの予測結果とその根拠を人間が理解できる形で提示することを目的とします。
-                </p>
-<h3 id="lime-shap">代表的なXAI手法: LIMEとSHAP</h3>
-<p>
-<strong>LIME (Local Interpretable Model-agnostic Explanations)</strong>は、特定の予測インスタンスの周辺で、複雑なモデルの挙動を単純な解釈可能モデル（例：線形回帰）で近似することで、「なぜこの予測になったのか」を局所的に説明します。「このメールがスパムと判定されたのは、『無料』と『当選』という単語が強く影響したためです」といった具体的な説明を可能にします。
-                </p>
-<p>
-<strong>SHAP (SHapley Additive exPlanations)</strong>は、協力ゲーム理論のシャープレイ値を用いて、各特徴量が最終的な予測値に対してどれだけ貢献したかを公平に算出します。これにより、予測に対する各特徴量の寄与度を可視化し、モデル全体の傾向や個別の予測根拠をより深く理解することができます。
-                </p>
-<p>
-                    XAIは、単に開発者がモデルをデバッグするためだけのものではありません。最終的な利用者に対し、AIの提案に「納得感」を与え、不適切な場合は異議を唱える機会を提供し、AIとの「対話」を可能にします。これは、利用者がテクノロジーの奴隷になるのではなく、主体的なパートナーとして共存するための鍵となります。
-                </p>
-<h2 id="conclusion">結論：技術、法、倫理の三位一体による未来</h2>
-<p>
-                    パーソナルAIが真に個人のQOLを最大化し、可能性を解放するツールとなるためには、技術的な洗練だけでは不十分です。
-                </p>
-<ol>
-<li><strong>技術的対策:</strong> 差分プライバシーや連合学習のようなプライバシー保護技術、バイアス緩和手法、そしてXAIを標準的に実装すること。</li>
-<li><strong>法的・制度的整備:</strong> GDPRのようにデータ主体権を保護する法規制を整備し、企業に説明責任を課すこと。</li>
-<li><strong>倫理的自覚とリテラシー:</strong> 開発者は「Ethics by Design（設計段階からの倫理配慮）」を実践し、利用者は自身のデータがどのように使われるかを理解し、主体的に選択できるリテラシーを身につけること。</li>
-</ol>
-<p>
-                    この技術、法、倫理の三位一体となったアプローチこそが、データ駆動型社会における個人の尊厳を守り、テクノロジーがもたらす恩恵を誰もが公正に享受できる未来を築くための羅針盤となるでしょう。
-                </p>
-</article>
-<!-- Author Bio -->
-<div class="border-t border-gray-800 pt-8 mt-12 text-center">
-<p class="text-gray-400">この記事がお役に立ちましたら、ぜひ他の記事もご覧ください。</p>
-<a class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-semibold" href="../about/index.html">
-                    著者について →
-                </a>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-gray-900 border-t border-gray-800 mt-20">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div>
-<h3 class="text-lg font-semibold text-white">データ駆動型QOL最適化の科学</h3>
-<p class="mt-2 text-gray-400">AIとデータサイエンスで個人の可能性を最大化し、倫理と透明性を担保した意思決定を支援します。</p>
-</div>
-<div>
-<h3 class="text-lg font-semibold text-white">サイトマップ</h3>
-<ul class="mt-4 space-y-2">
-<li><a class="text-gray-400 hover:text-cyan-400" href="../index.html">ホーム</a></li>
-<li><a class="text-gray-400 hover:text-cyan-400" href="../about/index.html">私について</a></li>
-<li><a class="text-gray-400 hover:text-cyan-400" href="../philosophy/index.html">哲学</a></li>
-<li><a class="text-gray-400 hover:text-cyan-400" href="index.html">知見</a></li>
-<li><a class="text-gray-400 hover:text-cyan-400" href="../projects/index.html">実績</a></li>
-<li><a class="text-gray-400 hover:text-cyan-400" href="../contact/index.html">お問い合わせ</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-lg font-semibold text-white">法務情報</h3>
-<ul class="mt-4 space-y-2">
-<li><a class="text-gray-400 hover:text-cyan-400" href="../legal/index.html">プライバシーポリシー</a></li>
-<li><a class="text-gray-400 hover:text-cyan-400" href="../legal/index.html">利用規約</a></li>
-</ul>
-</div>
-</div>
-<div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
-<p>© 2024 Quantalize Futures Inc. All rights reserved.</p>
-</div>
-</div>
-</footer>
-<script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const openIcon = mobileMenuButton.querySelector('svg:first-child');
-        const closeIcon = mobileMenuButton.querySelector('svg:last-child');
+<body class="bg-gray-50 text-gray-900 antialiased">
 
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
-            openIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        });
-    </script>
+    <!-- ナビゲーションヘッダー -->
+    <header class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 font-bold text-2xl text-blue-600">
+                    CORPORATE
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <!-- 内部リンク: href属性にIDを指定 -->
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">ホーム</a>
+                    <a href="#services" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">サービス</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">私たちについて</a>
+                    <a href="#contact" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors font-medium">お問い合わせ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home セクション -->
+        <!-- scroll-mt-20 を付与することで、ヘッダーに隠れるのを防ぎます -->
+        <section id="home" class="scroll-mt-16 min-h-screen flex items-center bg-slate-100">
+            <div class="max-w-7xl mx-auto px-4 py-32 text-center">
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
+                    次世代のソリューションを<br><span class="text-blue-600">あなたのビジネスに</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-10">
+                    私たちは最新のテクノロジーを活用し、企業の成長をデジタルの力で加速させます。
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#services" class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all">
+                        サービスを見る
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services セクション -->
+        <section id="services" class="scroll-mt-16 py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900">サービス</h2>
+                    <div class="mt-2 w-16 h-1 bg-blue-600 mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 hover:shadow-md transition-shadow">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600">ITコンサルティング</h3>
+                        <p class="text-gray-600">最新のトレンドに基づいた戦略立案を行い、効率的なシステム導入を支援します。</p>
+                    </div>
+                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 hover:shadow-md transition-shadow">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600">システム開発</h3>
+                        <p class="text-gray-600">高度な技術力を持つエンジニアが、スケーラブルなウェブアプリケーションを構築します。</p>
+                    </div>
+                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 hover:shadow-md transition-shadow">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600">デジタルマーケティング</h3>
+                        <p class="text-gray-600">データ分析に基づき、ターゲットに響く最適なマーケティング施策を提供します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About セクション -->
+        <section id="about" class="scroll-mt-16 py-24 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <div class="aspect-video bg-gray-300 rounded-2xl"></div>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">私たちについて</h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        設立以来、私たちはクライアントの課題解決に真摯に取り組んできました。変化の激しい現代において、常に新しい価値を創造し続けることが私たちの使命です。
+                    </p>
+                    <a href="#contact" class="text-blue-600 font-semibold hover:underline">
+                        詳細を読む &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact セクション -->
+        <section id="contact" class="scroll-mt-16 py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-8">お問い合わせ</h2>
+                <p class="text-gray-600 mb-10">
+                    プロジェクトのご相談や、採用に関するお問い合わせはこちらからお願いいたします。
+                </p>
+                <form class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">お名前</label>
+                        <input type="text" class="mt-1 block w-full border-gray-300 border p-3 rounded-md focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">メールアドレス</label>
+                        <input type="email" class="mt-1 block w-full border-gray-300 border p-3 rounded-md focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition-all">
+                        送信する
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 Corporate Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

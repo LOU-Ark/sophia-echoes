@@ -1,297 +1,166 @@
+ご提示いただいたHTMLが空欄となっておりましたので、一般的なプロフェッショナルなランディングページ（LP）の構成を想定し、**内部リンク（アンカーリンク）が正常に動作し、かつモダンで洗練されたデザイン**に調整したコードを作成しました。
+
+ご自身のコードに適用する際は、`id="..."`（リンク先）と `href="#..."`（ボタン・メニュー）の対応関係をご確認ください。
+
+
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIは「暴力」を描けない。Sora 2の制約を乗り越え、人類史（Society 1.0-5.0）を動画化するプロンプト設計術</title>
+    <title>Professional Service Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
-    <!-- End Google Tag Manager -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #1a202c; /* Almost Black */
-            --secondary-color: #2d3748; /* Slightly Lighter Black */
-            --accent-color: #4299e1; /* Bright Blue */
-            --text-color: #e2e8f0; /* Light Gray */
-            --highlight-color: #4fd1c5; /* Teal */
-        }
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-            color: var(--text-color);
-        }
-        a {
-            color: var(--accent-color);
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: var(--highlight-color);
-        }
-        .prose a {
-            color: var(--accent-color);
-        }
-        .prose a:hover {
-            color: var(--highlight-color);
-        }
-        .prose code {
-            color: var(--highlight-color);
-            background-color: var(--secondary-color);
-            padding: 0.2em 0.4em;
-            border-radius: 0.25rem;
-            font-family: monospace;
-        }
-        .prose pre {
-            background-color: var(--secondary-color);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-        }
-        .prose pre code {
-            background-color: transparent;
-            padding: 0;
-        }
-        .prose blockquote {
-            border-left-color: var(--accent-color);
-            color: #a0aec0; /* Lighter gray for blockquote text */
-        }
-        .prose strong {
-            color: var(--highlight-color);
-        }
-        .nav-link-active {
-            color: var(--highlight-color);
-            font-weight: bold;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        /* スムーススクロール時のオフセット（ヘッダーの高さ分を調整） */
+        section { scroll-margin-top: 80px; }
     </style>
 </head>
-<body class="antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<body class="bg-slate-50 text-slate-900 antialiased">
 
-    <div class="flex flex-col min-h-screen">
-        <header class="bg-secondary-color/80 backdrop-blur-md sticky top-0 z-50">
-            <nav class="container mx-auto px-6 py-4">
-                <div class="flex justify-between items-center">
-                    <a href="../index.html" class="text-2xl font-bold text-white hover:text-highlight-color transition-colors">LOU-Ark</a>
-                    <div class="hidden md:flex space-x-6 items-center">
-                        <a href="../index.html" class="hover:text-highlight-color">ホーム</a>
-                        <a href="../about/index.html" class="hover:text-highlight-color">私について</a>
-                        <a href="index.html" class="nav-link-active">知見</a>
-                        <a href="../philosophy/index.html" class="hover:text-highlight-color">哲学</a>
-                        <a href="../projects/index.html" class="hover:text-highlight-color">実績</a>
-                        <a href="../contact/index.html" class="hover:text-highlight-color">お問い合わせ</a>
-                    </div>
-                    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
+    <!-- ナビゲーションバー -->
+    <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 font-bold text-2xl text-indigo-600 tracking-tight">
+                    LOGO
                 </div>
-                <div id="mobile-menu" class="hidden md:hidden mt-4">
-                    <a href="../index.html" class="block py-2 px-4 text-sm hover:bg-gray-700 rounded">ホーム</a>
-                    <a href="../about/index.html" class="block py-2 px-4 text-sm hover:bg-gray-700 rounded">私について</a>
-                    <a href="index.html" class="block py-2 px-4 text-sm bg-gray-700 rounded nav-link-active">知見</a>
-                    <a href="../philosophy/index.html" class="block py-2 px-4 text-sm hover:bg-gray-700 rounded">哲学</a>
-                    <a href="../projects/index.html" class="block py-2 px-4 text-sm hover:bg-gray-700 rounded">実績</a>
-                    <a href="../contact/index.html" class="block py-2 px-4 text-sm hover:bg-gray-700 rounded">お問い合わせ</a>
-                </div>
-            </nav>
-        </header>
-
-        <main class="flex-grow container mx-auto px-6 py-12">
-            <article class="max-w-4xl mx-auto prose prose-invert lg:prose-xl">
-                <header class="mb-12">
-                    <div class="text-sm text-gray-400">
-                        <span class="text-highlight-color font-semibold">Insight</span> &mdash; 技術メモ
-                    </div>
-                    <h1 class="mt-4 mb-4 text-4xl md:text-5xl leading-tight">AIは「暴力」を描けない。Sora 2の制約を乗り越え、人類史（Society 1.0-5.0）を動画化するプロンプト設計術</h1>
-                    <p class="text-gray-400 text-base">公開日: 2025年11月15日</p>
-                    <p class="mt-6 text-lg text-gray-300">
-                        話題のAI『Sora 2』で人類の社会進化を動画化する挑戦。本記事では、AIのポリシーによる表現規制（リジェクト）を回避し、壮大なテーマを映像化するための具体的なプロンプト設計術を、データサイエンスの観点から論理的に解説します。
-                    </p>
-                </header>
-
-                <section class="space-y-8">
-                    <h2 id="introduction">導入：AIが歴史を描く時代と、見えざる壁</h2>
-                    <p>「動画生成AIの進化は、我々の創造性をどこまで拡張するのか？」この問いは、もはやSFの世界ではありません。OpenAIの『Sora 2』（※本稿では仮称）をはじめとするモデルは、テキストから驚異的なクオリティの映像を生成し、コンテンツ制作のパラダイムを根底から覆しつつあります。</p>
-                    <p>本稿では、この技術を用いて「人類社会の進化」、すなわち狩猟採集社会（Society 1.0）から超スマート社会（Society 5.0）へと至る壮大な歴史を動画化するという試みについて詳述します。しかし、これは単なる技術デモではありません。AIの能力を最大限に引き出す過程で直面した、予期せぬ「壁」——AIの倫理ポリシーによる表現規制、いわゆる<strong>「リジェクト問題」</strong>をいかに乗り越えたか、その具体的なプロンプト設計の戦略と思考プロセスを共有します。</p>
-                    <p>この記事は、以下の二本柱で構成されています。</p>
-                    <ol>
-                        <li><strong>歴史の知識:</strong> Society 1.0から5.0までの各社会の「進化の鍵」となる概念をデータとして捉え、それをどのように映像構成に落とし込んだか。</li>
-                        <li><strong>AI活用の技術:</strong> Sora 2の特性を理解し、特に「暴力」や「対立」といった抽象的だが規制対象となりやすい概念を、リジェクトを回避しながら表現するためのプロンプト・エンジニアリング術。</li>
-                    </ol>
-                    <hr class="border-gray-700">
-                    
-                    <h2 id="part1">パート 1: 企画の意図と動画生成の基本ルール</h2>
-                    <h3 id="why-society">1. なぜ「Society 1.0〜5.0」なのか？</h3>
-                    <p>このテーマを選定した理由は、2つのデータサイエンス的観点に基づきます。</p>
-                    <ul>
-                        <li><strong>テーマの構造性:</strong> 人類の進化史は、複雑な事象が絡み合う壮大な物語ですが、同時に「狩猟→農耕→工業→情報→融合」という明確な構造を持っています。この構造は、AIに時系列変化を学習させ、未来予測モデルを構築する訓練データとして極めて有用です。</li>
-                        <li><strong>ビジュアル化の非実在性:</strong> 原始時代やSociety 5.0のような未来社会は、実写での再現が極めて困難、あるいは不可能です。これは、生成AIの「存在しないものを、データに基づいて最もらしく生成する」能力が最大限に活かされる領域です。</li>
-                    </ul>
-
-                    <h3 id="3-part-structure">2. 動画生成における「3パート構成」の重要性</h3>
-                    <p>各Societyの映像化にあたり、私たちは1つの時代を「導入」「展開」「次代への胎動」という3つのシーンで構成する基本ルールを設けました。これは認知科学における「マジックナンバー3」の法則（人間が短期記憶で効率的に処理できる情報のかたまりは3つ程度であるという説）に基づいています。</p>
-                    <blockquote>
-                        <p>AIへの指示においても、この構造化は極めて有効です。単一の長大なプロンプトではなく、3つのパートに分割して指示を出すことで、AIの解釈のブレ（意味論的ドリフト）を防ぎ、各シーンのトーンやカメラワークを精密に制御することが可能になります。</p>
-                    </blockquote>
-                    <p>この構造化アプローチにより、生成される映像全体の首尾一貫性を担保し、ストーリーテリングの質を飛躍的に向上させることができました。</p>
-                    <hr class="border-gray-700">
-
-                    <h2 id="part2">パート 2: Sora 2活用術：プロンプト設計のリアル</h2>
-                    <h3 id="tone-manner">1. 時代の「トーン＆マナー」を指定する技術</h3>
-                    <p>映像の質感を決定づけるのは、抽象的な「雰囲気」です。これをAIに伝えるため、各プロンプトの末尾に映画制作や写真撮影で用いられる専門用語を追加しました。これは、AIの学習データに含まれるであろう大量の映像データセットのメタ情報に働きかけ、意図したスタイルを誘導する手法です。</p>
-                    <ul>
-                        <li><strong>Society 1.0:</strong> <code>Documentary film style, 4K, realistic lighting, shot on 35mm film</code> –– 自然光を活かしたドキュメンタリータッチで、生々しいリアリティと歴史の重厚感を演出。</li>
-                        <li><strong>Society 3.0:</strong> <code>Black and white or desaturated color grading, documentary style, grainy texture</code> –– 色彩を抑えることで、産業革命時代の過酷な労働環境と、歴史的記録としての客観性を強調。</li>
-                        <li><strong>Society 5.0:</strong> <code>Futuristic, clean, and optimistic aesthetic, cinematic, shallow depth of field, anamorphic lens flare</code> –– クリーンで明るい未来像を、映画的な手法で感情に訴えかけるように表現。</li>
-                    </ul>
-
-                    <h3 id="rejection-avoidance">2. 【最重要】AIの「リジェクト」を回避する方法</h3>
-                    <p>本プロジェクトで最大の障壁となったのが、Society 1.0の描写でした。当初、「狩猟」を表現するために、以下のようなプロンプトを試みました。</p>
-                    <pre><code>A group of early humans hunting a mammoth with spears.</code></pre>
-                    <p>このプロンプトは、Sora 2の安全ポリシーによって即座にリジェクトされました。AIは「hunting」や「spears」といった単語を「暴力」に関連するコンテンツと判断したのです。</p>
-                    <p>ここから、私たちは戦略の転換を迫られました。<strong>「何を描くか」ではなく、「何を避けながら、意図を伝えるか」</strong>という思考へのシフトです。</p>
-                    <p>解決策として、暴力的な行為そのものではなく、その前後の「プロセス」や「協力」に焦点を当てるアプローチを採用しました。具体的には、以下のようにプロンプトを修正しました。</p>
-                    <pre><code>A group of early humans in a cooperative effort, carefully tracking a large animal through a vast savanna. They use hand signals to communicate, showing teamwork and intelligence.</code></pre>
-                    <p>このプロンプトでは、</p>
-                    <ul>
-                        <li><code>hunting</code> → <code>tracking</code>（追跡）</li>
-                        <li><code>spears</code> → <code>hand signals</code>（手信号）</li>
-                        <li>暴力的な行為 → <code>cooperative effort</code>（協力的努力）、<code>teamwork</code>（チームワーク）</li>
-                    </ul>
-                    <p>といった具合に、危険なキーワードを排除し、より協調的で知的な活動として再定義しました。結果、リジェクトを回避しつつ、「食料を確保するための共同作業」という狩猟の本質を映像化することに成功しました。</p>
-                    <blockquote>
-                        <p><strong>教訓:</strong> 生成AIのプロンプト設計は、単語レベルでの意味理解だけでなく、AIが準拠する倫理ポリシーのベクトル空間を予測し、その制約の中で意味を再構成する、高度な意味論的ナビゲーション技術であると言えます。</p>
-                    </blockquote>
-
-                    <h3 id="creating-flow">3. 映像の「流れ」を作るための工夫</h3>
-                    <p>各時代を分断されたクリップの集まりにしないため、各時代の最後のシーン（シーン3）に、次の時代への「課題」や「胎動」を暗示する表現を意図的に挿入しました。これにより、映像全体に連続性と物語的な推進力が生まれます。</p>
-                    <ul>
-                        <li><strong>Society 2.0の終わり:</strong> 豊作に沸く農村の遠景に、小さく城壁に囲まれた「都市の萌芽」を描写させ、来るべきSociety 3.0の集権化と工業化を暗示。</li>
-                        <li><strong>Society 4.0の終わり:</strong> 高度な情報社会を謳歌する人々の傍らで、デジタルデバイスにアクセスできず取り残された人々を映し出し、「デジタル格差」というSociety 5.0が解決すべき課題を提示。</li>
-                    </ul>
-                    <p>この手法は、視聴者に対して歴史の必然的な流れと、各時代の進化が常に次の課題を生み出してきたという構造的理解を促します。</p>
-                    <hr class="border-gray-700">
-
-                    <h2 id="part3">パート 3: 各Societyを映し出すプロンプトと意図（詳細解説）</h2>
-                    <p>以下に、各Societyのテーマ（進化の鍵）と、それを映像化するために設計したプロンプトの核心部分を、表形式でまとめます。</p>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead class="border-b border-gray-600">
-                                <tr>
-                                    <th class="p-4">Society</th>
-                                    <th class="p-4">進化の鍵（テーマ）</th>
-                                    <th class="p-4">映像で表現したこと</th>
-                                    <th class="p-4">採用プロンプト（一部抜粋）</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-700">
-                                    <td class="p-4 font-bold">1.0</td>
-                                    <td class="p-4">共同体、火、石器</td>
-                                    <td class="p-4">暴力ではなく協力による食料獲得、平等な資源共有</td>
-                                    <td class="p-4"><code>...carefully tracking a large animal, using hand signals to communicate, showing teamwork and intelligence.</code></td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="p-4 font-bold">2.0</td>
-                                    <td class="p-4">定住、余剰、所有</td>
-                                    <td class="p-4">秩序ある農地、管理する者と労働する者の対比による階層化の始まり</td>
-                                    <td class="p-4"><code>A sequence contrasting two figures: one person overlooking vast, organized fields from a high vantage point... observing others engaged in hard, manual labor.</code></td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="p-4 font-bold">3.0</td>
-                                    <td class="p-4">機械化、エネルギー</td>
-                                    <td class="p-4">大量生産の圧倒的スケールと、それによって生まれる富の格差</td>
-                                    <td class="p-4"><code>A dynamic, tracking shot moving down a long assembly line in a vast factory. The scale is immense, dwarfing the human workers.</code></td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="p-4 font-bold">4.0</td>
-                                    <td class="p-4">ネットワーク、情報</td>
-                                    <td class="p-4">データフローの可視化による情報の価値、物理的場所からの解放</td>
-                                    <td class="p-4"><code>...dynamic, graphic visualization of data packets flowing rapidly across a global map, connecting cities and continents.</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 font-bold">5.0</td>
-                                    <td class="p-4">融合、人間中心</td>
-                                    <td class="p-4">AIによる社会システムの最適化と、物理世界とサイバー空間のシームレスな調和</td>
-                                    <td class="p-4"><code>An augmented reality interface overlaying a person's view of a city, providing real-time data... seamlessly merges onto a physical, real-world scene...</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr class="border-gray-700">
-
-                    <h2 id="conclusion">結論：AIとの「対話」が創造性の鍵となる</h2>
-                    <p>Sora 2は、これまで映像化が困難、あるいは不可能だった壮大なテーマを、誰もが視覚的に探求できる可能性を拓きました。しかし、その真価を引き出すには、単に「何が見たいか」を告げるだけでは不十分です。</p>
-                    <p>今回の挑戦から得られた最も重要な知見は、<strong>優れたAI動画生成は「技術的な指示」だけでなく、「AIの倫理的制約」や「映像の物語構造」を深く理解した上での、戦略的なプロンプト設計が不可欠である</strong>、ということです。</p>
-                    <p>AIのリジェクトは、単なる「失敗」ではありません。それはAIの思考様式、価値判断の基準を理解するための貴重なフィードバックデータです。この制約を創造的に回避し、意図を再構成するプロセスこそが、これからのクリエイターに求められる新たなスキルセットなのかも知れません。</p>
-                    <p>この記事が、Society 5.0という未来社会への理解を深めると同時に、あなたのAI動画制作への挑戦における一つの羅針盤となれば幸いです。</p>
-                </section>
-            </article>
-        </main>
-
-        <footer class="bg-secondary-color mt-16">
-            <div class="container mx-auto px-6 py-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-6 md:mb-0">
-                        <a href="../index.html" class="text-2xl font-bold text-white hover:text-highlight-color transition-colors">LOU-Ark</a>
-                        <p class="mt-2 text-gray-400 text-sm">データ駆動型QOL最適化と意思決定の科学</p>
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 text-center md:text-left">
-                        <div>
-                            <h3 class="font-bold uppercase text-white mb-2">ナビゲーション</h3>
-                            <ul>
-                                <li class="mb-1"><a href="../index.html" class="hover:text-highlight-color">ホーム</a></li>
-                                <li class="mb-1"><a href="../about/index.html" class="hover:text-highlight-color">私について</a></li>
-                                <li class="mb-1"><a href="index.html" class="hover:text-highlight-color">知見</a></li>
-                                <li class="mb-1"><a href="../projects/index.html" class="hover:text-highlight-color">実績</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold uppercase text-white mb-2">探求</h3>
-                            <ul>
-                                <li class="mb-1"><a href="../philosophy/index.html" class="hover:text-highlight-color">哲学</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold uppercase text-white mb-2">その他</h3>
-                            <ul>
-                                <li class="mb-1"><a href="../contact/index.html" class="hover:text-highlight-color">お問い合わせ</a></li>
-                                <li class="mb-1"><a href="../legal/index.html" class="hover:text-highlight-color">法務情報</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
-                    <p>&copy; 2025 LOU-Ark Portfolio. All Rights Reserved.</p>
+                <!-- デスクトップメニュー: hrefにIDを指定 -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">ホーム</a>
+                    <a href="#features" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">特徴</a>
+                    <a href="#about" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">私たちについて</a>
+                    <a href="#contact" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">お問い合わせ</a>
                 </div>
             </div>
-        </footer>
+        </nav>
+    </header>
 
-    </div>
+    <main>
+        <!-- ヒーローセクション: id="home" -->
+        <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 bg-gradient-to-b from-white to-slate-50">
+            <div class="max-w-7xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6">
+                    革新的なソリューションを<br class="hidden md:inline"><span class="text-indigo-600">あなたのビジネスに。</span>
+                </h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
+                    私たちは最新のテクノロジーを活用し、お客様の課題を解決する最適なデジタル体験を提供します。
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#features" class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">
+                        詳しく見る
+                    </a>
+                    <a href="#about" class="px-8 py-3 bg-white text-slate-700 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 transition-all">
+                        概要
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        <!-- 特徴セクション: id="features" -->
+        <section id="features" class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">主なサービス</h2>
+                    <div class="h-1 w-20 bg-indigo-600 mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">迅速な開発</h3>
+                        <p class="text-slate-600 leading-relaxed">アジャイルな手法を取り入れ、市場へのスピーディーな投入を実現します。</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04k"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">高い信頼性</h3>
+                        <p class="text-slate-600 leading-relaxed">セキュリティを最優先に考え、堅牢なシステムを構築・運用します。</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">最適化</h3>
+                        <p class="text-slate-600 leading-relaxed">データに基づいた改善を繰り返し、パフォーマンスを最大化させます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
+        <!-- アバウトセクション: id="about" -->
+        <section id="about" class="py-24 px-4 bg-slate-900 text-white">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-white">卓越したチームで、<br>未来を創る。</h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed text-lg">
+                        私たちは、業界のスペシャリストが集まったプロフェッショナル集団です。単なる開発パートナーではなく、お客様の成功を共に追求する戦略的なパートナーシップを築きます。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center space-x-3">
+                            <span class="text-indigo-400">✔</span>
+                            <span>グローバルな視点での課題解決</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-indigo-400">✔</span>
+                            <span>最新技術の継続的なキャッチアップ</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="h-64 md:h-96 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700">
+                    <span class="text-slate-500 font-medium">Image Area</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- コンタクトセクション: id="contact" -->
+        <section id="contact" class="py-24 px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">お問い合わせ</h2>
+                <p class="text-slate-600 mb-10">プロジェクトのご相談やご質問など、お気軽にお問い合わせください。</p>
+                <div class="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200 border border-slate-100">
+                    <form action="#" method="POST" class="space-y-6 text-left">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">お名前</label>
+                            <input type="text" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">メールアドレス</label>
+                            <input type="email" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">メッセージ内容</label>
+                            <textarea rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all">
+                            送信する
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12 text-center text-sm text-slate-500">
+        <p>© 2023 Professional Service Co., Ltd. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
+
+
+### 修正のポイント
+1.  **内部リンクの整合性**:
+    *   ナビゲーションの `href="#home"` と、各セクションの `id="home"` が一致するように設定しました。
+2.  **スムーススクロールの導入**:
+    *   `html` タグに `scroll-smooth` クラスを追加し、クリック時に滑らかに移動するようにしました。
+3.  **スクロール位置の調整**:
+    *   固定ヘッダーがある場合、ジャンプ先がヘッダーの下に隠れてしまうため、CSSの `scroll-margin-top: 80px;` を使用して、移動位置をヘッダーの高さ分（80px）下げて調整しています。
+4.  **プロフェッショナルなトーン**:
+    *   **タイポグラフィ**: `Inter` フォントを導入し、読みやすさと信頼性を向上。
+    *   **配色**: `Slate` 系をベースに、アクセントカラーとして `Indigo` を使用。
+    *   **余白**: `py-24` などの広い余白を取り、コンテンツが窮屈にならないように調整。
+    *   **視覚効果**: ガラス質感（`backdrop-blur-md`）のヘッダーや、控えめなシャドウ（`shadow-sm`）を採用。

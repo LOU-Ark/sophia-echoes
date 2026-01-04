@@ -1,331 +1,121 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="ja">
-<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>【Looker Studio】計算フィールドでGA4セグメントを再現！クロスドメイン環境での特定流入経路CV分析ガイド</title>
-<meta content="Looker StudioでクロスドメインサイトのCV分析にお困りですか？計算フィールドでGA4のセグメント機能を再現し、特定流入経路からのコンバージョンを正確に計測する具体的な手順を解説します。" name="description"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #D1D5DB; /* text-gray-300 */
-        }
-        .font-roboto {
-            font-family: 'Roboto', sans-serif;
-        }
-        .bg-gray-950 { background-color: #030712; }
-        .bg-gray-850 { background-color: #1f2937; }
-        .accent-color { color: #38bdf8; } /* text-sky-400 */
-        .accent-bg { background-color: #38bdf8; }
-        .border-accent { border-color: #38bdf8; }
-        .ring-accent { --tw-ring-color: #38bdf8; }
-
-        .prose {
-            color: #D1D5DB;
-        }
-        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-            color: #F9FAFB;
-        }
-        .prose a {
-            color: #60a5fa; /* text-blue-400 */
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-        }
-        .prose a:hover {
-            color: #93c5fd; /* text-blue-300 */
-            text-decoration: underline;
-        }
-        .prose strong {
-            color: #F9FAFB;
-        }
-        .prose code {
-            color: #f472b6; /* text-pink-400 */
-            background-color: #374151; /* bg-gray-700 */
-            padding: 0.2em 0.4em;
-            border-radius: 0.25rem;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9em;
-        }
-        .prose pre {
-            background-color: #1f2937; /* bg-gray-800 */
-            color: #E5E7EB; /* text-gray-200 */
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-        }
-        .prose pre code {
-            background-color: transparent;
-            padding: 0;
-            color: inherit;
-        }
-        .prose blockquote {
-            border-left-color: #38bdf8; /* border-sky-400 */
-            color: #9CA3AF; /* text-gray-400 */
-        }
-        .prose thead {
-            color: #F9FAFB;
-            border-bottom-color: #4B5563; /* border-gray-600 */
-        }
-        .prose tbody tr {
-            border-bottom-color: #374151; /* border-gray-700 */
-        }
-    </style>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Web Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-gray-300"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-<!-- Navigation -->
-<header class="bg-gray-950/70 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-gray-800" id="header">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<div class="flex items-center">
-<a class="text-xl font-bold font-roboto text-white" href="../index.html">LOU-Ark</a>
-</div>
-<div class="hidden md:block">
-<nav class="ml-10 flex items-baseline space-x-4">
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../index.html">ホーム</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../about/index.html">私について</a>
-<a aria-current="page" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" href="index.html">実績</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../insights/index.html">知見</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../philosophy/index.html">哲学</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../contact/index.html">お問い合わせ</a>
-</nav>
-</div>
-<div class="-mr-2 flex md:hidden">
-<button aria-controls="mobile-menu" aria-expanded="false" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="mobile-menu-button" type="button">
-<span class="sr-only">Open main menu</span>
-<svg aria-hidden="true" class="block h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<svg aria-hidden="true" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</div>
-</div>
-<div class="md:hidden hidden" id="mobile-menu">
-<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../index.html">ホーム</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../about/index.html">私について</a>
-<a aria-current="page" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" href="index.html">実績</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../insights/index.html">知見</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../philosophy/index.html">哲学</a>
-<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../contact/index.html">お問い合わせ</a>
-</div>
-</div>
-</header>
-<main class="pt-16">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-<article class="prose prose-lg max-w-4xl mx-auto">
-<header class="mb-8">
-<div class="text-sm text-gray-400 mb-2">
-<span class="font-roboto">PROJECTS / TECHNICAL NOTE</span>
-</div>
-<h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white !mb-4">
-                        【Looker Studio】計算フィールドでGA4セグメントを再現！クロスドメイン環境での特定流入経路CV分析ガイド
-                    </h1>
-<div class="text-gray-400 text-base">
-<time datetime="2025-11-13">2025年11月13日</time>
-</div>
-</header>
-<section class="mb-12" id="introduction">
-<h2 class="border-l-4 border-accent pl-4">はじめに：GA4セグメントが使えないLooker Studioの壁</h2>
-<p>
-                        サービスサイト（例：<code>service.com</code>）から申し込みフォーム（例：<code>form.example.com</code>）へ遷移するような、クロスドメイン環境でのウェブサイト分析は複雑になりがちです。特に、特定の広告キャンペーン（例：Google広告の「Autumn Sale」）からのコンバージョン（CV）だけを正確に計測したいというニーズは非常に高いでしょう。
-                    </p>
-<p>
-                        GA4の探索レポートでは「セグメント」機能を使えば簡単に実現できます。しかし、そのセグメントはLooker Studio（旧データポータル）に直接持ち込むことはできません。結果として、Looker Studioのレポート上では全ての流入経路のデータが混在してしまい、「あのキャンペーン、本当に効果あったんだっけ？」と頭を悩ませることになります。
-                    </p>
-<blockquote class="border-l-4 border-sky-400 pl-4 italic text-gray-400">
-<p><strong>こんな課題ありませんか？</strong></p>
-<p>「クロスドメイン設定済みのGA4データを使っているが、Looker Studioで特定の広告キャンペーン経由のCVだけをフィルタリングして分析できない…」</p>
-</blockquote>
-<p>
-                        この記事では、この課題を解決するため、Looker Studioの<strong>「計算フィールド」</strong>と<strong>「CASE文」</strong>、そして<strong>「正規表現」</strong>を駆使して、GA4のセグメント機能を擬似的に再現し、クロスドメイン環境下で特定の流入経路からのCVを正確に分析する具体的な手順を、データサイエンスの観点から論理的に解説します。
-                    </p>
-</section>
-<section class="mb-12" id="solution-overview">
-<h2 class="border-l-4 border-accent pl-4">解決策の概要：計算フィールドで「カスタムセグメント」を創る</h2>
-<p>
-                        結論から言うと、この問題はLooker Studioのデータソース内で、<strong>独自のディメンション（分析軸）を動的に生成する</strong>ことで解決します。これが「計算フィールド」です。
-                    </p>
-<p>
-                        具体的には、<code>CASE</code>文という条件分岐のロジックを使い、「もしセッションのキャンペーン名が〇〇で、かつ参照元が△△だったら、'特定キャンペーン'というラベルを付ける。そうでなければ'その他'と分類する」といったルールを定義します。これにより、GA4のセグメントとほぼ同等の機能を持つ新しいディメンションをLooker Studio上に作成できるのです。
-                    </p>
-</section>
-<section class="mb-12" id="step-by-step">
-<h2 class="border-l-4 border-accent pl-4">具体的な手順（ステップ・バイ・ステップ）</h2>
-<p>
-                        それでは、実際にカスタムセグメントを作成していきましょう。ここでは例として、「Google広告経由で、キャンペーン名が `autumn_sale` で始まる流入」を特定するセグメントを作成します。
-                    </p>
-<h3 class="mt-8">Step 1: 分析したい流入経路の条件を定義する</h3>
-<p>
-                        まず、データで識別可能な形で、分析対象を明確に定義します。これはデータ分析における最も重要なプロセスです。
-                    </p>
-<ul>
-<li><strong>条件1:</strong> 参照元/メディアが <code>google / cpc</code> であること。</li>
-<li><strong>条件2:</strong> セッションのキャンペーン名が <code>autumn_sale</code> という文字列で始まること。（例：<code>autumn_sale_2025_main</code>, <code>autumn_sale_retargeting</code>など）</li>
-</ul>
-<p>クロスドメイン分析では、ユーザーが複数のドメインをまたいで行動しても、そのセッションの最初の流入元情報を保持する<strong>「セッション」スコープのディメンション</strong>（例：<code>セッションの参照元 / メディア</code>, <code>セッション キャンペーン</code>）を使うことが極めて重要です。</p>
-<h3 class="mt-8">Step 2: 計算フィールドで「カスタムチャネルグループ」を作成する</h3>
-<p>
-                        次に、Looker Studioのデータソース編集画面を開き、「フィールドを追加」から「計算フィールドを追加」を選択します。
-                    </p>
-<ol>
-<li>フィールド名を分かりやすく「カスタムチャネルグループ」などと設定します。</li>
-<li>計算式を入力するエリアに、以下のコードを記述します。</li>
-</ol>
-<pre><code class="language-sql">CASE
-    WHEN REGEXP_MATCH(セッション キャンペーン, "autumn_sale.*") AND セッションの参照元 / メディア = "google / cpc"
-    THEN "Autumn Sale Campaign (Google)"
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
-    WHEN REGEXP_MATCH(セッション キャンペーン, "winter_promo.*")
-    THEN "Winter Promo Campaign"
+    <!-- ナビゲーションバー -->
+    <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex-shrink-0">
+                <span class="text-xl font-bold tracking-tight text-indigo-600">CORPORATE</span>
+            </div>
+            <div class="hidden md:block">
+                <ul class="flex space-x-8 text-sm font-medium">
+                    <li><a href="#home" class="text-slate-600 hover:text-indigo-600 transition-colors">ホーム</a></li>
+                    <li><a href="#services" class="text-slate-600 hover:text-indigo-600 transition-colors">サービス</a></li>
+                    <li><a href="#about" class="text-slate-600 hover:text-indigo-600 transition-colors">会社概要</a></li>
+                    <li><a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-    WHEN セッションのデフォルト チャネル グループ = "Organic Search"
-    THEN "自然検索"
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="home" class="pt-32 pb-16 md:pt-48 md:pb-32 px-4 bg-white scroll-mt-16">
+            <div class="max-w-7xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                    革新的なソリューションで<br class="hidden md:block"><span class="text-indigo-600">未来を切り拓く</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg text-slate-600 mb-10">
+                    私たちは最新のテクノロジーを活用し、ビジネスの成長を支援するプロフェッショナル集団です。
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#services" class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all">
+                        詳細を見る
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    ELSE "その他"
-END</code></pre>
-<p>
-                        このコードのロジックは以下の通りです。
-                    </p>
-<ul>
-<li><code>CASE ... END</code>: 条件分岐を開始・終了します。</li>
-<li><code>WHEN [条件] THEN [結果]</code>: 条件が真(true)の場合に、指定した結果（文字列）を返します。上から順に評価されます。</li>
-<li><code>REGEXP_MATCH(フィールド, "正規表現")</code>: 正規表現に一致するかを判定する関数です。<code>"autumn_sale.*"</code>は、「autumn_saleで始まり、その後に任意の文字が続く」という意味で、複数の関連キャンペーンをまとめて補足できます。</li>
-<li><code>ELSE "その他"</code>: 上記のどの条件にも当てはまらなかった場合に返すデフォルト値です。これにより、すべてのトラフィックを分類できます。</li>
-</ul>
-<h3 class="mt-8">Step 3: レポートにカスタムセグメントを適用する</h3>
-<p>
-                        新しいディメンション「カスタムチャネルグループ」が作成できたら、これをレポートで活用します。
-                    </p>
-<p>
-                        例えば、コンバージョン数を表示するスコアカードを作成し、そのグラフの<strong>「フィルタ」</strong>設定で、「カスタムチャネルグループ」が「<code>Autumn Sale Campaign (Google)</code>」と等しい、という条件を追加します。
-                    </p>
-<p>
-                        これにより、スコアカードには「Autumn Sale Campaign (Google)」経由のコンバージョン数だけが表示されるようになります。同様に、表や他のグラフのディメンションとして使うことで、キャンペーンごとのパフォーマンスを比較分析することも可能です。
-                    </p>
-<h3 class="mt-8">Step 4: クロスドメイン環境での前提条件を確認する</h3>
-<p>
-                        この手法が正しく機能するための大前提は、<strong>GA4側でクロスドメイン設定が正確に行われていること</strong>です。
-                    </p>
-<p>
-                        GA4の管理画面から「データストリーム」を選択し、「タグ設定を行う」→「ドメインの設定」で、分析対象のすべてのドメイン（例：<code>service.com</code> と <code>form.example.com</code>）が正しく登録されているか必ず確認してください。この設定がなければ、ドメインを移動した時点でセッションが途切れ、本来の流入元情報が失われてしまいます。
-                    </p>
-</section>
-<section class="mb-12" id="before-after">
-<h2 class="border-l-4 border-accent pl-4">Before / After：分析の解像度が劇的に向上</h2>
-<p>このテクニックを適用することで、レポートは以下のように変化します。</p>
-<div class="grid md:grid-cols-2 gap-8">
-<div>
-<h4 class="text-white">Before: 全流入経路が混在</h4>
-<p class="text-sm text-gray-400">特定のキャンペーンの効果が分からず、施策の評価が困難。</p>
-<div class="bg-gray-800 p-4 rounded-lg mt-2">
-<p class="font-bold text-white">CV数（全チャネル）</p>
-<p class="text-3xl font-roboto text-sky-400">1,250</p>
-<p class="text-gray-500 mt-2">（内訳不明）</p>
-</div>
-</div>
-<div>
-<h4 class="text-white">After: 特定の流入経路を分離</h4>
-<p class="text-sm text-gray-400">作成したカスタムセグメントでフィルタし、キャンペーンの純粋な成果を可視化。</p>
-<div class="bg-gray-800 p-4 rounded-lg mt-2">
-<p class="font-bold text-white">CV数（Autumn Sale Campaign）</p>
-<p class="text-3xl font-roboto text-sky-400">82</p>
-<p class="text-gray-500 mt-2">（CVR: 3.5%）</p>
-</div>
-</div>
-</div>
-<p class="mt-6">
-                        このように、これまでブラックボックスだった「特定の施策がどれだけの成果を上げたか」という問いに対して、データに基づいた明確な答えを提示できるようになります。
-                    </p>
-</section>
-<section class="mb-12" id="conclusion">
-<h2 class="border-l-4 border-accent pl-4">まとめと応用</h2>
-<p>
-                        本記事では、Looker Studioの計算フィールドを用いてGA4のセグメント機能を再現し、クロスドメイン環境における特定流入経路のコンバージョン分析を行う手法を解説しました。
-                    </p>
-<p>
-                        このテクニックの核心は、<strong>生データを加工して分析目的に合致した新しい指標（ディメンション）をその場で作り出す</strong>という、データサイエンスの基本的なアプローチにあります。これにより、以下のメリットが得られます。
-                    </p>
-<ul>
-<li><strong>分析の柔軟性向上：</strong> GA4のUIに縛られず、ビジネス要件に応じた独自のセグメントを自由に作成できます。</li>
-<li><strong>レポートの自動化：</strong> 一度設定すれば、データが更新されるたびに自動でセグメント分けされたレポートが生成されます。</li>
-<li><strong>関係者との円滑な合意形成：</strong> データに基づき「このキャンペーンは成功した/失敗した」を明確に示せるため、次のアクションに向けた意思決定がスムーズになります。</li>
-</ul>
-<h4 class="mt-6">応用：さらに高度なセグメントへ</h4>
-<p>
-                        この手法は、流入経路だけでなく、他のディメンションと組み合わせることでさらに強力になります。例えば、「特定の国からのユーザー」かつ「特定のキャンペーン経由」といった、より詳細なセグメントを作成することも可能です。
-                    </p>
-<pre><code class="language-sql">CASE
-    WHEN 国 = "Japan" AND REGEXP_MATCH(セッション キャンペーン, "autumn_sale.*")
-    THEN "JP - Autumn Sale"
-    ELSE "Other"
-END</code></pre>
-<p>
-                        Looker Studioは単なる可視化ツールではなく、データ加工と思考実験のための強力なプラットフォームです。ぜひ計算フィールドを使いこなし、データからより深いインサイトを引き出してください。
-                    </p>
-</section>
-</article>
-</div>
-</main>
-<footer class="bg-gray-950 border-t border-gray-800">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-<div>
-<h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Navigation</h3>
-<ul class="mt-4 space-y-4">
-<li><a class="text-base text-gray-300 hover:text-white" href="../index.html">ホーム</a></li>
-<li><a class="text-base text-gray-300 hover:text-white" href="../about/index.html">私について</a></li>
-<li><a class="text-base text-gray-300 hover:text-white" href="index.html">実績</a></li>
-<li><a class="text-base text-gray-300 hover:text-white" href="../insights/index.html">知見</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Topics</h3>
-<ul class="mt-4 space-y-4">
-<li><a class="text-base text-gray-300 hover:text-white" href="../philosophy/index.html">哲学</a></li>
-<li><a class="text-base text-gray-300 hover:text-white" href="../contact/index.html">お問い合わせ</a></li>
-<li><a class="text-base text-gray-300 hover:text-white" href="../legal/index.html">法務情報</a></li>
-</ul>
-</div>
-<div class="col-span-2 md:col-span-2">
-<h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Mission</h3>
-<p class="mt-4 text-base text-gray-300">データとAIにより個人のQOLと可能性を最大化し、倫理と透明性を担保しながら、より豊かな社会の実現に貢献します。</p>
-</div>
-</div>
-<div class="mt-8 border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between">
-<p class="text-base text-gray-400">© 2024 LOU-Ark Portfolio. All rights reserved.</p>
-<div class="flex space-x-6 mt-4 sm:mt-0">
-<!-- Social links here if needed -->
-</div>
-</div>
-</div>
-</footer>
-<script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const svgs = mobileMenuButton.querySelectorAll('svg');
+        <!-- サービスセクション -->
+        <section id="services" class="py-24 px-4 bg-slate-50 scroll-mt-16">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4">サービス内容</h2>
+                    <div class="w-12 h-1 bg-indigo-600 mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100">
+                        <h3 class="text-xl font-bold mb-4">戦略コンサルティング</h3>
+                        <p class="text-slate-600">市場分析に基づいた最適なビジネス戦略を提案し、確かな成長へと導きます。</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100">
+                        <h3 class="text-xl font-bold mb-4">デジタル化支援</h3>
+                        <p class="text-slate-600">DXの推進により、業務プロセスの効率化と新たな価値創造を実現します。</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-xl shadow-sm border border-slate-100">
+                        <h3 class="text-xl font-bold mb-4">システム開発</h3>
+                        <p class="text-slate-600">スケーラビリティと保守性の高い、高品質なシステム構築を提供します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
-            svgs[0].classList.toggle('hidden');
-            svgs[0].classList.toggle('block');
-            svgs[1].classList.toggle('hidden');
-            svgs[1].classList.toggle('block');
-        });
-    </script>
+        <!-- 会社概要セクション -->
+        <section id="about" class="py-24 px-4 bg-white scroll-mt-16">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-6">会社概要</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        私たちは2010年の設立以来、常にクライアントの成功を第一に考え、技術と創造性を融合させたソリューションを提供してきました。グローバルな視点と、地域に根ざした誠実な対応で、持続可能な社会の実現に貢献します。
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-slate-700">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-full mr-3"></span>
+                            設立：2010年4月
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-full mr-3"></span>
+                            所在地：東京都港区
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-1 w-full h-64 bg-slate-200 rounded-2xl flex items-center justify-center text-slate-400">
+                    [イメージ画像]
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせセクション -->
+        <section id="contact" class="py-24 px-4 bg-indigo-900 text-white scroll-mt-16">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">お気軽にご相談ください</h2>
+                <p class="mb-10 text-indigo-100">
+                    プロジェクトのご相談や、弊社のサービスに関するご質問は、以下のフォームよりお気軽にお問い合わせください。
+                </p>
+                <form class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4 text-left">
+                        <input type="text" placeholder="お名前" class="w-full px-4 py-3 rounded bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 placeholder:text-white/50">
+                        <input type="email" placeholder="メールアドレス" class="w-full px-4 py-3 rounded bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 placeholder:text-white/50">
+                    </div>
+                    <textarea rows="4" placeholder="メッセージ内容" class="w-full px-4 py-3 rounded bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 placeholder:text-white/50"></textarea>
+                    <button type="submit" class="w-full md:w-auto px-12 py-4 bg-white text-indigo-900 font-bold rounded hover:bg-indigo-50 transition-colors">
+                        送信する
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-slate-900 text-slate-400 text-center text-sm border-t border-slate-800">
+        <p>&copy; 2023 Corporate Name Inc. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

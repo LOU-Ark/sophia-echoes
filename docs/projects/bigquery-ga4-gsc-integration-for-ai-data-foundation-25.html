@@ -1,159 +1,293 @@
 <!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Professional Landing Page</title>
+
+<html class="scroll-smooth" lang="ja">
+<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>【最終章】BigQueryでGA4とGSCを連携！AIの自己進化を支えるデータ基盤を構築する全手順</title>
+<meta content="GA4とGSCのデータ制約を克服。全ての生データをBigQueryに自動集約し、AIが自律的に学習・改善を行うための「記憶と神経網」となる最強の分析基盤を構築する手順を解説します。" name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #D1D5DB; /* text-gray-300 */
+        }
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .content-section h2, .content-section h3 {
+            scroll-margin-top: 80px; /* Adjust for sticky header */
+        }
+        .toc a:hover {
+            color: #2dd4bf; /* teal-400 */
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+<body class="bg-gray-900 text-gray-300"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<!-- Header -->
+<header class="bg-gray-900 bg-opacity-80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300" id="header">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<div class="flex-shrink-0">
+<a class="text-2xl font-bold text-white transition-colors duration-300 hover:text-teal-400" href="../index.html">LOU-Ark</a>
+</div>
+<div class="hidden md:block">
+<nav class="ml-10 flex items-baseline space-x-4">
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../index.html">ホーム</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../about/index.html">私について</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../philosophy/index.html">哲学</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../insights/index.html">知見</a>
+<a aria-current="page" class="bg-gray-800 text-teal-400 px-3 py-2 rounded-md text-sm font-medium" href="index.html">実績</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../contact/index.html">お問い合わせ</a>
+</nav>
+</div>
+<div class="md:hidden">
+<button aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" id="mobile-menu-button">
+<span class="sr-only">メインメニューを開く</span>
+<svg aria-hidden="true" class="block h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<svg aria-hidden="true" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<div class="md:hidden hidden" id="mobile-menu">
+<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../index.html">ホーム</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../about/index.html">私について</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../philosophy/index.html">哲学</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../insights/index.html">知見</a>
+<a aria-current="page" class="bg-gray-800 text-teal-400 block px-3 py-2 rounded-md text-base font-medium" href="index.html">実績</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../contact/index.html">お問い合わせ</a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<div class="max-w-4xl mx-auto">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex mb-6 text-sm">
+<ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center font-medium text-gray-400 hover:text-teal-400" href="../index.html">
+<svg aria-hidden="true" class="w-3 h-3 me-2.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"></path>
+</svg>
+                            ホーム
+                        </a>
+</li>
+<li>
+<div class="flex items-center">
+<svg aria-hidden="true" class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" fill="none" viewbox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
+<path d="m1 9 4-4-4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<a class="ms-1 font-medium text-gray-400 hover:text-teal-400" href="index.html">実績</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<svg aria-hidden="true" class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" fill="none" viewbox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
+<path d="m1 9 4-4-4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="ms-1 font-medium text-gray-500">BigQuery連携</span>
+</div>
+</li>
+</ol>
+</nav>
+<!-- Article Header -->
+<header class="mb-10">
+<h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">【最終章】BigQueryでGA4とGSCを連携！AIの自己進化を支えるデータ基盤を構築する全手順</h1>
+<p class="text-lg text-gray-400">GA4とGSCのデータ制約を克服。全ての生データをBigQueryに自動集約し、AIが自律的に学習・改善を行うための「記憶と神経網」となる最強の分析基盤を構築する手順を解説します。</p>
+<div class="mt-6 flex items-center space-x-4 text-sm text-gray-500">
+<time datetime="2025-11-10">2025年11月10日</time>
+<div class="flex flex-wrap gap-2">
+<span class="bg-teal-900 text-teal-300 text-xs font-mono px-2 py-1 rounded">Data Engineering</span>
+<span class="bg-blue-900 text-blue-300 text-xs font-mono px-2 py-1 rounded">BigQuery</span>
+<span class="bg-yellow-900 text-yellow-300 text-xs font-mono px-2 py-1 rounded">GA4</span>
+<span class="bg-indigo-900 text-indigo-300 text-xs font-mono px-2 py-1 rounded">GSC</span>
+</div>
+</div>
+</header>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Article Content -->
+<article class="w-full lg:w-3/4 prose prose-invert max-w-none prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:font-bold prose-h2:border-l-4 prose-h2:border-teal-400 prose-h2:pl-4 prose-h2:mb-6 prose-h2:text-white prose-h3:text-xl prose-h3:md:text-2xl prose-h3:font-bold prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-gray-200 prose-p:text-gray-300 prose-a:text-teal-400 hover:prose-a:text-teal-300 prose-strong:text-white prose-code:text-cyan-300 prose-code:bg-gray-800 prose-code:p-1 prose-code:rounded prose-code:font-mono prose-pre:bg-gray-800 prose-pre:p-4 prose-pre:rounded-lg prose-blockquote:border-l-4 prose-blockquote:border-teal-500 prose-blockquote:bg-gray-800 prose-blockquote:p-4 prose-blockquote:rounded-r-lg prose-blockquote:text-gray-400">
+<div class="content-section" id="introduction">
+<h2>導入：AIの「記憶」に課せられた制約と、その解放</h2>
+<p>これまで我々はAIエージェントにウェブサイトという「肉体」を与え、GTMを通じてGA4とGSCという「感覚器官」を実装してきました。しかし、これらの標準ツールには、AIが真に自律的な学習を行う上で致命的な制約が存在します。</p>
+<p>GA4の標準レポートは、あくまで「サンプリングされ、集計されたデータ」のスナップショットです。GSCも同様に、UIでは過去90日、APIでも最大16ヶ月という時間的制約に縛られます。これでは、AIは「短期記憶」しか持てず、長期的な因果関係の分析や、過去の施策からの深い学習が不可能です。</p>
+<blockquote class="my-6">
+                            真のデータ駆動型AIを構築するには、これらの「制約された記憶」ではなく、イベント単位の完全な「生データ（Raw Data）」を、発生した瞬間から永久に蓄積する「長期記憶装置」が不可欠です。
+                        </blockquote>
+<p>その役割を担うのが、Google Cloudのサーバレス・データウェアハウス、<strong>BigQuery</strong>です。本稿では、GA4とGSCから全ての生データをBigQueryへ自動的に集約し、AIが自己進化するための永続的な記憶と神経網を構築する全手順を解説します。</p>
+</div>
+<div class="content-section" id="step1">
+<h2>1. BigQueryプロジェクトの準備 (GCP)</h2>
+<p>全てのデータの集約先となる、Google Cloud Platform (GCP)上のBigQueryプロジェクトを準備します。これはAIのデータ基盤における「脳」そのものを作るプロセスです。</p>
+<h3 id="step1-1">1.1. GCPプロジェクトの作成</h3>
+<p>まず、<a href="https://console.cloud.google.com/" rel="noopener noreferrer" target="_blank">GCPコンソール</a>にアクセスし、新しいプロジェクトを作成します。プロジェクト名は、<code>ai-data-foundation-prod</code> のように、目的が明確な命名規則を推奨します。</p>
+<h3 id="step1-2">1.2. 課金アカウントの有効化</h3>
+<p>BigQueryへのデータエクスポートは、データの保存とクエリ実行に対して課金が発生します（ただし、GA4からの日次エクスポート自体は無料枠があります）。プロジェクトに有効な課金アカウントをリンクさせることが必須要件です。これを怠ると、特にGSCからのエクスポート設定でエラーが発生します。</p>
+<h3 id="step1-3">1.3. BigQuery APIの有効化</h3>
+<p>通常、プロジェクト作成時に自動で有効化されますが、念のため確認します。GCPコンソールの「APIとサービス」 &gt; 「ライブラリ」から「BigQuery API」を検索し、有効になっていることを確認してください。これがAIの神経網が脳に接続するためのインターフェースとなります。</p>
+</div>
+<div class="content-section" id="step2">
+<h2>2. GA4からBigQueryへのリンク設定</h2>
+<p>次に、ユーザーのサイト内行動データ（内部シグナル）を捉えるGA4から、BigQueryへデータをエクスポートする設定を行います。</p>
+<ol class="list-decimal pl-5 space-y-4">
+<li><strong>GA4の管理画面へ移動:</strong> 対象のGA4プロパティで、「管理」セクションを開きます。</li>
+<li><strong>BigQueryのリンク設定:</strong> 「サービスとのリンク」セクション内にある「BigQuery のリンク」をクリックします。</li>
+<li><strong>リンクの作成:</strong> 「リンク」ボタンを押し、先ほど準備したGCPプロジェクトを選択します。データロケーション（例: `asia-northeast1 (Tokyo)`）を選択し、次へ進みます。</li>
+<li><strong>データストリームと頻度の選択:</strong> エクスポートしたいデータストリーム（通常はウェブサイトのストリーム）を選択します。ここで最も重要なのはエクスポートの頻度です。<strong>「毎日（日次）」</strong>を選択します。これにより、GA4の無料インスタンスでも利用可能なエクスポートが設定され、毎日自動で前日分の全イベントデータがBigQueryに転送されます。</li>
+</ol>
+<p>この設定が完了すると、BigQuery内に `analytics_&lt;Property-ID&gt;` というデータセットが作成され、その中に `events_YYYYMMDD` という形式で日次テーブルが自動生成されるようになります。</p>
+</div>
+<div class="content-section" id="step3">
+<h2>3. GSCからBigQueryへのリンク設定</h2>
+<p>最後に、ユーザーの検索行動データ（外部シグナル）を捉えるGSCから、BigQueryへデータをエクスポートします。こちらは比較的新しい機能であり、GA4とは異なる権限設定が求められるため、特に注意が必要です。</p>
+<ol class="list-decimal pl-5 space-y-4">
+<li><strong>Search Consoleの設定画面へ移動:</strong> 対象のプロパティで、「設定」 &gt; 「一括データ エクスポート」を開きます。</li>
+<li><strong>エクスポート先の設定:</strong> ここで、先ほど準備したGCPプロジェクトのIDを入力します。データセット名は任意ですが、<code>search_console</code> など分かりやすい名前を付けます。</li>
+<li><strong>IAM権限の付与（最重要プロセス）:</strong> 設定を続行すると、GCPプロジェクト側で特定のサービスアカウントに権限を付与するよう指示されます。これがこのプロセスの核心です。
+                                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 my-4">
+<p class="font-bold text-white mb-2">IAM権限設定の詳細</p>
+<p>GSCがBigQueryにデータを書き込むには、GSC専用の「サービスアカウント」に適切な権限を付与する必要があります。このアカウント名は固定です。</p>
+<pre class="font-mono text-sm text-cyan-300 bg-gray-900 p-3 rounded-md overflow-x-auto"><code>search-console-data-export@system.gserviceaccount.com</code></pre>
+<p class="mt-2">GCPコンソールの「IAMと管理」 &gt; 「IAM」ページで、「アクセス権を付与」をクリックし、以下の設定を行います。</p>
+<ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+<li><strong>新しいプリンシパル:</strong> 上記のサービスアカウント名を入力します。</li>
+<li><strong>ロールを割り当てる (1):</strong> <code class="text-xs">BigQuery データ編集者</code> (<code>roles/bigquery.dataEditor</code>) を選択します。</li>
+<li><strong>ロールを割り当てる (2):</strong> <code class="text-xs">BigQuery ジョブユーザー</code> (<code>roles/bigquery.jobUser</code>) を選択します。</li>
+</ul>
+<p class="mt-2 text-xs text-gray-400">これにより、GSCはあなたのプロジェクトに対してデータの書き込みと処理ジョブの実行許可を得ます。</p>
+</div>
+</li>
+<li><strong>設定の完了:</strong> IAMの設定が完了したら、Search Consoleの画面に戻り、設定を完了します。数日以内に、指定したデータセット内に `searchdata_url_impression` と `searchdata_site_impression` という2つのテーブルが作成され、データが蓄積され始めます。</li>
+</ol>
+</div>
+<div class="content-section" id="conclusion">
+<h2>結論：AIの記憶と神経網、その完成</h2>
+<p>これで、我々のデータ基盤は完成しました。</p>
+<p>GA4が記録するユーザーの<strong>「内部行動」</strong>と、GSCが捉える検索エンジンからの<strong>「外部インテント」</strong>。この二大シグナルが、今、BigQueryという単一のデータレイクに、毎日自動で流れ込み始めました。これは、AIが自ら生成したウェブサイトという「肉体」に、我々人間が完全な「記憶と神経網」を配線したことに他なりません。</p>
+<blockquote class="my-6">
+                            サンプリングされず、永久に保持される生データの奔流。これこそが、AIが過去から学び、未来を予測し、自律的に改善サイクルを回すための根源的なエネルギーです。
+                        </blockquote>
+<p>これをもって、自己進化サイクルを担うPythonスクリプト群、コードネーム <code class="font-mono">main_02</code> は、この無限に蓄積されるデータを読み解き、自律的に仮説を立て、ABテストを設計し、コンテンツを改善する準備が整ったのです。AIによる自己進化の物語は、ここから本当の意味で始まります。</p>
+</div>
+</article>
+<!-- Table of Contents -->
+<aside class="w-full lg:w-1/4 lg:sticky lg:top-24 self-start">
+<div class="bg-gray-800 p-6 rounded-lg">
+<h4 class="font-bold text-white text-lg mb-4">目次</h4>
+<nav class="space-y-3 text-gray-400" id="toc">
+<a class="block text-sm" href="#introduction">導入：AIの「記憶」の解放</a>
+<a class="block text-sm" href="#step1">1. BigQueryプロジェクトの準備</a>
+<ul class="pl-4 mt-2 space-y-2 border-l border-gray-600">
+<li><a class="block text-xs" href="#step1-1">1.1. GCPプロジェクト作成</a></li>
+<li><a class="block text-xs" href="#step1-2">1.2. 課金アカウント有効化</a></li>
+<li><a class="block text-xs" href="#step1-3">1.3. API有効化</a></li>
+</ul>
+<a class="block text-sm" href="#step2">2. GA4からBigQueryへのリンク</a>
+<a class="block text-sm" href="#step3">3. GSCからBigQueryへのリンク</a>
+<a class="block text-sm" href="#conclusion">結論：記憶と神経網の完成</a>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-900 border-t border-gray-800">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-1">
+<h3 class="text-xl font-bold text-white">LOU-Ark</h3>
+<p class="text-gray-400 mt-2 text-sm">データ駆動型QOL最適化と意思決定の科学</p>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">ナビゲーション</h4>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-gray-300 hover:text-white" href="../about/index.html">私について</a></li>
+<li><a class="text-base text-gray-300 hover:text-white" href="index.html">実績</a></li>
+<li><a class="text-base text-gray-300 hover:text-white" href="../insights/index.html">知見</a></li>
+<li><a class="text-base text-gray-300 hover:text-white" href="../contact/index.html">お問い合わせ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">探求分野</h4>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-gray-300 hover:text-white" href="../philosophy/index.html">哲学</a></li>
+<li><a class="text-base text-gray-300 hover:text-white" href="../legal/index.html">法務情報</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">最新の実績</h4>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-gray-300 hover:text-white" href="project-ai-site-generation-agent-1.html">AIエージェント協働サイト構築</a></li>
+<li><a class="text-base text-gray-300 hover:text-white" href="manual-setup-ga4-gtm-for-ai-generated-site-16.html">GTM/GA4分析基盤の手動構築</a></li>
+<li><a class="text-base text-gray-300 hover:text-white" href="link-ga4-with-gsc-using-gtm-to-analyze-search-keywords-24.html">GA4とGSCの連携</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-8 border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
+<p class="text-sm text-gray-400">© 2025 LOU-Ark Portfolio. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 sm:mt-0">
+<!-- Social media icons placeholder -->
+<a class="text-gray-400 hover:text-white" href="#"><span class="sr-only">Twitter</span><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+<a class="text-gray-400 hover:text-white" href="#"><span class="sr-only">GitHub</span><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.querySelector('svg:first-child').classList.toggle('hidden');
+            mobileMenuButton.querySelector('svg:last-child').classList.toggle('hidden');
+        });
 
-    <!-- 
-      Navigation 
-      - fixed-topで固定。
-      - 背景にbackdrop-blurを適用し、プロフェッショナルな質感を演出。
-    -->
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0">
-                    <span class="text-2xl font-bold tracking-tight text-indigo-600 uppercase">Brand</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-slate-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">ホーム</a>
-                        <a href="#services" class="text-slate-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">サービス</a>
-                        <a href="#about" class="text-slate-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">私たちについて</a>
-                        <a href="#contact" class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition-all shadow-sm">お問い合わせ</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+        // Header shadow on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-lg', 'shadow-teal-900/20');
+            } else {
+                header.classList.remove('shadow-lg', 'shadow-teal-900/20');
+            }
+        });
 
-    <!-- 
-      Main Content 
-      - 各sectionにIDを付与。
-      - scroll-mt-{size} を使用して、固定ヘッダーに重ならないよう調整。
-    -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 scroll-mt-16 overflow-hidden">
-            <div class="max-w-7xl mx-auto text-center relative z-10">
-                <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tight mb-8">
-                    次世代のビジネスを<br><span class="text-indigo-600">デザインする</span>
-                </h1>
-                <p class="text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-                    最新のテクノロジーを活用し、お客様のビジネス課題を解決するための最適なソリューションを提供します。
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#services" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-200">
-                        サービスを見る
-                    </a>
-                    <a href="#about" class="px-8 py-4 bg-white text-slate-900 border border-slate-200 font-bold rounded-xl hover:bg-slate-50 transition-all">
-                        詳しく知る
-                    </a>
-                </div>
-            </div>
-            <!-- Background Decoration -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-0 opacity-10 pointer-events-none">
-                <div class="absolute top-20 left-10 w-72 h-72 bg-indigo-400 rounded-full blur-3xl"></div>
-                <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
-            </div>
-        </section>
+        // Active TOC link highlighting
+        const tocLinks = document.querySelectorAll('#toc a');
+        const sections = document.querySelectorAll('.content-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`#toc a[href="#${id}"]`);
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    tocLinks.forEach(link => link.classList.remove('text-teal-400', 'font-bold'));
+                    if (tocLink) {
+                        tocLink.classList.add('text-teal-400', 'font-bold');
+                    }
+                }
+            });
+        }, { rootMargin: '-80px 0px -40% 0px', threshold: 0.6 });
+        sections.forEach(section => observer.observe(section));
 
-        <!-- Services Section -->
-        <section id="services" class="py-24 bg-white scroll-mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-20">
-                    <h2 class="text-sm font-bold text-indigo-600 tracking-widest uppercase mb-3">Services</h2>
-                    <h3 class="text-3xl lg:text-4xl font-bold text-slate-900">卓越したサービス提供</h3>
-                    <div class="mt-5 h-1.5 w-16 bg-indigo-600 mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <!-- Card 1 -->
-                    <div class="group p-10 bg-slate-50 border border-slate-100 rounded-3xl hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-600 transition-colors">
-                            <svg class="w-8 h-8 text-indigo-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-4">DXコンサルティング</h4>
-                        <p class="text-slate-600 leading-relaxed">企業のデジタル変革を戦略策定から実行までトータルで支援します。</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="group p-10 bg-slate-50 border border-slate-100 rounded-3xl hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-600 transition-colors">
-                            <svg class="w-8 h-8 text-indigo-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-4">カスタム開発</h4>
-                        <p class="text-slate-600 leading-relaxed">要件に合わせた高品質なWeb・モバイルアプリケーションを構築します。</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="group p-10 bg-slate-50 border border-slate-100 rounded-3xl hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-600 transition-colors">
-                            <svg class="w-8 h-8 text-indigo-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-4">データ分析</h4>
-                        <p class="text-slate-600 leading-relaxed">膨大なデータから価値あるインサイトを導き出し、意思決定を加速させます。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-24 bg-slate-50 scroll-mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col lg:flex-row items-center gap-16">
-                    <div class="lg:w-1/2">
-                        <h2 class="text-sm font-bold text-indigo-600 tracking-widest uppercase mb-3 text-left">About Us</h2>
-                        <h3 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-8 leading-tight">確かな信頼と実績で、<br>ビジネスを加速させる</h3>
-                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-                            私たちは単なる技術提供者ではありません。お客様のパートナーとして、本質的な課題解決を追求し続けるプロフェッショナル集団です。
-                        </p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-indigo-600 mr-3">✔</span>
-                                <span class="text-slate-700 font-medium">豊富な開発実績と経験豊かなエンジニア</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-indigo-600 mr-3">✔</span>
-                                <span class="text-slate-700 font-medium">最新技術をいち早く取り入れる柔軟な姿勢</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="lg:w-1/2 w-full">
-                        <div class="aspect-video bg-indigo-100 rounded-3xl shadow-inner flex items-center justify-center overflow-hidden">
-                            <div class="text-indigo-400 font-bold italic text-xl">Image Placeholder</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 bg-indigo-900 text-white scroll-mt-16">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-3xl lg:text-5xl font-bold mb-8 tracking-tight">新しいプロジェクトを<br>始めましょう</h2>
-                <p class="text-indigo-200 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-                    課題解決の第一歩として、お気軽にご相談ください。専門のスタッフがヒアリングし、最適なプランをご提案いたします。
-                </p>
-                <div class="inline-flex flex-col sm:flex-row gap-6">
-                    <a href="mailto:contact@example.com" class="px-10 py-5 bg-white text-indigo-900 font-bold rounded-2xl hover:bg-indigo-50 transition-all shadow-xl">
-                        お問い合わせフォームへ
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="text-slate-400 text-sm">
-                &copy; 2024 Professional Brand Inc. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
+    </script>
 </body>
 </html>

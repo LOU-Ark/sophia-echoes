@@ -1,138 +1,252 @@
-ご提示いただいたHTMLコードが未入力のようでしたので、一般的なビジネスサイトの構造をベースに、**内部リンク（アンカーリンク）が正確に機能し、かつ固定ヘッダーとコンテンツが重ならないよう調整した**プロフェッショナルなテンプレートを作成しました。
-
-ご自身のコードに適用する際は、`id`属性と`href`属性の整合性、および`scroll-mt`（スクロールマージン）の設定をご確認ください。
-
-
 <!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Service</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+<html lang="ja">
+<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AIが自らサイトを成長させる「自己進化サイクル」の構築：GA4とBigQueryデータで意思決定を自動化する</title>
+<meta content="GA4/GSCデータをAIが読み解き、サイトの課題を自ら分析。新規記事の生成や既存ページの改善を自動実行する「自己進化サイクル」の構築へ。自律的なサイト運営エージェント開発のロードマップを解説します。" name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gray-900': '#111827',
+                        'gray-800': '#1F2937',
+                        'gray-700': '#374151',
+                        'gray-400': '#9CA3AF',
+                        'gray-200': '#E5E7EB',
+                        'sky-400': '#38BDF8',
+                        'sky-500': '#0EA5E9',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased font-sans">
+<body class="bg-gray-900 text-gray-200 antialiased"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<!-- Header -->
+<header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
+<nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center">
+<a class="text-2xl font-bold text-sky-400" href="../index.html">LOU-Ark</a>
+</div>
+<div class="hidden md:block">
+<div class="ml-10 flex items-baseline space-x-4">
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../index.html">ホーム</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../about/index.html">私について</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../philosophy/index.html">哲学</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../insights/index.html">知見</a>
+<a aria-current="page" class="bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium" href="index.html">実績</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="../contact/index.html">お問い合わせ</a>
+</div>
+</div>
+<div class="-mr-2 flex md:hidden">
+<button aria-controls="mobile-menu" aria-expanded="false" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="mobile-menu-button" type="button">
+<span class="sr-only">Open main menu</span>
+<svg aria-hidden="true" class="block h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<svg aria-hidden="true" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</nav>
+<div class="md:hidden hidden" id="mobile-menu">
+<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../index.html">ホーム</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../about/index.html">私について</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../philosophy/index.html">哲学</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../insights/index.html">知見</a>
+<a aria-current="page" class="bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium" href="index.html">実績</a>
+<a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="../contact/index.html">お問い合わせ</a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="py-16 sm:py-24">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<article class="prose prose-lg prose-invert max-w-none prose-h1:text-sky-400 prose-h2:text-sky-400/90 prose-h3:text-sky-400/80 prose-a:text-sky-500 hover:prose-a:text-sky-400 prose-code:text-pink-400 prose-blockquote:border-l-sky-400">
+<!-- Breadcrumbs -->
+<nav class="mb-6 text-sm text-gray-400">
+<a class="hover:text-sky-400" href="../index.html">ホーム</a> &gt; 
+                    <a class="hover:text-sky-400" href="index.html">実績</a> &gt; 
+                    <span class="text-gray-500">自己進化サイクル構築</span>
+</nav>
+<!-- Article Header -->
+<header class="mb-12">
+<div class="flex flex-wrap items-center gap-2 mb-4">
+<span class="inline-block bg-sky-500/10 text-sky-400 text-xs font-medium px-2.5 py-0.5 rounded-full">Project</span>
+<span class="inline-block bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-0.5 rounded-full">AI</span>
+<span class="inline-block bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-0.5 rounded-full">GA4</span>
+<span class="inline-block bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-0.5 rounded-full">BigQuery</span>
+<span class="inline-block bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Data Science</span>
+</div>
+<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-200">AIが自らサイトを成長させる「自己進化サイクル」の構築：GA4とBigQueryデータで意思決定を自動化する</h1>
+<time class="block mt-4 text-gray-400" datetime="2025-11-10">2025年11月10日</time>
+</header>
+<!-- Introduction -->
+<section class="mb-12">
+<p class="lead text-xl text-gray-300">これまでのプロジェクトで、このポートフォリオサイトはAIエージェントによって生成される「肉体（HTML）」を手に入れ、Google Tag ManagerとGA4による「神経網（計測）」を張り巡らせ、そしてBigQueryという「記憶（データ倉庫）」に日々の活動を記録する仕組みを確立しました。しかし、最も重要なピースが欠けています。それは、データに基づき次の一手を決定する「脳（意思決定）」です。</p>
+<p>この記事では、本プロジェクトの最終目的である「AI自己進化サイクル」のロードマップを解説します。改善サイクルを司るAIエージェント `main_02` が、`BigQuery` に蓄積されたリアルデータを読み込み、自らGrowth戦略を立案・実行する。これは、単なるサイトジェネレーターから、自律的なサイト運営エージェントへと進化する瞬間です。</p>
+</section>
+<!-- Section 1: Sense -->
+<section class="mb-12">
+<h2 id="sense">1. 「感覚」：AIは何をデータとして読み取るか？</h2>
+<p>AIエージェントが的確な意思決定を行うためには、まず外界を認識する「感覚」が必要です。`MySiteGen-Agent` にとっての感覚とは、`BigQuery` に集約された2種類のデータに他なりません。</p>
+<div class="grid md:grid-cols-2 gap-8 mt-8">
+<div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+<h3 class="font-bold text-xl mb-3">GSCデータ（サイト外の需要）</h3>
+<p class="text-gray-300">Google Search Consoleから得られるこのデータは、ユーザーが検索エンジンで何を求めているか、つまり「サイト外の需要」を可視化します。AIは主に以下の問いに答えるためにこのデータを利用します。</p>
+<ul class="mt-4 list-disc list-inside space-y-2">
+<li><strong>検索クエリとインプレッション:</strong> どのキーワードで当サイトが表示されているか？</li>
+<li><strong>クリック率 (CTR):</strong> 表示されているにも関わらず、クリックされていない（＝需要とタイトル/内容が乖離している）キーワードは何か？</li>
+</ul>
+<p class="mt-4 text-sm text-sky-400"><strong>役割：</strong> 訪問者の潜在的需要を把握し、コンテンツの機会を発見する。</p>
+</div>
+<div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+<h3 class="font-bold text-xl mb-3">GA4データ（サイト内の実態）</h3>
+<p class="text-gray-300">Google Analytics 4から得られるこのデータは、サイトを訪れたユーザーが実際にどう行動したか、つまり「サイト内の実態」を示します。AIはサイトの弱点を特定するためにこのデータを参照します。</p>
+<ul class="mt-4 list-disc list-inside space-y-2">
+<li><strong>エンゲージメントと離脱率:</strong> どのページの滞在時間が短く、すぐに離脱されているか？</li>
+<li><strong>ページ遷移:</strong> ハブページ（例: `insights/index.html`）は、訪問者を次の詳細記事へ効果的に誘導できているか？</li>
+</ul>
+<p class="mt-4 text-sm text-sky-400"><strong>役割：</strong> サイトの弱点やボトルネックを特定し、改善点をあぶり出す。</p>
+</div>
+</div>
+</section>
+<!-- Section 2: Think -->
+<section class="mb-12">
+<h2 id="think">2. 「思考」：AIはどう判断（優先順位付け）するか？</h2>
+<p>「感覚」から得た情報を統合し、次に行うべきアクションの優先順位を決定するのが「思考」のプロセスです。これは `main_02` エージェントのコア機能である `select_priority_section_by_data` 関数によって実行されます。もはやダミーデータではなく、BigQueryから取得した生きたデータに基づいて判断が下されます。</p>
+<h3 id="think-logic1">判断ロジック1：新規記事の提案（需要と供給のギャップ分析）</h3>
+<p>このロジックは、市場の需要（GSCデータ）とサイトの供給（既存コンテンツ）のミスマッチを発見することを目的とします。</p>
+<ol class="mt-4 space-y-4">
+<li><strong>ステップ1:</strong> GSCデータから「インプレッションは高いが、CTRが極端に低い」キーワード群を抽出します。これは、ユーザーが関心を持っているものの、現在のタイトルやスニペットが魅力的でない可能性を示唆します。</li>
+<li><strong>ステップ2:</strong> 同様にGSCデータから「インプレッションは高いが、サイト内に対応するコンテンツが存在しない」キーワード群を特定します。これは、`planned_articles.md`（企画リスト）とサイトマップを照合して判断します。</li>
+<li><strong>ステップ3:</strong> これらのキーワードを「コンテンツ機会」としてラベリングし、優先度スコアを付与します。AIはこれを基に、<strong>「このテーマで新しい記事を企画すべき」</strong>と判断します。</li>
+</ol>
+<pre><code class="language-python"># 思考プロセスの疑似コード
+def identify_new_article_opportunities(gsc_data, existing_articles):
+    # インプレッションが多く、CTRが閾値以下のキーワードを特定
+    low_ctr_keywords = gsc_data.query("impressions &gt; 1000 and ctr &lt; 0.01")
+    
+    # サイト内に対応記事がないキーワードを特定
+    uncovered_keywords = find_keywords_without_articles(gsc_data, existing_articles)
 
-    <!-- ナビゲーションバー (固定) -->
-    <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0">
-                    <span class="text-xl font-bold text-blue-600 tracking-tight">CORPORATE</span>
-                </div>
-                <!-- 内部リンク: href="#ID名" -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">ホーム</a>
-                        <a href="#about" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">私たちについて</a>
-                        <a href="#services" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">サービス</a>
-                        <a href="#contact" class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-sm">お問い合わせ</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+    # 両者を統合し、優先順位付け
+    opportunities = prioritize(low_ctr_keywords, uncovered_keywords)
+    
+    return f"新規記事を企画すべきテーマ: {opportunities.first().theme}"
+</code></pre>
+<h3 id="think-logic2">判断ロジック2：既存ページの改善（サイト内ボトルネックの特定）</h3>
+<p>このロジックは、サイト内のユーザー体験を損なっているページ、特にハブページの機能不全を特定します。</p>
+<ol class="mt-4 space-y-4">
+<li><strong>ステップ1:</strong> GA4データから「セッション数は多いが、平均エンゲージメント時間が極端に短い」または「離脱率が異常に高い」ページをリストアップします。</li>
+<li><strong>ステップ2:</strong> 特にハブページ（例：`insights/index.html` や `projects/index.html`）に注目し、そこからの内部リンククリック率を分析します。この率が低い場合、ページのナビゲーションやコンテンツの提示方法に問題がある可能性が高いです。</li>
+<li><strong>ステップ3:</strong> これらの分析結果から、改善インパクトが最も大きいページを特定します。AIは<strong>「このハブページは目次の構成（UI）が悪い。再構成が必要だ」</strong>と結論付けます。</li>
+</ol>
+</section>
+<!-- Section 3: Act -->
+<section class="mb-12">
+<h2 id="act">3. 「行動」：AIはどう実行するか？</h2>
+<p>「思考」によって導き出された結論は、具体的な「行動」へと変換されます。AIエージェントは自律的にコンテンツの生成や修正を実行します。</p>
+<h3 id="act-generate">行動1：新規記事の自動生成</h3>
+<p>「判断ロジック1」で特定された「コンテンツ機会」に基づき、AIは以下のプロセスを自動実行します。</p>
+<ol class="mt-4 list-decimal list-inside space-y-2">
+<li>`generate_priority_article_titles` 関数を呼び出し、特定されたテーマに沿った、CTRを最大化するような魅力的な記事タイトル案を複数生成します。</li>
+<li>最もスコアの高いタイトルを選択し、`generate_single_page_html` 関数を実行。企画、構成、執筆、HTMLコーディングまでをワンストップで行い、新しい記事ページをサイトに追加します。</li>
+</ol>
+<blockquote>これは、データに基づいた需要予測からコンテンツ供給までを完全に自動化するサイクルです。</blockquote>
+<h3 id="act-improve">行動2：ハブページの自動改善</h3>
+<p>「判断ロジック2」で特定されたボトルネックを解消するため、AIは既存ページの上書き（改善）を行います。</p>
+<ol class="mt-4 list-decimal list-inside space-y-2">
+<li>改善対象のページ（例：`insights/index.html`）のHTMLを読み込みます。</li>
+<li>`generate_single_page_html` 関数を再度呼び出しますが、この際のプロンプト内の `purpose` を書き換えます。</li>
+</ol>
+<pre><code class="language-yaml"># プロンプトのpurposeを動的に変更
+purpose: "既存の知見ページ（insights/index.html）を改善する。
+現在のレイアウトは記事への誘導が弱いというデータがある。
+各記事の要約をより魅力的にし、
+ユーザーが次に見るべき記事を発見しやすいように
+UI/UXを抜本的に再構成せよ。"
+</code></pre>
+<p class="mt-4">この指示に基づき、AIはレイアウトや文言を全面的に改善した新しいHTMLを生成し、既存のファイルを上書きします。これにより、データに基づいたA/Bテストさえも自動化する道が拓かれます。</p>
+</section>
+<!-- Conclusion -->
+<section>
+<h2 id="conclusion">結論：「生きているサイト」の完成</h2>
+<p>「感覚（データ取得）」→「思考（分析・判断）」→「行動（生成・改善）」というループが完成することで、`MySiteGen-Agent` はもはや単なる「サイト生成ツール」ではありません。</p>
+<p>それは、自らのパフォーマンスデータをリアルタイムで観測し、ユーザーの需要とサイトの課題を自ら分析・理解し、そしてコンテンツの追加や修正という形で自らを最適化し続ける、<strong>自律的な「サイト運営エージェント」</strong>へと進化を遂げるのです。</p>
+<p>この「自己進化サイクル」こそが、人間とAIが協働し、創造性と効率性を最大化する未来のウェブサイト運営の形であり、私がこのプロジェクトで目指してきたマイルストーンです。サイトはもはや静的な情報の集合体ではなく、環境に適応し成長し続ける「生きている」存在となります。</p>
+</section>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-800">
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="col-span-2 md:col-span-1">
+<h3 class="text-xl font-bold text-sky-400 mb-4">LOU-Ark</h3>
+<p class="text-gray-400">データ駆動型QOL最適化と意思決定の科学</p>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">ナビゲーション</h4>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-gray-400 hover:text-white" href="../index.html">ホーム</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="../about/index.html">私について</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="index.html">実績</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="../contact/index.html">お問い合わせ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">コンテンツ</h4>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-gray-400 hover:text-white" href="../philosophy/index.html">哲学</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="../insights/index.html">知見</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="../legal/index.html">法務情報</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">ソーシャル</h4>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-gray-400 hover:text-white" href="#">X (Twitter)</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="#">LinkedIn</a></li>
+<li><a class="text-base text-gray-400 hover:text-white" href="#">GitHub</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-8 border-t border-gray-700 pt-8 text-center">
+<p class="text-base text-gray-400">© 2025 LOU-Ark Portfolio. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const icons = btn.querySelectorAll('svg');
 
-    <main>
-        <!-- ヒーローセクション -->
-        <!-- IDを設定し、scroll-mtでヘッダー分の余白を確保 -->
-        <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden scroll-mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center">
-                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                        <span class="block">次世代のソリューションを</span>
-                        <span class="block text-blue-600">あなたのビジネスに</span>
-                    </h1>
-                    <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                        私たちは、テクノロジーとデザインの力で、企業のデジタルトランスフォーメーションを支援します。
-                    </p>
-                    <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                        <div class="rounded-md shadow">
-                            <a href="#services" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
-                                詳しく見る
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 私たちについて -->
-        <!-- scroll-mt-20 を付与することで、リンク移動時にヘッダーと被るのを防ぎます -->
-        <section id="about" class="py-20 bg-gray-50 scroll-mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="lg:text-center">
-                    <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">About Us</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        私たちについて
-                    </p>
-                    <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                        長年の経験に基づいた専門知識を提供し、クライアントの課題を解決へと導きます。
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- サービス -->
-        <section id="services" class="py-20 bg-white scroll-mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="lg:text-center mb-12">
-                    <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Services</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        提供サービス
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-6 border border-gray-100 rounded-xl bg-gray-50">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">戦略コンサルティング</h3>
-                        <p class="text-gray-600 text-sm">市場分析に基づいた最適な成長戦略を立案します。</p>
-                    </div>
-                    <div class="p-6 border border-gray-100 rounded-xl bg-gray-50">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">システム開発</h3>
-                        <p class="text-gray-600 text-sm">スケーラビリティに優れた堅牢なシステムを構築します。</p>
-                    </div>
-                    <div class="p-6 border border-gray-100 rounded-xl bg-gray-50">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">運用サポート</h3>
-                        <p class="text-gray-600 text-sm">24時間365日のモニタリングと保守を提供します。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- お問い合わせ -->
-        <section id="contact" class="py-20 bg-blue-900 scroll-mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                    プロジェクトを始めましょう
-                </h2>
-                <p class="mt-4 text-lg text-blue-100">
-                    ご相談は無料です。お気軽にお問い合わせください。
-                </p>
-                <div class="mt-8">
-                    <a href="mailto:info@example.com" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 transition-colors shadow-lg">
-                        お問い合わせフォームへ
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-white py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-400 text-sm">&copy; 2023 CORPORATE Inc. All rights reserved.</p>
-        </div>
-    </footer>
-
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            icons.forEach(icon => icon.classList.toggle('hidden'));
+        });
+    </script>
 </body>
 </html>
-
-
-### 修正のポイント
-1.  **アンカーリンクの整合性**:
-    *   ナビゲーションの `href="#about"` と、移動先の `id="about"` を一致させています。
-2.  **固定ヘッダー対策 (`scroll-mt-16`)**:
-    *   `fixed` なヘッダーがある場合、通常のアンカーリンクでは見出しがヘッダーに隠れてしまいます。各セクションに `scroll-mt-16` (Scroll Margin Top) を追加することで、ヘッダーの高さ分だけ手前でスクロールが止まるよう調整しました。
-3.  **スムーズスクロール**:
-    *   `html` タグに `scroll-smooth` クラスを追加し、リンク移動を滑らかにしました。
-4.  **プロフェッショナルなデザイン**:
-    *   Tailwind CSSを使用し、清潔感のあるタイポグラフィ、適切な余白（`py-20`など）、および `backdrop-blur` を用いたモダンなヘッダーデザインを採用しています。

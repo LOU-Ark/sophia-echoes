@@ -1,259 +1,208 @@
-ご指定いただいた要件に基づき、プロフェッショナルなトーンでデザインを洗練させ、内部リンクの整合性を保ったHTMLを出力します。
-
-主な修正点：
-- **ナビゲーションの最適化**: 現在のページ（実績）へのリンクや階層構造を整理しました。
-- **視認性の向上**: フォントのウェイト、行間、コントラストを調整し、信頼感のあるデザインに仕上げました。
-- **インタラクション**: カードのホバーエフェクトやボタンの質感を高め、モダンなUIを実現しました。
-
-
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-N98QFDGW');
-    </script>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>実績 | LOU-Ark - Imported Hub</title>
-    <meta content="LOU-Arkの実績紹介ページ。AIエージェント、データ基盤構築、意思決定科学の知見を統合した「Imported Hub」として、倫理性と透明性を担保したプロジェクトの成果を公開しています。" name="description"/>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet"/>
-    
-    <!-- Custom Tailwind Config -->
-    <script>
+
+<html class="scroll-smooth" lang="ja">
+<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>実績 | LOU-Ark Portfolio</title>
+<meta content="データとAIを活用した実践的なプロジェクトを紹介します。AIによるサイト構築、高度なデータ分析基盤の設計、そして具体的な技術的課題の解決事例まで、多岐にわたる実績を掲載。" name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+    </style>
+<script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'brand-bg': '#050a15',
-                        'brand-surface': '#111b33',
-                        'brand-primary': '#4f8cff',
-                        'brand-secondary': '#8bb4ff',
-                        'brand-text': '#f8fafc',
-                        'brand-text-muted': '#94a3b8',
+                        'brand-gray': {
+                            900: '#111827',
+                            800: '#1F2937',
+                            700: '#374151',
+                        },
+                        'brand-light': {
+                            100: '#F9FAFB',
+                            200: '#F3F4F6',
+                            300: '#E5E7EB',
+                        },
+                        'brand-accent': {
+                            500: '#38bdf8', // sky-500
+                            600: '#0ea5e9', // sky-600
+                        },
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
-                    }
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                    },
                 }
             }
         }
     </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        .glass-card {
-            background: rgba(17, 27, 51, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(79, 140, 255, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            border-color: rgba(79, 140, 255, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #4f8cff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
 </head>
-<body class="bg-brand-bg text-brand-text font-sans antialiased">
-<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-
+<body class="bg-brand-gray-900 text-brand-light-200 antialiased"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 <!-- Header -->
-<header class="fixed top-0 w-full z-50 bg-brand-bg/80 backdrop-blur-lg border-b border-brand-primary/10">
-  <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-    <a href="../index.html" class="flex items-center gap-3 group">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black shadow-lg bg-brand-primary group-hover:scale-105 transition-transform">
-        L
-      </div>
-      <span class="text-xl font-display font-black text-white tracking-tighter group-hover:text-brand-primary transition-colors">
-        LOU-Ark
-      </span>
-    </a>
-    
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="../about/index.html" class="text-sm font-semibold text-brand-text-muted hover:text-brand-primary transition-colors">ABOUT</a>
-      <a href="../philosophy/index.html" class="text-sm font-semibold text-brand-text-muted hover:text-brand-primary transition-colors">PHILOSOPHY</a>
-      <a href="index.html" class="text-sm font-semibold text-brand-primary">PROJECTS</a>
-      <a href="../insights/index.html" class="text-sm font-semibold text-brand-text-muted hover:text-brand-primary transition-colors">INSIGHTS</a>
-      <a href="../legal/index.html" class="text-sm font-semibold text-brand-text-muted hover:text-brand-primary transition-colors">LEGAL</a>
-    </nav>
-
-    <div class="flex items-center gap-4">
-      <a href="../contact/index.html" class="hidden sm:inline-flex px-6 py-2.5 bg-brand-primary text-white text-xs font-bold rounded-full hover:bg-brand-secondary transition-all shadow-lg shadow-brand-primary/20">
-        CONTACT
-      </a>
-      <button class="md:hidden p-2 text-brand-text hover:text-brand-primary transition-colors" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-        <i class="fa-solid fa-bars-staggered text-2xl"></i>
-      </button>
-    </div>
-  </div>
-  
-  <div id="mobile-menu" class="hidden md:hidden bg-brand-surface border-b border-brand-primary/20 p-6 space-y-4">
-    <div class="flex flex-col gap-4 text-center">
-      <a href="../about/index.html" class="text-sm font-bold text-brand-text-muted">ABOUT</a>
-      <a href="../philosophy/index.html" class="text-sm font-bold text-brand-text-muted">PHILOSOPHY</a>
-      <a href="index.html" class="text-sm font-bold text-brand-primary">PROJECTS</a>
-      <a href="../insights/index.html" class="text-sm font-bold text-brand-text-muted">INSIGHTS</a>
-      <a href="../contact/index.html" class="px-5 py-3 bg-brand-primary text-white text-xs font-bold rounded-xl shadow-lg">CONTACT</a>
-    </div>
-  </div>
+<header class="bg-brand-gray-900/80 backdrop-blur-md sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="text-2xl font-bold text-white">
+<a class="hover:text-brand-accent-500 transition-colors duration-300" href="../index.html">LOU-Ark</a>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-brand-light-300 hover:text-brand-accent-500 transition-colors duration-300" href="../about/index.html">私について</a>
+<a class="text-brand-light-300 hover:text-brand-accent-500 transition-colors duration-300" href="../philosophy/index.html">哲学</a>
+<a class="text-brand-light-300 hover:text-brand-accent-500 transition-colors duration-300" href="../insights/index.html">知見</a>
+<a class="text-brand-accent-500 font-semibold border-b-2 border-brand-accent-500 pb-1" href="index.html">実績</a>
+<a class="text-brand-light-300 hover:text-brand-accent-500 transition-colors duration-300" href="../contact/index.html">お問い合わせ</a>
+</div>
+<div class="md:hidden">
+<button class="text-white focus:outline-none" id="mobile-menu-button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="hidden md:hidden mt-4" id="mobile-menu">
+<a class="block py-2 px-4 text-sm text-brand-light-300 hover:bg-brand-gray-800 rounded" href="../about/index.html">私について</a>
+<a class="block py-2 px-4 text-sm text-brand-light-300 hover:bg-brand-gray-800 rounded" href="../philosophy/index.html">哲学</a>
+<a class="block py-2 px-4 text-sm text-brand-light-300 hover:bg-brand-gray-800 rounded" href="../insights/index.html">知見</a>
+<a class="block py-2 px-4 text-sm bg-brand-gray-800 text-brand-accent-500 rounded" href="index.html">実績</a>
+<a class="block py-2 px-4 text-sm text-brand-light-300 hover:bg-brand-gray-800 rounded" href="../contact/index.html">お問い合わせ</a>
+</div>
+</nav>
 </header>
-
-<main class="pt-20">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden py-24 md:py-32">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(79,140,255,0.08)_0%,transparent_70%)] pointer-events-none"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-brand-primary/20 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-bold tracking-[0.2em] uppercase">
-                <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-                Case Studies
-            </div>
-            <h1 class="font-display font-black text-5xl md:text-8xl leading-[1.1] mb-8">
-                <span class="block text-white">実績</span>
-                <span class="block text-gradient mt-2">Imported Hub</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg md:text-xl text-brand-text-muted leading-relaxed font-medium">
-                AIエージェントの自律化から高度なデータ基盤構築まで。<br class="hidden md:block"/>
-                技術と倫理を統合し、次世代の意思決定システムを構築した記録です。
+<!-- Main Content -->
+<main class="container mx-auto px-6 py-16 md:py-24">
+<!-- Page Header -->
+<section class="text-center mb-16">
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">実績</h1>
+<p class="text-brand-light-300 max-w-3xl mx-auto text-lg">
+                データとAIの理論を、具体的な価値創造へと繋げたプロジェクトの実践記録です。AIによるサイト構築から高度な分析基盤の設計、技術的課題の解決に至るまで、私の専門性がどのように現実世界の問題解決に貢献したかを示します。
             </p>
-        </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section class="container mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-            <!-- Project 1 -->
-            <div class="glass-card rounded-[2rem] p-8 md:p-12 group">
-                <div class="flex items-center gap-3 mb-8">
-                    <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-[10px] font-bold tracking-wider rounded-md border border-brand-primary/20 uppercase">AI Agent</span>
-                    <span class="px-3 py-1 bg-white/5 text-brand-text-muted text-[10px] font-bold tracking-wider rounded-md border border-white/10 uppercase">Autonomous</span>
-                </div>
-                <h2 class="text-3xl font-display font-bold text-white mb-6 group-hover:text-brand-primary transition-colors">MySiteGen-Agent</h2>
-                <p class="text-brand-text-muted mb-10 leading-relaxed text-base">
-                    自律型AIによるWebサイト構築・運用管理エージェント。GA4データに基づいた自己進化サイクルを実装し、継続的な改善を自動化します。
-                </p>
-                <a href="mysitegen-agent-development-log.html" class="inline-flex items-center gap-3 text-white font-bold text-sm bg-brand-primary/10 px-6 py-3 rounded-full hover:bg-brand-primary hover:shadow-lg transition-all group/btn">
-                    詳細を見る <i class="fa-solid fa-arrow-right transition-transform group-hover/btn:translate-x-1"></i>
-                </a>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="glass-card rounded-[2rem] p-8 md:p-12 group">
-                <div class="flex items-center gap-3 mb-8">
-                    <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-[10px] font-bold tracking-wider rounded-md border border-brand-primary/20 uppercase">Data Infra</span>
-                    <span class="px-3 py-1 bg-white/5 text-brand-text-muted text-[10px] font-bold tracking-wider rounded-md border border-white/10 uppercase">BigQuery</span>
-                </div>
-                <h2 class="text-3xl font-display font-bold text-white mb-6 group-hover:text-brand-primary transition-colors">AI自己進化データ基盤</h2>
-                <p class="text-brand-text-muted mb-10 leading-relaxed text-base">
-                    GA4とSearch ConsoleをBigQueryで統合。AIが自らサイト課題を特定し、改善策を提示する「意思決定の科学」を実践する環境を構築。
-                </p>
-                <a href="bigquery-ga4-gsc-integration-for-ai-data-foundation-25.html" class="inline-flex items-center gap-3 text-white font-bold text-sm bg-brand-primary/10 px-6 py-3 rounded-full hover:bg-brand-primary hover:shadow-lg transition-all group/btn">
-                    技術構成を見る <i class="fa-solid fa-arrow-right transition-transform group-hover/btn:translate-x-1"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Browse All Content -->
-        <div class="pt-20 border-t border-brand-primary/10">
-            <div class="flex items-center justify-between mb-12">
-                <h3 class="text-2xl font-display font-bold text-white flex items-center gap-4">
-                    <span class="w-8 h-[2px] bg-brand-primary"></span>
-                    Browse Content
-                </h3>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Links -->
-                <a href="ai-book-production-manual.html" class="flex items-center justify-between p-6 bg-brand-surface/40 rounded-2xl border border-white/5 hover:border-brand-primary/50 hover:bg-brand-surface transition-all group">
-                  <div class="flex flex-col gap-1">
-                    <span class="text-[10px] font-bold text-brand-primary tracking-widest uppercase">Manual</span>
-                    <span class="font-bold text-brand-text leading-tight group-hover:text-brand-secondary transition-colors">AIと人間が共創する書籍制作の全体フロー</span>
-                  </div>
-                  <i class="fa-solid fa-chevron-right text-brand-primary/20 group-hover:text-brand-primary transition-all"></i>
-                </a>
-              
-                <a href="building-ai-self-evolving-website-cycle-with-ga4-bigquery-26.html" class="flex items-center justify-between p-6 bg-brand-surface/40 rounded-2xl border border-white/5 hover:border-brand-primary/50 hover:bg-brand-surface transition-all group">
-                  <div class="flex flex-col gap-1">
-                    <span class="text-[10px] font-bold text-brand-primary tracking-widest uppercase">Architecture</span>
-                    <span class="font-bold text-brand-text leading-tight group-hover:text-brand-secondary transition-colors">AIが自ら成長させる「自己進化サイクル」</span>
-                  </div>
-                  <i class="fa-solid fa-chevron-right text-brand-primary/20 group-hover:text-brand-primary transition-all"></i>
-                </a>
-              
-                <a href="ga4-gtm-event-name-not-reflecting-solution-33.html" class="flex items-center justify-between p-6 bg-brand-surface/40 rounded-2xl border border-white/5 hover:border-brand-primary/50 hover:bg-brand-surface transition-all group">
-                  <div class="flex flex-col gap-1">
-                    <span class="text-[10px] font-bold text-brand-primary tracking-widest uppercase">Troubleshoot</span>
-                    <span class="font-bold text-brand-text leading-tight group-hover:text-brand-secondary transition-colors">【GA4/GTM】イベント名が反映されない問題</span>
-                  </div>
-                  <i class="fa-solid fa-chevron-right text-brand-primary/20 group-hover:text-brand-primary transition-all"></i>
-                </a>
-              
-                <a href="looker-studio-automate-last-n-months-report-29.html" class="flex items-center justify-between p-6 bg-brand-surface/40 rounded-2xl border border-white/5 hover:border-brand-primary/50 hover:bg-brand-surface transition-all group">
-                  <div class="flex flex-col gap-1">
-                    <span class="text-[10px] font-bold text-brand-primary tracking-widest uppercase">Automation</span>
-                    <span class="font-bold text-brand-text leading-tight group-hover:text-brand-secondary transition-colors">Looker Studio: 「直近Nヶ月」レポートの自動化</span>
-                  </div>
-                  <i class="fa-solid fa-chevron-right text-brand-primary/20 group-hover:text-brand-primary transition-all"></i>
-                </a>
-
-                <a href="project-ai-site-generation-agent-1.html" class="flex items-center justify-between p-6 bg-brand-surface/40 rounded-2xl border border-white/5 hover:border-brand-primary/50 hover:bg-brand-surface transition-all group">
-                  <div class="flex flex-col gap-1">
-                    <span class="text-[10px] font-bold text-brand-primary tracking-widest uppercase">Project</span>
-                    <span class="font-bold text-brand-text leading-tight group-hover:text-brand-secondary transition-colors">実績: AIエージェント協働サイト構築 (sophia)</span>
-                  </div>
-                  <i class="fa-solid fa-chevron-right text-brand-primary/20 group-hover:text-brand-primary transition-all"></i>
-                </a>
-              
-                <a href="../index.html" class="flex items-center justify-between p-6 bg-brand-surface/40 rounded-2xl border border-white/5 hover:border-brand-primary/50 hover:bg-brand-surface transition-all group">
-                  <div class="flex flex-col gap-1">
-                    <span class="text-[10px] font-bold text-brand-text-muted tracking-widest uppercase">Navigation</span>
-                    <span class="font-bold text-brand-text-muted leading-tight group-hover:text-brand-primary transition-colors">トップページへ戻る</span>
-                  </div>
-                  <i class="fa-solid fa-house text-brand-primary/20 group-hover:text-brand-primary transition-all"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+<p class="text-sm text-brand-gray-700 mt-4 font-mono">最終更新日: 2025年11月14日</p>
+</section>
+<!-- Projects Grid -->
+<section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Project Card 1 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="project-ai-site-generation-agent-1.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-sky-900 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">AI Development</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">実績: AIエージェント協働サイト構築 (sophia-echoes)</h3>
+<p class="text-brand-light-300 text-sm">AIエージェントとの協働により、コンセプト策定から実装までを自動化したウェブサイト構築プロジェクトの全貌を解説します。</p>
+</a>
+<!-- Project Card 2 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="manual-setup-ga4-gtm-for-ai-generated-site-16.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-emerald-900 text-emerald-300 text-xs font-semibold px-2.5 py-1 rounded-full">Data Analytics</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">AIが作ったサイトに「感覚」を。GTMを使ったGA4分析基盤の手動構築ステップ</h3>
+<p class="text-brand-light-300 text-sm">AIによって自動生成されたウェブサイトに、ユーザー行動を把握するための「感覚器官」としてGA4とGTMを導入する具体的な手順を紹介します。</p>
+</a>
+<!-- Project Card 3 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="link-ga4-with-gsc-using-gtm-to-analyze-search-keywords-24.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-emerald-900 text-emerald-300 text-xs font-semibold px-2.5 py-1 rounded-full">Data Analytics</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">GA4の次はGSC連携！GTMで簡単設定、検索キーワードとサイト内行動を紐付けて分析する方法</h3>
+<p class="text-brand-light-300 text-sm">Google Search ConsoleとGA4を連携させ、自然検索経由のユーザーがサイト内でどのような行動を取っているかを詳細に分析する手法を解説します。</p>
+</a>
+<!-- Project Card 4 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="bigquery-ga4-gsc-integration-for-ai-data-foundation-25.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-indigo-900 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Data Engineering</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">【最終章】BigQueryでGA4とGSCを連携！AIの自己進化を支えるデータ基盤を構築する全手順</h3>
+<p class="text-brand-light-300 text-sm">GA4とGSCの生データをBigQueryに統合し、AIが自律的に学習・改善を行うための恒久的なデータ基盤を構築するプロセスを詳述します。</p>
+</a>
+<!-- Project Card 5 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="building-ai-self-evolving-website-cycle-with-ga4-bigquery-26.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-sky-900 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">AI Strategy</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">AIが自らサイトを成長させる「自己進化サイクル」の構築：GA4とBigQueryデータで意思決定を自動化する</h3>
+<p class="text-brand-light-300 text-sm">収集したデータを基にAIが改善施策を立案・実行する「自己進化サイクル」。その概念と具体的な実装方法について解説します。</p>
+</a>
+<!-- Project Card 6 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="looker-studio-ga4-translate-event-name-with-case-27.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-amber-900 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-full">BI / Visualization</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">【Looker Studio】GA4のイベント名をCASE文で日本語に変換！分かりやすいレポートを作るテクニック</h3>
+<p class="text-brand-light-300 text-sm">GA4の専門的なイベント名を、ビジネスサイドにも理解しやすい日本語ラベルに変換。Looker Studioでのレポート可読性を飛躍的に向上させます。</p>
+</a>
+<!-- Project Card 7 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="looker-studio-replicate-ga4-segment-with-calculated-field-for-cross-domain-cv-analysis-28.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-amber-900 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-full">BI / Visualization</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">【Looker Studio】計算フィールドでGA4セグメントを再現！クロスドメイン環境での特定流入経路CV分析ガイド</h3>
+<p class="text-brand-light-300 text-sm">GA4の標準セグメント機能の限界を超える分析を実現。計算フィールドを用いて、複雑な条件下でのコンバージョン経路を特定する方法を解説します。</p>
+</a>
+<!-- Project Card 8 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="looker-studio-automate-last-n-months-report-29.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-amber-900 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-full">BI / Visualization</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">【Looker Studio】毎月の手動更新はもう不要！「今日」関数で「直近Nヶ月」レポートを完全自動化するテクニック</h3>
+<p class="text-brand-light-300 text-sm">日付関数を駆使して、常に最新のデータを表示する動的なレポートをLooker Studioで構築。手作業によるレポート更新作業を撲滅します。</p>
+</a>
+<!-- Project Card 9 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="ga4-gtm-event-name-not-reflecting-solution-33.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-rose-900 text-rose-300 text-xs font-semibold px-2.5 py-1 rounded-full">Troubleshooting</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">【GA4/GTM】イベント名が反映されない？原因特定の5ステップと「クラウドキャッシュ問題」の解決策</h3>
+<p class="text-brand-light-300 text-sm">GTMで設定したGA4イベント名が反映されない原因を5ステップで調査。見落としがちなキャッシュ問題の解決法や、分断されたデータをLooker Studioで復旧する方法も解説します。</p>
+</a>
+<!-- Project Card 10 -->
+<a class="block bg-brand-gray-800 rounded-lg p-6 hover:bg-brand-gray-700 hover:scale-105 transition-all duration-300 shadow-lg" href="gemini-api-429-error-not-api-key-but-experimental-model-34.html">
+<div class="flex items-center mb-3">
+<span class="inline-block bg-rose-900 text-rose-300 text-xs font-semibold px-2.5 py-1 rounded-full">Troubleshooting</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Gemini APIの429 QuotaエラーはAPIキーが原因ではなかった。“exp”モデルの罠とデバッグの教訓</h3>
+<p class="text-brand-light-300 text-sm">Gemini APIの429エラーがAPIキーを再発行しても解決しない？原因は"-exp"付き実験的モデルでした。モデル名を安定版に変更して解決したデバッグの教訓を解説します。</p>
+</a>
+</div>
+</section>
 </main>
-
 <!-- Footer -->
-<footer class="bg-brand-bg border-t border-brand-primary/10 pt-24 pb-12 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
-      <div>
-        <h4 class="text-3xl font-display font-black text-white mb-8 tracking-tighter">LOU-Ark</h4>
-        <p class="text-brand-text-muted leading-relaxed max-w-sm text-sm font-medium">
-          倫理と透明性を基盤に、データとAIで個人のQuality of Lifeと可能性を最大化する。
-        </p>
-      </div>
-      <div class="flex flex-col md:items-end justify-center">
-        <div class="flex gap-6 mb-8">
-          <a href="#" class="text-xl text-brand-text-muted hover:text-brand-primary transition-all"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#" class="text-xl text-brand-text-muted hover:text-brand-primary transition-all"><i class="fa-brands fa-linkedin"></i></a>
-        </div>
-        <p class="text-brand-text-muted text-[10px] font-bold tracking-widest uppercase text-center md:text-right">
-          © 2024 LOU-Ark. All Rights Reserved.
-        </p>
-      </div>
-    </div>
-  </div>
+<footer class="bg-brand-gray-800 border-t border-brand-gray-700">
+<div class="container mx-auto px-6 py-8">
+<div class="flex flex-col items-center sm:flex-row sm:justify-between">
+<div class="text-2xl font-bold text-white mb-4 sm:mb-0">
+<a class="hover:text-brand-accent-500 transition-colors duration-300" href="../index.html">LOU-Ark</a>
+</div>
+<div class="flex flex-wrap justify-center space-x-6 text-brand-light-300">
+<a class="hover:text-brand-accent-500 transition-colors duration-300" href="../about/index.html">私について</a>
+<a class="hover:text-brand-accent-500 transition-colors duration-300" href="../insights/index.html">知見</a>
+<a class="hover:text-brand-accent-500 transition-colors duration-300" href="../contact/index.html">お問い合わせ</a>
+<a class="hover:text-brand-accent-500 transition-colors duration-300" href="../legal/index.html">法務情報</a>
+</div>
+</div>
+<div class="mt-8 text-center text-brand-gray-700 text-sm">
+<p>© 2025 LOU-Ark Portfolio. All rights reserved.</p>
+</div>
+</div>
 </footer>
+<script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

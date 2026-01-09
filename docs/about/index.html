@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>私について | About | LOU-Ark - データ駆動型QOL最適化</title>
-    <meta name="description" content="LOU-Arkのミッション、専門分野、そしてデータとAIを通じてQOLを最大化するためのビジョンを紹介します。">
-
+    <title>About | LOU-Ark</title>
+    <meta name="description" content="データ駆動型QOL最適化と意思決定の科学。LOU-Arkのミッション、ビジョン、そして具体的なアプローチについて紹介します。">
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -13,11 +13,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
     <!-- End Google Tag Manager -->
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,38 +39,35 @@
             }
         }
     </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto+Mono&display=swap" rel="stylesheet">
 
-    <style type="text/css">
-        .gradient-text {
-            background: linear-gradient(to right, #2dd4bf, #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gradient-text {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2dd4bf] to-[#38bdf8];
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(45,212,191,0.2)];
+            }
         }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(45, 212, 191, 0.3);
-        }
-        /* Prose style customization */
-        .prose-invert {
-            --tw-prose-body: #d1d5db;
-            --tw-prose-headings: #fff;
-            --tw-prose-links: #2dd4bf;
-            --tw-prose-bold: #fff;
+        body {
+            background-color: #111827;
+            color: #d1d5db;
         }
     </style>
 </head>
-<body class="bg-brand-bg text-brand-text font-sans selection:bg-brand-primary/30">
-
+<body class="font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- HEADER -->
-    <header class="bg-brand-bg/80 backdrop-blur-lg sticky top-0 z-50 border-b border-white/5">
+    <header class="bg-brand-bg/80 backdrop-blur-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a class="text-2xl font-display font-bold text-white transition-colors hover:text-brand-primary" href="../index.html">LOU-Ark</a>
@@ -91,7 +83,7 @@
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button class="text-white focus:outline-none" id="mobile-menu-button">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                     </button>
                 </div>
             </div>
@@ -107,208 +99,181 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section / Header -->
-        <section class="py-16 bg-gradient-to-b from-brand-bg to-brand-surface">
+    <main class="min-h-screen pb-20">
+        <!-- Hero Section -->
+        <section class="py-16 bg-gradient-to-b from-gray-900 to-gray-800">
             <div class="container mx-auto px-6">
                 <!-- Breadcrumbs -->
-                <nav class="flex mb-8 text-sm font-mono" aria-label="Breadcrumb">
-                    <ol class="flex items-center space-x-2">
-                        <li><a href="../index.html" class="text-brand-text-muted hover:text-brand-primary">HOME</a></li>
-                        <li class="text-brand-text-muted">/</li>
-                        <li class="text-brand-primary">ABOUT</li>
-                    </ol>
+                <nav class="flex text-sm mb-8 text-brand-text-muted font-mono">
+                    <a href="../index.html" class="hover:text-brand-primary">HOME</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-brand-primary">ABOUT</span>
                 </nav>
-
-                <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                    私について <span class="gradient-text">About</span>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                    私について <span class="gradient-text">About Me</span>
                 </h1>
                 <p class="text-xl text-brand-text-muted max-w-3xl leading-relaxed">
-                    データサイエンスとAIを通じて、個人のQOL（生活の質）を最大化し、意思決定の質を高めるための取り組みをご紹介します。私のミッション、手法、そして大切にしている倫理観について詳しく解説した記事をまとめました。
+                    データサイエンスとAIを通じて、個人のQOL（生活の質）を最大化するための探求。
+                    倫理的なアプローチと最新の意思決定科学を融合させ、より豊かな社会の実現を目指す私のミッションと知見をご紹介します。
                 </p>
             </div>
         </section>
 
-        <!-- Article List Grid -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Article 1 -->
-                    <article class="bg-brand-surface rounded-xl overflow-hidden border border-white/5 card-hover flex flex-col">
-                        <div class="p-8 flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-semibold rounded-full uppercase tracking-wider">Mission</span>
-                                <span class="px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-semibold rounded-full uppercase tracking-wider">AI Ethics</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-white mb-4 leading-tight">
-                                <a href="my-mission-maximizing-qol-with-data-ai-ethics-4.html" class="hover:text-brand-primary transition-colors">
-                                    なぜ私はデータとAIで「QOLの最大化」を目指すのか：個人の可能性を解き放つためのミッションとAI倫理
-                                </a>
-                            </h2>
-                            <p class="text-brand-text-muted text-sm mb-6 line-clamp-3">
-                                データサイエンスが真に貢献すべきは、効率化だけでなく人間の幸福です。私の活動の核となる哲学と倫理について。
-                            </p>
+        <!-- Content Grid -->
+        <section class="container mx-auto px-6 mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <article class="bg-brand-surface rounded-xl overflow-hidden border border-gray-700 card-hover flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-brand-primary/10 text-brand-primary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-primary/20">AI倫理</span>
+                            <span class="bg-brand-secondary/10 text-brand-secondary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-secondary/20">ミッション</span>
                         </div>
-                        <div class="px-8 py-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                            <span class="text-brand-text-muted">2024.12.10</span>
-                            <a href="my-mission-maximizing-qol-with-data-ai-ethics-4.html" class="text-brand-primary hover:underline flex items-center">
-                                READ MORE 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <h2 class="text-xl font-bold mb-3 text-white leading-snug">
+                            <a href="my-mission-maximizing-qol-with-data-ai-ethics-4.html" class="hover:text-brand-primary transition-colors">
+                                なぜ私はデータとAIで「QOLの最大化」を目指すのか：個人の可能性を解き放つためのミッションとAI倫理
                             </a>
-                        </div>
-                    </article>
-
-                    <!-- Article 2 -->
-                    <article class="bg-brand-surface rounded-xl overflow-hidden border border-white/5 card-hover flex flex-col">
-                        <div class="p-8 flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-semibold rounded-full uppercase tracking-wider">Lifelog</span>
-                                <span class="px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-semibold rounded-full uppercase tracking-wider">QOL</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-white mb-4 leading-tight">
-                                <a href="how-i-optimize-qol-with-lifelog-data-analysis-5.html" class="hover:text-brand-primary transition-colors">
-                                    ライフログ分析による自己変革：データサイエンティストが実践するQOL最適化の具体的なアプローチ
-                                </a>
-                            </h2>
-                            <p class="text-brand-text-muted text-sm mb-6 line-clamp-3">
-                                日々のデータをどのように収集し、分析して人生の質を向上させているのか。実例を交えた具体的なメソッド。
-                            </p>
-                        </div>
-                        <div class="px-8 py-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                            <span class="text-brand-text-muted">2024.11.28</span>
-                            <a href="how-i-optimize-qol-with-lifelog-data-analysis-5.html" class="text-brand-primary hover:underline flex items-center">
-                                READ MORE 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Article 3 -->
-                    <article class="bg-brand-surface rounded-xl overflow-hidden border border-white/5 card-hover flex flex-col">
-                        <div class="p-8 flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-semibold rounded-full uppercase tracking-wider">Vision</span>
-                                <span class="px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-semibold rounded-full uppercase tracking-wider">Privacy</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-white mb-4 leading-tight">
-                                <a href="vision-for-ai-powered-decision-making-and-privacy-6.html" class="hover:text-brand-primary transition-colors">
-                                    データとAIが拓く個人の未来：意思決定科学とプライバシー保護が両立する社会のビジョン
-                                </a>
-                            </h2>
-                            <p class="text-brand-text-muted text-sm mb-6 line-clamp-3">
-                                プライバシーを犠牲にすることなく、データから価値を引き出す社会。私たちが目指すべき未来の形。
-                            </p>
-                        </div>
-                        <div class="px-8 py-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                            <span class="text-brand-text-muted">2024.11.15</span>
-                            <a href="vision-for-ai-powered-decision-making-and-privacy-6.html" class="text-brand-primary hover:underline flex items-center">
-                                READ MORE 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Article 4 -->
-                    <article class="bg-brand-surface rounded-xl overflow-hidden border border-white/5 card-hover flex flex-col">
-                        <div class="p-8 flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-semibold rounded-full uppercase tracking-wider">Compass</span>
-                                <span class="px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-semibold rounded-full uppercase tracking-wider">Decision Science</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-white mb-4 leading-tight">
-                                <a href="my-mission-for-data-driven-qol-optimization-13.html" class="hover:text-brand-primary transition-colors">
-                                    なぜ私は「データ駆動型QOL最適化」を追求するのか：AI時代の個人の可能性を最大化する羅針盤
-                                </a>
-                            </h2>
-                            <p class="text-brand-text-muted text-sm mb-6 line-clamp-3">
-                                迷い多きAI時代において、データという客観的な指標を人生の羅針盤にするための考察。
-                            </p>
-                        </div>
-                        <div class="px-8 py-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                            <span class="text-brand-text-muted">2024.10.30</span>
-                            <a href="my-mission-for-data-driven-qol-optimization-13.html" class="text-brand-primary hover:underline flex items-center">
-                                READ MORE 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Article 5 -->
-                    <article class="bg-brand-surface rounded-xl overflow-hidden border border-white/5 card-hover flex flex-col">
-                        <div class="p-8 flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-semibold rounded-full uppercase tracking-wider">Methodology</span>
-                                <span class="px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-semibold rounded-full uppercase tracking-wider">Personal Data</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-white mb-4 leading-tight">
-                                <a href="how-lifelog-analysis-improves-decision-making-14.html" class="hover:text-brand-primary transition-colors">
-                                    意思決定の質を高めるライフログ分析：データサイエンスで切り拓く「最適な自分」の見つけ方
-                                </a>
-                            </h2>
-                            <p class="text-brand-text-muted text-sm mb-6 line-clamp-3">
-                                「なんとなく」の選択から「データに基づく」選択へ。意思決定を洗練させるための分析手法。
-                            </p>
-                        </div>
-                        <div class="px-8 py-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                            <span class="text-brand-text-muted">2024.10.15</span>
-                            <a href="how-lifelog-analysis-improves-decision-making-14.html" class="text-brand-primary hover:underline flex items-center">
-                                READ MORE 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Article 6 -->
-                    <article class="bg-brand-surface rounded-xl overflow-hidden border border-white/5 card-hover flex flex-col">
-                        <div class="p-8 flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-semibold rounded-full uppercase tracking-wider">Ethics</span>
-                                <span class="px-3 py-1 bg-brand-secondary/10 text-brand-secondary text-xs font-semibold rounded-full uppercase tracking-wider">Commitment</span>
-                            </div>
-                            <h2 class="text-xl font-bold text-white mb-4 leading-tight">
-                                <a href="my-commitment-to-ai-ethics-and-data-privacy-15.html" class="hover:text-brand-primary transition-colors">
-                                    AI倫理とデータプライバシーへの誓約：私のデータサイエンス哲学と透明性へのコミットメント
-                                </a>
-                            </h2>
-                            <p class="text-brand-text-muted text-sm mb-6 line-clamp-3">
-                                信頼こそがデータ活用の基盤です。私が遵守する倫理基準とプライバシー保護への具体的な誓い。
-                            </p>
-                        </div>
-                        <div class="px-8 py-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                            <span class="text-brand-text-muted">2024.09.20</span>
-                            <a href="my-commitment-to-ai-ethics-and-data-privacy-15.html" class="text-brand-primary hover:underline flex items-center">
-                                READ MORE 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Profile Brief Summary Section -->
-        <section class="py-20 border-t border-white/5">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto bg-brand-surface/50 p-8 md:p-12 rounded-2xl">
-                    <div class="flex flex-col md:flex-row items-center gap-12">
-                        <div class="w-48 h-48 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
-                            LA
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-display font-bold text-white mb-4">LOU-Ark</h3>
-                            <div class="prose prose-invert">
-                                <p>
-                                    データ駆動型QOL最適化と意思決定の科学を専門とするデータサイエンティスト。AIとライフログ分析を組み合わせ、個人の可能性を最大化するための研究と実践を行っています。
-                                </p>
-                                <p>
-                                    「透明性」と「倫理」を最優先事項とし、データが一部の独占物ではなく、各個人のより良い人生のための強力なツールとなる社会の実現を目指しています。
-                                </p>
-                            </div>
-                        </div>
+                        </h2>
+                        <p class="text-sm text-brand-text-muted mb-4">
+                            個人の可能性を最大化するために、データとAIをどのように活用すべきか。その根底にあるミッションと倫理的観点について。
+                        </p>
                     </div>
-                </div>
+                    <div class="px-6 py-4 border-t border-gray-700 flex justify-between items-center bg-black/20">
+                        <span class="text-xs font-mono text-brand-text-muted">公開日: 2024年11月10日</span>
+                        <a href="my-mission-maximizing-qol-with-data-ai-ethics-4.html" class="text-brand-primary text-sm font-bold flex items-center group">
+                            詳しく見る
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="bg-brand-surface rounded-xl overflow-hidden border border-gray-700 card-hover flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-brand-primary/10 text-brand-primary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-primary/20">ライフログ</span>
+                            <span class="bg-brand-secondary/10 text-brand-secondary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-secondary/20">自己変革</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-white leading-snug">
+                            <a href="how-i-optimize-qol-with-lifelog-data-analysis-5.html" class="hover:text-brand-primary transition-colors">
+                                ライフログ分析による自己変革：データサイエンティストが実践するQOL最適化の具体的なアプローチ
+                            </a>
+                        </h2>
+                        <p class="text-sm text-brand-text-muted mb-4">
+                            日々のデータを蓄積し、分析することで自分自身をどうアップデートしていくか。具体的なライフログ活用の手法を紹介。
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-700 flex justify-between items-center bg-black/20">
+                        <span class="text-xs font-mono text-brand-text-muted">公開日: 2024年11月15日</span>
+                        <a href="how-i-optimize-qol-with-lifelog-data-analysis-5.html" class="text-brand-primary text-sm font-bold flex items-center group">
+                            詳しく見る
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="bg-brand-surface rounded-xl overflow-hidden border border-gray-700 card-hover flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-brand-primary/10 text-brand-primary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-primary/20">意思決定科学</span>
+                            <span class="bg-brand-secondary/10 text-brand-secondary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-secondary/20">プライバシー</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-white leading-snug">
+                            <a href="vision-for-ai-powered-decision-making-and-privacy-6.html" class="hover:text-brand-primary transition-colors">
+                                データとAIが拓く個人の未来：意思決定科学とプライバシー保護が両立する社会のビジョン
+                            </a>
+                        </h2>
+                        <p class="text-sm text-brand-text-muted mb-4">
+                            便利さとプライバシーは相反するものではない。AI時代の新しい意思決定のあり方と社会ビジョン。
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-700 flex justify-between items-center bg-black/20">
+                        <span class="text-xs font-mono text-brand-text-muted">公開日: 2024年11月20日</span>
+                        <a href="vision-for-ai-powered-decision-making-and-privacy-6.html" class="text-brand-primary text-sm font-bold flex items-center group">
+                            詳しく見る
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="bg-brand-surface rounded-xl overflow-hidden border border-gray-700 card-hover flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-brand-primary/10 text-brand-primary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-primary/20">QOL最適化</span>
+                            <span class="bg-brand-secondary/10 text-brand-secondary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-secondary/20">探求心</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-white leading-snug">
+                            <a href="my-mission-for-data-driven-qol-optimization-13.html" class="hover:text-brand-primary transition-colors">
+                                なぜ私は「データ駆動型QOL最適化」を追求するのか：AI時代の個人の可能性を最大化する羅針盤
+                            </a>
+                        </h2>
+                        <p class="text-sm text-brand-text-muted mb-4">
+                            情報過多の時代において、データは真の幸福を見つけるための「羅針盤」となる。その追求の理由。
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-700 flex justify-between items-center bg-black/20">
+                        <span class="text-xs font-mono text-brand-text-muted">公開日: 2024年12月05日</span>
+                        <a href="my-mission-for-data-driven-qol-optimization-13.html" class="text-brand-primary text-sm font-bold flex items-center group">
+                            詳しく見る
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="bg-brand-surface rounded-xl overflow-hidden border border-gray-700 card-hover flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-brand-primary/10 text-brand-primary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-primary/20">意思決定</span>
+                            <span class="bg-brand-secondary/10 text-brand-secondary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-secondary/20">データサイエンス</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-white leading-snug">
+                            <a href="how-lifelog-analysis-improves-decision-making-14.html" class="hover:text-brand-primary transition-colors">
+                                意思決定の質を高めるライフログ分析：データサイエンスで切り拓く「最適な自分」の見つけ方
+                            </a>
+                        </h2>
+                        <p class="text-sm text-brand-text-muted mb-4">
+                            「なんとなく」の選択から、データに基づいた「根拠ある」選択へ。ライフログが変える自己認識。
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-700 flex justify-between items-center bg-black/20">
+                        <span class="text-xs font-mono text-brand-text-muted">公開日: 2024年12月12日</span>
+                        <a href="how-lifelog-analysis-improves-decision-making-14.html" class="text-brand-primary text-sm font-bold flex items-center group">
+                            詳しく見る
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="bg-brand-surface rounded-xl overflow-hidden border border-gray-700 card-hover flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-brand-primary/10 text-brand-primary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-primary/20">倫理</span>
+                            <span class="bg-brand-secondary/10 text-brand-secondary text-xs font-bold px-2.5 py-0.5 rounded border border-brand-secondary/20">透明性</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-white leading-snug">
+                            <a href="my-commitment-to-ai-ethics-and-data-privacy-15.html" class="hover:text-brand-primary transition-colors">
+                                AI倫理とデータプライバシーへの誓約：私のデータサイエンス哲学と透明性へのコミットメント
+                            </a>
+                        </h2>
+                        <p class="text-sm text-brand-text-muted mb-4">
+                            データを扱う者としての責任。AI倫理と透明性に対する、私のゆるぎないスタンスと実践。
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-700 flex justify-between items-center bg-black/20">
+                        <span class="text-xs font-mono text-brand-text-muted">公開日: 2024年12月20日</span>
+                        <a href="my-commitment-to-ai-ethics-and-data-privacy-15.html" class="text-brand-primary text-sm font-bold flex items-center group">
+                            詳しく見る
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
             </div>
         </section>
     </main>
@@ -319,15 +284,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- About -->
                 <div>
-                    <h3 class="text-xl font-display font-bold mb-4 text-white">LOU-Ark</h3>
+                    <h3 class="text-xl font-display font-bold mb-4">LOU-Ark</h3>
                     <p class="text-brand-text-muted">データ駆動型QOL最適化と意思決定の科学。倫理と透明性を基盤に、より豊かな社会の実現に貢献します。</p>
                 </div>
                 <!-- Links -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 text-white">サイトマップ</h3>
+                    <h3 class="text-lg font-bold mb-4">サイトマップ</h3>
                     <ul class="space-y-2">
                         <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../index.html">ホーム</a></li>
-                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="index.html">私について</a></li>
+                        <li><a class="text-brand-primary transition-colors font-semibold" href="index.html">私について</a></li>
                         <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../projects/index.html">実績</a></li>
                         <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../insights/index.html">知見</a></li>
                         <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../philosophy/index.html">哲学</a></li>
@@ -336,25 +301,24 @@
                 </div>
                 <!-- Legal -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 text-white">リーガル</h3>
+                    <h3 class="text-lg font-bold mb-4">リーガル</h3>
                     <ul class="space-y-2">
                         <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../legal/index.html">法務情報 (プライバシーポリシー等)</a></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 border-t border-brand-primary/20 pt-8 text-center text-brand-text-muted">
-                <p>© 2024 LOU-Ark Portfolio. All Rights Reserved.</p>
+                <p>© 2025 LOU-Ark Portfolio. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
         });
     </script>
 </body>

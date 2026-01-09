@@ -1,266 +1,255 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-<head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>お問い合わせ | データ駆動型QOL最適化と意思決定の科学</title>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<!-- Custom Tailwind Config -->
-<script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | LOU-Ark - データ駆動型QOL最適化と意思決定の科学</title>
+    <meta name="description" content="LOU-Arkへのお問い合わせページ。データサイエンス、AI解析、意思決定科学に関するご相談やプロジェクトのご依頼はこちらから。">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Noto Sans JP', 'sans-serif'],
-                        mono: ['Roboto Mono', 'monospace'],
-                    },
                     colors: {
-                        'brand-gray': {
-                            900: '#1a1a1a', // Deeper background
-                            800: '#2c2c2c', // Component background
-                            700: '#444444', // Borders and dividers
-                        },
-                        'brand-blue': '#3b82f6',
-                        'brand-green': '#10b981',
-                        'brand-light': '#e0e0e0', // Main text
+                        brand: {
+                            bg: '#111827', // gray-900
+                            surface: '#1f2937', // gray-800
+                            primary: '#2dd4bf', // teal-400
+                            secondary: '#38bdf8', // blue-400
+                            text: '#d1d5db', // gray-300
+                            'text-muted': '#9ca3af', // gray-400
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                        display: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-<style>
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gradient-text {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary;
+            }
+            .glass-card {
+                @apply bg-brand-surface/50 backdrop-blur-md border border-white/10 hover:border-brand-primary/50 transition-all duration-300;
+            }
         }
-        /* Simple scrollbar styling for a modern look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #2c2c2c;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #444444;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555555;
-        }
+        .prose-invert h2, .prose-invert h3 { color: #f3f4f6; }
+        .prose-invert p { color: #d1d5db; }
     </style>
 </head>
-<body class="bg-brand-gray-900 text-brand-light font-sans antialiased"><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-<!-- Header -->
-<header class="bg-brand-gray-900/80 backdrop-blur-md sticky top-0 z-50" id="header">
-<div class="container mx-auto px-6 py-4">
-<div class="flex items-center justify-between">
-<a class="text-2xl font-bold font-mono tracking-wider text-white" href="../index.html">LOU-Ark</a>
-<nav class="hidden md:flex items-center space-x-8">
-<a class="text-gray-300 hover:text-brand-blue transition-colors duration-300" href="../index.html">ホーム</a>
-<a class="text-gray-300 hover:text-brand-blue transition-colors duration-300" href="../about/index.html">私について</a>
-<a class="text-gray-300 hover:text-brand-blue transition-colors duration-300" href="../projects/index.html">実績</a>
-<a class="text-gray-300 hover:text-brand-blue transition-colors duration-300" href="../insights/index.html">知見</a>
-<a class="text-gray-300 hover:text-brand-blue transition-colors duration-300" href="../philosophy/index.html">哲学</a>
-<a aria-current="page" class="text-brand-blue font-bold" href="index.html">お問い合わせ</a>
-</nav>
-<button class="md:hidden text-gray-300 focus:outline-none" id="mobile-menu-button">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</div>
-<!-- Mobile Menu -->
-<div class="hidden md:hidden" id="mobile-menu">
-<nav class="px-6 pt-2 pb-4 space-y-2">
-<a class="block text-gray-300 hover:text-brand-blue transition-colors duration-300 py-2" href="../index.html">ホーム</a>
-<a class="block text-gray-300 hover:text-brand-blue transition-colors duration-300 py-2" href="../about/index.html">私について</a>
-<a class="block text-gray-300 hover:text-brand-blue transition-colors duration-300 py-2" href="../projects/index.html">実績</a>
-<a class="block text-gray-300 hover:text-brand-blue transition-colors duration-300 py-2" href="../insights/index.html">知見</a>
-<a class="block text-gray-300 hover:text-brand-blue transition-colors duration-300 py-2" href="../philosophy/index.html">哲学</a>
-<a aria-current="page" class="block text-brand-blue font-bold py-2" href="index.html">お問い合わせ</a>
-</nav>
-</div>
-</header>
-<!-- Main Content -->
-<main>
-<!-- Page Header -->
-<section class="bg-brand-gray-800 py-20 md:py-28">
-<div class="container mx-auto px-6 text-center">
-<h1 class="text-4xl md:text-5xl font-bold text-white mb-4">お問い合わせ</h1>
-<p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                    未来を共創するパートナーシップへ。データとAIで、あなたの課題を解決し、倫理的な価値を創造します。
-                </p>
-</div>
-</section>
-<!-- Hub Section: How I Can Help -->
-<section class="py-16 md:py-24" id="how-i-can-help">
-<div class="container mx-auto px-6">
-<div class="text-center mb-12 md:mb-16">
-<h2 class="text-3xl md:text-4xl font-bold text-white">連携の可能性</h2>
-<p class="mt-4 text-gray-400 max-w-2xl mx-auto">私の専門知識が、以下のような形で貴社のビジョン実現に貢献できると考えています。お気軽にご相談ください。</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-<!-- Card 1: 採用・協業 -->
-<div class="bg-brand-gray-800 p-8 rounded-lg border border-brand-gray-700 hover:border-brand-blue transition-all duration-300 transform hover:-translate-y-1">
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-900/50 text-brand-blue mb-5">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<h3 class="text-xl font-bold text-white mb-3">採用・協業</h3>
-<p class="text-gray-400">データサイエンス、AI倫理、意思決定科学の専門家として、貴社のチームに新たな視点と実行力をもたらします。革新的なプロダクト開発や事業推進に貢献します。</p>
-</div>
-<!-- Card 2: 共同研究 -->
-<div class="bg-brand-gray-800 p-8 rounded-lg border border-brand-gray-700 hover:border-brand-blue transition-all duration-300 transform hover:-translate-y-1">
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-green-900/50 text-brand-green mb-5">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<h3 class="text-xl font-bold text-white mb-3">共同研究</h3>
-<p class="text-gray-400">学術機関や企業の研究開発部門との連携を歓迎します。AI倫理、データプライバシー、QOL最適化などの領域で、新たな知見を共に創出しましょう。</p>
-</div>
-<!-- Card 3: コンサルティング -->
-<div class="bg-brand-gray-800 p-8 rounded-lg border border-brand-gray-700 hover:border-brand-blue transition-all duration-300 transform hover:-translate-y-1">
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-900/50 text-brand-blue mb-5">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<h3 class="text-xl font-bold text-white mb-3">コンサルティング</h3>
-<p class="text-gray-400">データ駆動型戦略の立案、AI倫理ガイドラインの策定、QOL向上サービスの設計など、専門的知見に基づいたアドバイスで貴社の課題解決を支援します。</p>
-</div>
-<!-- Card 4: 講演・執筆依頼 -->
-<div class="bg-brand-gray-800 p-8 rounded-lg border border-brand-gray-700 hover:border-brand-blue transition-all duration-300 transform hover:-translate-y-1">
-<div class="flex items-center justify-center h-12 w-12 rounded-full bg-green-900/50 text-brand-green mb-5">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.834 9.168-4.432" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<h3 class="text-xl font-bold text-white mb-3">講演・執筆依頼</h3>
-<p class="text-gray-400">データサイエンスの未来、責任あるAIの社会実装、意思決定科学の応用といったテーマで、貴社のイベントやメディアに貢献します。最新の知見を共有します。</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Contact Form Section -->
-<section class="bg-brand-gray-900 py-16 md:py-24" id="contact-form">
-<div class="container mx-auto px-6">
-<div class="max-w-3xl mx-auto">
-<div class="text-center mb-12">
-<h2 class="text-3xl md:text-4xl font-bold text-white">お問い合わせフォーム</h2>
-<p class="mt-4 text-gray-400">通常2〜3営業日以内にご返信いたします。お急ぎの場合はその旨ご記載ください。</p>
-</div>
-<form action="#" class="space-y-6" method="POST">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-2" for="name">お名前 <span class="text-red-500">*</span></label>
-<input class="w-full bg-brand-gray-800 border border-brand-gray-700 rounded-md py-3 px-4 text-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition duration-300" id="name" name="name" required="" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-2" for="company">会社名・組織名</label>
-<input class="w-full bg-brand-gray-800 border border-brand-gray-700 rounded-md py-3 px-4 text-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition duration-300" id="company" name="company" type="text"/>
-</div>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-2" for="email">メールアドレス <span class="text-red-500">*</span></label>
-<input autocomplete="email" class="w-full bg-brand-gray-800 border border-brand-gray-700 rounded-md py-3 px-4 text-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition duration-300" id="email" name="email" required="" type="email"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-2" for="inquiry-type">お問い合わせの種類 <span class="text-red-500">*</span></label>
-<select class="w-full bg-brand-gray-800 border border-brand-gray-700 rounded-md py-3 px-4 text-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition duration-300" id="inquiry-type" name="inquiry-type" required="">
-<option disabled="" selected="" value="">選択してください</option>
-<option value="採用・協業に関するご相談">採用・協業に関するご相談</option>
-<option value="共同研究に関するご提案">共同研究に関するご提案</option>
-<option value="コンサルティングのご依頼">コンサルティングのご依頼</option>
-<option value="講演・執筆のご依頼">講演・執筆のご依頼</option>
-<option value="その他のお問い合わせ">その他のお問い合わせ</option>
-</select>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-2" for="message">お問い合わせ内容 <span class="text-red-500">*</span></label>
-<textarea class="w-full bg-brand-gray-800 border border-brand-gray-700 rounded-md py-3 px-4 text-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition duration-300" id="message" name="message" required="" rows="6"></textarea>
-</div>
-<div class="flex items-start">
-<div class="flex items-center h-5">
-<input class="focus:ring-brand-blue h-4 w-4 text-brand-blue border-brand-gray-600 rounded bg-brand-gray-800" id="privacy-policy" name="privacy-policy" required="" type="checkbox"/>
-</div>
-<div class="ml-3 text-sm">
-<label class="font-medium text-gray-300" for="privacy-policy">
-<a class="text-brand-blue hover:underline" href="../legal/index.html" target="_blank">プライバシーポリシー</a>に同意します。<span class="text-red-500">*</span>
-</label>
-</div>
-</div>
-<div class="text-center pt-4">
-<button class="w-full md:w-auto inline-flex justify-center items-center py-3 px-12 border border-transparent text-base font-bold rounded-md text-white bg-brand-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-gray-900 focus:ring-brand-blue transition duration-300" type="submit">
-                                送信する
-                            </button>
-</div>
-</form>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-brand-gray-800 border-t border-brand-gray-700">
-<div class="container mx-auto px-6 py-12">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="md:col-span-1">
-<h3 class="text-xl font-bold font-mono tracking-wider text-white">LOU-Ark</h3>
-<p class="mt-4 text-gray-400">データ駆動型QOL最適化と意思決定の科学</p>
-<div class="mt-6 flex space-x-4">
-<a class="text-gray-400 hover:text-white transition-colors duration-300" href="#">
-<span class="sr-only">LinkedIn</span>
-<svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path></svg>
-</a>
-<a class="text-gray-400 hover:text-white transition-colors duration-300" href="#">
-<span class="sr-only">GitHub</span>
-<svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.852 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
-</a>
-</div>
-</div>
-<div class="grid grid-cols-2 md:col-span-2 gap-8">
-<div>
-<h4 class="text-white font-semibold tracking-wider">サイトマップ</h4>
-<ul class="mt-4 space-y-2">
-<li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="../index.html">ホーム</a></li>
-<li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="../about/index.html">私について</a></li>
-<li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="../projects/index.html">実績</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-semibold tracking-wider opacity-0 md:opacity-100"> </h4>
-<ul class="mt-4 space-y-2">
-<li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="../insights/index.html">知見</a></li>
-<li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="../philosophy/index.html">哲学</a></li>
-<li><a class="text-gray-400 hover:text-white transition-colors duration-300" href="../legal/index.html">法務情報</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="mt-12 pt-8 border-t border-brand-gray-700 text-center text-gray-500 text-sm">
-<p>© 2024 LOU-Ark Portfolio. All rights reserved.</p>
-</div>
-</div>
-</footer>
-<!-- Mobile Menu Script -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuButtonIcon = mobileMenuButton.querySelector('svg');
+<body class="bg-brand-bg text-brand-text font-sans selection:bg-brand-primary/30">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-            mobileMenuButton.addEventListener('click', () => {
-                const isExpanded = mobileMenu.classList.toggle('hidden');
-                if (!isExpanded) {
-                    mobileMenuButtonIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`;
-                } else {
-                    mobileMenuButtonIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>`;
-                }
-            });
+    <!-- HEADER -->
+    <header class="bg-brand-bg/80 backdrop-blur-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a class="text-2xl font-display font-bold text-white transition-colors hover:text-brand-primary" href="../index.html">LOU-Ark</a>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../index.html">ホーム</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../about/index.html">私について</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../projects/index.html">実績</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../insights/index.html">知見</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../philosophy/index.html">哲学</a>
+                    <a class="bg-brand-primary text-white px-4 py-2 rounded-md font-semibold transition-transform hover:scale-105" href="index.html">お問い合わせ</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-white focus:outline-none" id="mobile-menu-button">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden mt-4 space-y-2" id="mobile-menu">
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../index.html">ホーム</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../about/index.html">私について</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../projects/index.html">実績</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../insights/index.html">知見</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../philosophy/index.html">哲学</a>
+                <a class="block bg-brand-primary text-white text-center mt-2 px-4 py-2 rounded-md font-semibold" href="index.html">お問い合わせ</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="min-h-screen">
+        <!-- Breadcrumbs -->
+        <nav class="container mx-auto px-6 py-4 text-sm font-mono">
+            <ol class="flex list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="../index.html" class="hover:text-brand-primary transition-colors">HOME</a>
+                    <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-brand-primary">CONTACT</span>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="container mx-auto px-6 py-12">
+            <div class="max-w-4xl">
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-brand-primary/10 text-brand-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-brand-primary/20">Communication</span>
+                    <span class="bg-brand-secondary/10 text-brand-secondary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-brand-secondary/20">Consulting</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-display font-bold mb-6">
+                    <span class="gradient-text">Contact & Collaboration</span>
+                </h1>
+                <p class="text-xl text-brand-text-muted mb-8 font-light leading-relaxed">
+                    データとAIの活用、意思決定プロセスの最適化、またはAI倫理に関するご相談など、新たな価値創造に向けた対話を歓迎します。
+                </p>
+                <p class="text-sm font-mono text-brand-text-muted">公開日: 2024年01月01日</p>
+            </div>
+        </section>
+
+        <!-- Contact Topics (Card List) -->
+        <section class="container mx-auto px-6 py-12">
+            <h2 class="text-2xl font-display font-bold mb-8 flex items-center">
+                <span class="w-8 h-[2px] bg-brand-primary mr-4"></span>
+                お問い合わせのカテゴリー
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="mb-4 text-brand-primary">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-primary transition-colors">データ解析・戦略コンサル</h3>
+                    <p class="text-brand-text-muted text-sm leading-relaxed">
+                        ビジネス課題の特定からデータパイプラインの構築、Looker Studio等を用いた可視化までを一貫してサポートします。
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="mb-4 text-brand-primary">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-primary transition-colors">AI導入・ライフログ活用</h3>
+                    <p class="text-brand-text-muted text-sm leading-relaxed">
+                        最新のLLM活用やライフログ分析を通じた、個人のQOL（生活の質）向上を目的としたパーソナルAIの開発・相談。
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="mb-4 text-brand-primary">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09a10.116 10.116 0 001.283-3.562V11c0-2.734-1.27-5.147-3.266-6.711m8.702 0a10.286 10.286 0 013.266 6.711v3.383c0 1.285.404 2.526 1.153 3.556l.07.098a9.979 9.979 0 011.233 3.514m-10.422-9.255a2 2 0 113.536 0m-3.536 0c.563-.563 1.325-.879 2.122-.879s1.559.316 2.122.879m-4.244 0a4.874 4.874 0 00-1.125 1.813m7.492 0a4.874 4.874 0 011.125 1.813M15 17h.01M12 17h.01M9 17h.01M12 21h.01M12 13h.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-primary transition-colors">講演・執筆・AI倫理</h3>
+                    <p class="text-brand-text-muted text-sm leading-relaxed">
+                        データプライバシー、意思決定科学の倫理的側面に関するセミナーや記事執筆、アドバイザリー業務を承ります。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Form Area -->
+            <div class="max-w-3xl mx-auto glass-card rounded-3xl overflow-hidden shadow-2xl">
+                <div class="p-8 md:p-12">
+                    <div class="prose prose-lg prose-invert max-w-none mb-10">
+                        <p>プロジェクトの開始、技術的な相談、または単なる意見交換など、以下のフォームよりお気軽にご連絡ください。通常24時間以内に返信いたします。</p>
+                    </div>
+
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-mono text-brand-text-muted mb-2">NAME</label>
+                                <input type="text" placeholder="お名前" class="w-full bg-brand-bg border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-mono text-brand-text-muted mb-2">EMAIL</label>
+                                <input type="email" placeholder="example@domain.com" class="w-full bg-brand-bg border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-mono text-brand-text-muted mb-2">SUBJECT</label>
+                            <select class="w-full bg-brand-bg border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white appearance-none">
+                                <option>データ解析に関するご相談</option>
+                                <option>AI導入・開発のご依頼</option>
+                                <option>講演・執筆の依頼</option>
+                                <option>その他のお問い合わせ</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-mono text-brand-text-muted mb-2">MESSAGE</label>
+                            <textarea rows="6" placeholder="プロジェクトの概要やご相談内容をご記入ください..." class="w-full bg-brand-bg border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="inline-block bg-gradient-to-r from-brand-primary to-brand-secondary text-brand-bg font-bold py-4 px-12 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-brand-primary/20">
+                                メッセージを送信する
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-surface border-t border-brand-primary/20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">LOU-Ark</h3>
+                    <p class="text-brand-text-muted">データ駆動型QOL最適化と意思決定の科学。倫理と透明性を基盤に、より豊かな社会の実現に貢献します。</p>
+                </div>
+                <!-- Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">サイトマップ</h3>
+                    <ul class="space-y-2">
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../index.html">ホーム</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../about/index.html">私について</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../projects/index.html">実績</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../insights/index.html">知見</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../philosophy/index.html">哲学</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="index.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <!-- Legal -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">リーガル</h3>
+                    <ul class="space-y-2">
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../legal/index.html">法務情報 (プライバシーポリシー等)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-brand-primary/20 pt-8 text-center text-brand-text-muted">
+                <p>© 2025 LOU-Ark Portfolio. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
     </script>
 </body>

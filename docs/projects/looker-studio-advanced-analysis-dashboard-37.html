@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- GTM (Google Tag Manager) -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N98QFDGW');</script>
+    <!-- End GTM -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looker Studioで意思決定を加速：データクレンジングから回帰分析まで | LOU-Ark Portfolio</title>
+    <meta name="description" content="WHOのオープンデータを活用し、Looker Studioで高度な分析テンプレートを構築。データクレンジングから回帰分析、クロスフィルタリングの実装までを網羅した実践的ダッシュボード事例。">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN for simplicity, including Typography plugin) -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#111827', // gray-900
+                            surface: '#1f2937', // gray-800
+                            primary: '#2dd4bf', // teal-400
+                            secondary: '#38bdf8', // blue-400
+                            text: '#d1d5db', // gray-300
+                            muted: '#9ca3af', // gray-400
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                        display: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .gradient-text {
+            background: linear-gradient(to right, #2dd4bf, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 212, 191, 0.1);
+        }
+        /* Custom prose styles for dark mode */
+        .prose-invert h2, .prose-invert h3 {
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .prose-invert {
+            color: #d1d5db;
+        }
+        .prose-invert strong {
+            color: #2dd4bf;
+        }
+        pre {
+            background-color: #0f172a !important;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-text font-sans selection:bg-brand-primary/30">
+    <!-- GTM (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N98QFDGW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End GTM (noscript) -->
+
+    <!-- HEADER -->
+    <header class="bg-brand-bg/80 backdrop-blur-lg sticky top-0 z-50 border-b border-brand-primary/10">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a class="text-2xl font-display font-bold text-white transition-colors hover:text-brand-primary" href="../index.html">LOU-Ark</a>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../index.html">ホーム</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../about/index.html">私について</a>
+                    <a class="text-brand-primary font-semibold" href="index.html">実績</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../insights/index.html">知見</a>
+                    <a class="text-brand-text-muted transition-colors hover:text-brand-primary" href="../philosophy/index.html">哲学</a>
+                    <a class="bg-brand-primary text-gray-900 px-4 py-2 rounded-md font-bold transition-transform hover:scale-105" href="../contact/index.html">お問い合わせ</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-white focus:outline-none" id="mobile-menu-button">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden mt-4 space-y-2 pb-4" id="mobile-menu">
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../index.html">ホーム</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../about/index.html">私について</a>
+                <a class="block text-brand-primary font-semibold py-2" href="index.html">実績</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../insights/index.html">知見</a>
+                <a class="block text-brand-text-muted hover:text-brand-primary py-2" href="../philosophy/index.html">哲学</a>
+                <a class="block bg-brand-primary text-gray-900 text-center mt-2 px-4 py-2 rounded-md font-bold" href="../contact/index.html">お問い合わせ</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <!-- Breadcrumbs -->
+        <nav class="flex mb-8 text-sm font-mono" aria-label="Breadcrumb">
+            <ol class="flex list-none p-0">
+                <li class="flex items-center">
+                    <a href="../index.html" class="hover:text-brand-primary transition-colors">HOME</a>
+                    <span class="mx-2 text-brand-muted">/</span>
+                </li>
+                <li class="flex items-center">
+                    <a href="index.html" class="hover:text-brand-primary transition-colors">PROJECTS</a>
+                    <span class="mx-2 text-brand-muted">/</span>
+                </li>
+                <li class="text-brand-primary truncate">LOOKER-STUDIO-ADVANCED-ANALYSIS</li>
+            </ol>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="mb-12">
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-bold rounded-full">Looker Studio</span>
+                <span class="px-3 py-1 bg-brand-secondary/10 border border-brand-secondary/20 text-brand-secondary text-xs font-bold rounded-full">BigQuery</span>
+                <span class="px-3 py-1 bg-gray-700 text-gray-300 text-xs font-bold rounded-full">データサイエンス</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
+                Looker Studioで意思決定を加速：<br>
+                <span class="gradient-text">データクレンジングから回帰分析まで、実践的ダッシュボード構築事例</span>
+            </h1>
+            <div class="flex items-center text-brand-muted font-mono text-sm">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                公開日: 2026年01月09日
+            </div>
+        </header>
+
+        <!-- Main Content Section -->
+        <div class="glass-card rounded-2xl p-8 md:p-12 mb-16">
+            <div class="prose prose-lg prose-invert max-w-none">
+                <p class="lead text-xl text-gray-300">
+                    現代のビジネスにおいて、データは単なる「記録」から「行動の指針」へとその役割を変えています。本プロジェクトでは、WHO（世界保健機関）のオープンデータを題材に、Looker Studioを用いた高度な分析テンプレートを構築。エンジニアリング視点でのデータ加工から、高度な統計的アプローチの実装までを網羅した事例を解説します。
+                </p>
+
+                <h2>1. プロジェクトの背景と目的</h2>
+                <p>
+                    膨大なデータが手元にあっても、それが「意思決定」に繋がらない理由は、多くの場合「データの構造化不足」と「分析視点の欠如」にあります。本事例では、以下の3点を主要な目的としてダッシュボードを設計しました。
+                </p>
+                <ul>
+                    <li><strong>データの整合性確保:</strong> 異なるデータソース間のズレを解消するクレンジング工程の確立。</li>
+                    <li><strong>高度な分析の民主化:</strong> 専門知識が必要な「回帰分析」を、非専門家でも視覚的に理解可能にする。</li>
+                    <li><strong>探索的インターフェース:</strong> 静的なグラフではなく、クロスフィルタリングによる対話的なデータ探索を実現する。</li>
+                </ul>
+
+                <h2>2. データエンジニアリング：クレンジングと統合</h2>
+                <p>
+                    ダッシュボードの信頼性は、データの品質に依存します。WHOのデータセットには、欠損値や国名表記の揺らぎが含まれていました。これらをLooker Studio上で直接処理するのではなく、BigQueryを介して以下のクレンジングを実施しました。
+                </p>
+                <pre><code class="language-sql">-- データクレンジングの概念例
+SELECT 
+  COALESCE(country_name, 'Unknown') AS country,
+  SAFE_CAST(life_expectancy AS FLOAT64) AS life_exp,
+  REGEXP_REPLACE(gdp_per_capita, r'[^0-9.]', '') AS clean_gdp
+FROM `who_raw_data`
+WHERE year >= 2010</code></pre>
+                <p>
+                    このように、<strong>ETL（抽出・加工・書き出し）</strong>の段階でデータを正規化することで、Looker Studio側の負荷を軽減し、高速なレスポンスを実現しています。
+                </p>
+
+                <h2>3. 実装した高度な分析機能</h2>
+                <h3>回帰分析による相関の可視化</h3>
+                <p>
+                    単に推移を見るだけでなく、「何が要因で変化しているのか」を特定するために、散布図とトレンドラインを組み合わせた回帰分析を実装しました。例えば、医療支出と平均寿命の相関をプロットし、決定係数（R²）を明示することで、投資対効果の科学的な評価を可能にしました。
+                </p>
+
+                <h3>クロスフィルタリングとパラメータ制御</h3>
+                <p>
+                    特定の地域をクリックすると、ページ全体の指標（KPI）が瞬時にその地域のものに同期する<strong>クロスフィルタリング</strong>を採用。これにより、ユーザーは「全体像の把握」から「特定要因の深掘り」までを、思考を途切れさせることなく実行できます。
+                </p>
+
+                <div class="bg-brand-primary/5 border-l-4 border-brand-primary p-6 my-8">
+                    <p class="text-white font-bold mb-2">💡 意思決定を加速させるポイント</p>
+                    <p class="m-0 italic text-sm">
+                        ダッシュボードは「答え」を出す場所ではなく、「次の問い」を見つける場所です。クロスフィルタリングを多用することで、ユーザーは「なぜこの数値が低いのか？」という仮説検証を自ら行えるようになります。
+                    </p>
+                </div>
+
+                <h2>4. 結論：データ駆動型QOL最適化への貢献</h2>
+                <p>
+                    本ダッシュボードの構築を通じて、複雑なデータセットであっても、適切なエンジニアリングとUI設計を組み合わせることで、強力な意思決定支援ツールへと昇華できることが証明されました。
+                </p>
+                <p>
+                    LOU-Arkが掲げる<strong>「データ駆動型QOL最適化」</strong>とは、こうした客観的な分析に基づき、限られたリソースを最も効果的な場所へ投入するプロセスを指します。今後も、AI解析とBIツールの融合を深め、より透明性が高く、納得感のある意思決定プロセスを構築してまいります。
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="text-center bg-gradient-to-br from-brand-surface to-brand-bg border border-brand-primary/20 rounded-3xl p-12">
+            <h2 class="text-3xl font-display font-bold text-white mb-6">データ活用のご相談を承ります</h2>
+            <p class="text-brand-text-muted mb-8 max-w-2xl mx-auto">
+                散らばったデータを価値あるインサイトへ。Looker Studioの導入支援から、BigQueryを用いたデータ基盤構築、高度な分析の実装まで、貴社のニーズに合わせた最適なソリューションをご提案します。
+            </p>
+            <a href="../contact/index.html" class="inline-block bg-brand-primary text-gray-900 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 active:scale-95">
+                プロジェクトについて相談する
+            </a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-surface border-t border-brand-primary/20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">LOU-Ark</h3>
+                    <p class="text-brand-text-muted">データ駆動型QOL最適化と意思決定の科学。倫理と透明性を基盤に、より豊かな社会の実現に貢献します。</p>
+                </div>
+                <!-- Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">サイトマップ</h3>
+                    <ul class="space-y-2">
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../index.html">ホーム</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../about/index.html">私について</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="index.html">実績</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../insights/index.html">知見</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../philosophy/index.html">哲学</a></li>
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../contact/index.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <!-- Legal -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">リーガル</h3>
+                    <ul class="space-y-2">
+                        <li><a class="text-brand-text-muted hover:text-brand-primary transition-colors" href="../legal/index.html">法務情報 (プライバシーポリシー等)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-brand-primary/20 pt-8 text-center text-brand-text-muted">
+                <p>© 2025 LOU-Ark Portfolio. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close menu when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
